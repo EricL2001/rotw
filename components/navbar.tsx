@@ -22,8 +22,8 @@ export default function Navbar() {
           <Link href="/tickets" className="transition-colors hover:text-primary">
             Tickets
           </Link>
-          <Link href="/shop" className="transition-colors hover:text-primary">
-            Shop
+          <Link href="/store" className="transition-colors hover:text-primary">
+            Store
           </Link>
         </nav>
         <button
@@ -59,32 +59,32 @@ export default function Navbar() {
       >
         <nav className="flex flex-col p-4 mt-14">
           <Link
-            href="/"
+            href="/about"
             className="py-2 text-sm font-medium transition-colors hover:text-primary"
             onClick={() => setIsOpen(false)}
           >
             About
           </Link>
           <Link
-            href="/"
+            href="/shows"
             className="py-2 text-sm font-medium transition-colors hover:text-primary"
             onClick={() => setIsOpen(false)}
           >
             Shows
           </Link>
           <Link
-            href="/"
+            href="/tickets"
             className="py-2 text-sm font-medium transition-colors hover:text-primary"
             onClick={() => setIsOpen(false)}
           >
             Tickets
           </Link>
           <Link
-            href="/"
+            href="/store"
             className="py-2 text-sm font-medium transition-colors hover:text-primary"
             onClick={() => setIsOpen(false)}
           >
-            Shop
+            Store
           </Link>
         </nav>
       </div>

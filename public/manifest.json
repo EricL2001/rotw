@@ -8,7 +8,7 @@
   "orientation": "portrait",
   "icons": [
     {
-      "src": "/icon-andrdoid-192.jpg",
+      "src": "/icon-android-192.jpg",
       "sizes": "192x192",
       "type": "image/jpg"
     },

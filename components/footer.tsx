@@ -34,18 +34,18 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/careers" className="text-muted-foreground transition-colors hover:text-primary">
+                <Link href="/shows" className="text-muted-foreground transition-colors hover:text-primary">
                   Shows
                 </Link>
               </li>
               <li>
-                <Link href="/careers" className="text-muted-foreground transition-colors hover:text-primary">
+                <Link href="/tickets" className="text-muted-foreground transition-colors hover:text-primary">
                   Tickets
                 </Link>
               </li>
               <li>
-                <Link href="/careers" className="text-muted-foreground transition-colors hover:text-primary">
-                  Shop
+                <Link href="/store" className="text-muted-foreground transition-colors hover:text-primary">
+                  Store
                 </Link>
               </li>
             </ul>
