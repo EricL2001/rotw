@@ -8,7 +8,7 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-14 max-w-screen-2xl items-center relative">
+      <div className="container flex h-16 max-w-screen-2xl items-center relative">
         <Link href="/" className="mr-6 flex items-center space-x-2">
           <span className="font-bold">Records On The Wall</span>
         </Link>
@@ -27,7 +27,7 @@ export default function Navbar() {
           </Link>
         </nav>
         <button
-          className={`md:hidden fixed right-4 top-3 z-[70] w-6 h-6 flex flex-col justify-center items-center ${
+          className={`md:hidden fixed right-4 top-4 z-[70] w-6 h-6 flex flex-col justify-center items-center ${
             isOpen ? "text-white" : "text-current"
           }`}
           onClick={() => setIsOpen(!isOpen)}

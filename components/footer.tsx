@@ -11,7 +11,7 @@ export default function Footer() {
         </div>
         <div className="grid flex-1 grid-cols-2 gap-12 sm:grid-cols-3">
           <div className="space-y-4">
-            <h3 className="text-sm font-medium">Follow Us</h3>
+            <h3 className="text-sm font-medium">Connect With Us</h3>
             <ul className="space-y-3 text-sm">
               <li>
                 <Link href="/ai-analytics" className="text-muted-foreground transition-colors hover:text-primary">

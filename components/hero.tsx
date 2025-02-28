@@ -9,14 +9,14 @@ export default function Hero() {
     <section className="relative min-h-[calc(100vh-3.5rem)] flex items-center justify-center">
       <div className="absolute inset-0">
         <Image 
-          src="/hba-stage-alt.jpg" 
+          src="/hba-stage.jpg" 
           alt="Heist Barrel Arts outdoor stage" 
           fill priority className="object-cover" 
           sizes="100vw" 
         />
       <div className="absolute inset-0 bg-black/60" />
       </div>
-      <div className="container max-w-screen-2xl relative z-10 py-24 md:py-32">
+      <div className="container max-w-screen-2xl relative z-10 py-24 md:py-24 padding-top: 48px">
         <div className="text-center space-y-8">
           <Image
             src={logo}
@@ -25,7 +25,7 @@ export default function Hero() {
             height={300}
             // blurDataURL="data:..." automatically provided
             // placeholder="blur" // Optional blur-up while loading
-            className={cn("mx-auto",
+            className={cn("mx-auto w-[250px] h-[250px] md:w-[300px] md:h-[300px]",
               "animate-in fade-in-5 slide-in-from-bottom-5 duration-1000",
             )}
           />
