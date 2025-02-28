@@ -14,7 +14,7 @@ export default function CTA() {
           Stay updated
         </h2>
         <p className="max-w-[42rem] leading-normal text-muted-foreground sm:text-xl sm:leading-8">
-          Join 3,000+ other music lovers on our e-mail list who stay updated on shows, pre-sales and more.
+          Join 3,000+ other music lovers on our e-mail list who stay updated on events, pre-sales and more.
         </p>
         <Button size="lg" className="mt-4">
           Join E-mail List

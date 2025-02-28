@@ -9,14 +9,14 @@ export default function Hero() {
     <section className="relative min-h-[calc(100vh-3.5rem)] flex items-center justify-center">
       <div className="absolute inset-0">
         <Image 
-          src="/hba-stage.jpg" 
+          src="/hba-stage-alt.jpg" 
           alt="Heist Barrel Arts outdoor stage" 
           fill priority className="object-cover" 
           sizes="100vw" 
         />
       <div className="absolute inset-0 bg-black/60" />
       </div>
-      <div className="container max-w-screen-2xl relative z-10 py-24 md:py-24 padding-top: 48px">
+      <div className="container max-w-screen-2xl relative z-10 pt-6 pb-16 px-8">
         <div className="text-center space-y-8">
           <Image
             src={logo}
@@ -30,15 +30,16 @@ export default function Hero() {
             )}
           />
           <p
-            className={cn(
-              "mx-auto max-w-[42rem] leading-normal text-muted-foreground sm:text-xl sm:leading-8",
-              "animate-in fade-in-5 slide-in-from-bottom-5 duration-1000",
-            )}
-          >
-            Helping Charlotte Boogie Since 2018
-            <br />
-            Booking • Promo • Ticketing
-          </p>
+  className={cn(
+    "mx-auto max-w-[42rem] leading-normal text-muted-foreground",
+    "text-base md:text-lg lg:text-2xl", // Adjusted font sizes for different breakpoints
+    "animate-in fade-in-5 slide-in-from-bottom-5 duration-1000",
+  )}
+>
+  Helping Charlotte Boogie Since 2018
+  <br />
+  Booking • Promo • Ticketing
+</p>
           <div
             className={cn(
               "flex justify-center gap-4",

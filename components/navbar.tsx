@@ -12,7 +12,7 @@ export default function Navbar() {
         <Link href="/" className="mr-6 flex items-center space-x-2">
           <span className="font-bold">Records On The Wall</span>
         </Link>
-        <nav className="hidden md:flex flex-1 items-center space-x-6 text-sm font-medium justify-end">
+        <nav className="hidden md:flex flex-1 items-center space-x-6 text-md font-medium justify-end">
           <Link href="/about" className="transition-colors hover:text-primary">
             About
           </Link>
@@ -57,7 +57,7 @@ export default function Navbar() {
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        <nav className="flex flex-col p-4 mt-14">
+        <nav className="flex flex-col text-md font-medium p-4 mt-14">
           <Link
             href="/about"
             className="py-2 text-sm font-medium transition-colors hover:text-primary"
