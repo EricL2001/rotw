@@ -22,11 +22,11 @@ export default function Home() {
         <Navbar />
         <Hero />
         <Features />
+        <CTA />
         <Marquee />
         <MarqueeRev />
         <Upcoming />
         <Venues />
-        <CTA />
         <Footer />
       </div>
     </div>

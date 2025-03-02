@@ -3,22 +3,22 @@ import { Music, Shirt, Zap, Ticket } from "lucide-react"
 const features = [
   {
     name: "Booking",
-    description: "We work with local and touring musicians to book them across breweries and small venues in Charlotte, NC and Denver, CO.",
+    description: "Vivamus arcu odio, eleifend ut libero ut, vulputate tristique leo.",
     icon: Music,
   },
   {
     name: "Promotion",
-    description: "While we heavily promote all the shows we're part of, partner with us on any shows you have coming up.  We'd love to work with you to get the word out.  Contact us for more info.",
+    description: "Vivamus arcu odio, eleifend ut libero ut, vulputate tristique leo.",
     icon: Zap,
   },
   {
     name: "Ticketing",
-    description: "We run our own ticketing solution for shows at Heist Brewery and Heist Barrel Arts",
+    description: "Vivamus arcu odio, eleifend ut libero ut, vulputate tristique leo.",
     icon: Ticket,
   },
   {
     name: "Merch Store",
-    description: "This is getting a massive upgrade.  We will be partnering with local artists in the scene to create some killer merch",
+    description: "Vivamus arcu odio, eleifend ut libero ut, vulputate tristique leo.",
     icon: Shirt,
   },
 ]
@@ -27,9 +27,9 @@ export default function Features() {
   return (
     <section className="container space-y-16 py-24 md:py-32">
       <div className="mx-auto max-w-[58rem] text-center">
-        <h2 className="font-bold text-3xl leading-[1.1] sm:text-3xl md:text-5xl">Top-Flight Talent</h2>
+        <h2 className="font-bold text-3xl leading-[1.1] sm:text-3xl md:text-5xl">We Book Live Music</h2>
         <p className="mt-4 text-muted-foreground sm:text-lg">
-          We&apos;ve booked and promoted hundreds of shows over the years.  Come partner with us on an upcoming event
+          We&apos;ve booked and promoted hundreds of shows over the years.  Partner with us on an upcoming event
         </p>
       </div>
       <div className="mx-auto grid max-w-5xl grid-cols-1 gap-8 md:grid-cols-2">
