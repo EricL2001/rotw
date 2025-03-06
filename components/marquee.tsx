@@ -1,25 +1,26 @@
-import { Button } from "@/components/ui/button"
+import Marquee from "react-fast-marquee";
 import { cn } from "@/lib/utils"
 
-export default function Marquee() {
+export default function NewMarquee() {
 
   return (
     <section>
-      <div
-        className={cn(
+      <div className={cn(
           "container flex flex-col items-center gap-4 py-24 text-center md:py-32",
         )}
       >
-        <h2 className="font-bold text-3xl leading-[1.1] sm:text-3xl md:text-5xl">
-          Marquee
-        </h2>
-        <p className="max-w-[42rem] leading-normal text-muted-foreground sm:text-xl sm:leading-8">
-          auto scrolling marquee of bands we worked with
-        </p>
-        <Button size="lg" className="mt-4">
-          Get Started Today
-        </Button>
+        <Marquee 
+          gradient={false} 
+          speed={80}>
+            <h1> TESTING </h1>
+            <h1> THIS </h1>
+            <h1> MARQUEE </h1>
+            <h1> THINGY </h1>
+            <h1> OUT </h1>
+        </Marquee>
       </div>
     </section>
   )
 }
+
+

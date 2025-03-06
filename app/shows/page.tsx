@@ -1,6 +1,6 @@
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
-import { shows } from "@/data"
+import { shows } from "@/test-data"
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 
 
