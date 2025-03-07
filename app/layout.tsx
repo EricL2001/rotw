@@ -1,5 +1,4 @@
 import "./globals.css"
-// import { Inter } from "next/font/google"
 import { GeistSans } from 'geist/font/sans';
 import type React from "react"
 import type { Metadata, Viewport } from "next"
