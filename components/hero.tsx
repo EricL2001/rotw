@@ -32,7 +32,7 @@ export default function Hero() {
           />
           <p
             className={cn(
-              "mx-auto max-w-[42rem] leading-normal text-white",
+              "mx-auto max-w-[42rem] leading-relaxed text-white",
               "text-[18px] md:text-lg lg:text-2xl", // Adjusted font sizes for different breakpoints
               "animate-in fade-in-5 slide-in-from-bottom-20 duration-1000",
             )}

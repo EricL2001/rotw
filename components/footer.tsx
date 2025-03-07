@@ -10,7 +10,7 @@ export default function Footer() {
         <div className="flex-1 space-y-4">
           <h2 className="font-bold">Records On The Wall</h2>
           <p className="text-sm text-muted-foreground mt-8">BOOKING • PROMO • TICKETING<br />
-          <i>Built with love in Charlotte, NC</i></p>
+          Built with ❤️ in Charlotte, NC</p>
         </div>
         <div className="grid flex-1 grid-cols-2 gap-12 sm:grid-cols-3">
           <div className="space-y-4">
@@ -63,7 +63,7 @@ export default function Footer() {
       </div>
       <div className="container border-t py-6">
         <p className="text-center text-sm text-muted-foreground">
-          © {new Date().getFullYear()} Records On The Wall • All rights reserved
+          Records On The Wall © {new Date().getFullYear()}
         </p>
       </div>
     </footer>

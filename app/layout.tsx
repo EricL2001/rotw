@@ -1,9 +1,9 @@
 import "./globals.css"
-import { Inter } from "next/font/google"
+// import { Inter } from "next/font/google"
+import { GeistSans } from 'geist/font/sans';
 import type React from "react"
 import type { Metadata, Viewport } from "next"
 
-const inter = Inter({ subsets: ["latin"] })
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -11,7 +11,6 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 1,
 }
-
 
 export const metadata: Metadata = {
   title: "Boogie On",
@@ -33,15 +32,23 @@ export const metadata: Metadata = {
   },
   manifest: '/manifest.json',
   applicationName: "Records On The Wall",
+  metadataBase: new URL('https://recordsonthewall.co'),
   openGraph: {
-    type: 'website',
-    siteName: 'Records On The Wall',
     title: 'Records On The Wall',
     description: 'Helping Charlotte Boogie Since 2018.  Live music booking, promotion and ticketing.',
+    url: 'https://recordsonthewall.co',
+    siteName: 'Records On The Wall',
+    images: [
+      {
+        url: '/card-placeholder.jpg', // Path to your open graph image
+        width: 1200,
+        height: 630,
+      },
+    ],
+    locale: 'en_US',
+    type: 'website',
   },
 };
-
-
 
 
 export default function RootLayout({
@@ -50,9 +57,18 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className="dark">
-      <body className={`${inter.className} bg-background text-foreground antialiased`}>{children}</body>
+    <html lang="en">
+      <body className={`dark ${GeistSans.className}`}>
+        {/* Background gradients */}
+        <div className="pointer-events-none fixed inset-0">
+          <div className="absolute inset-0 bg-gradient-to-b from-background via-background/90 to-background" />
+          <div className="absolute right-0 top-0 h-[500px] w-[500px] bg-amber-500/10 blur-[100px]" />
+          <div className="absolute bottom-0 left-0 h-[500px] w-[500px] bg-amber-500/10 blur-[100px]" />
+        </div>
+        <div className="relative z-10">
+          {children}
+        </div>
+      </body>
     </html>
   )
 }
-

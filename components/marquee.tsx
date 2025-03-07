@@ -1,7 +1,7 @@
 import Marquee from "react-fast-marquee";
 import { cn } from "@/lib/utils"
 
-export default function NewMarquee() {
+export default function GetMarquee() {
 
   return (
     <section>
