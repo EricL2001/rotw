@@ -1,58 +1,28 @@
 import Marquee from "react-fast-marquee";
 import { cn } from "@/lib/utils"
-import Image from "next/image";
+import { artists } from "@/marquee-data"
+
 
 export default function GetMarquee() {
-
   return (
     <section>
-      <div className={cn(
+      <h2 className="font-bold text-3xl leading-[1..1] text-center">Bands We&apos;ve Worked With</h2>
+        <div className={cn(
           "container flex flex-col items-center gap-4 py-24 text-center md:py-32",
         )}
-      >
-        <Marquee 
-          gradient={false} 
-          speed={80}>
-            <div className="mx-16">
-              <Image
-                src="/rotw-logo-512.jpg"
-                alt="Records On The Wall Logo"
-                width={150}
-                height={150}
-              >
-              </Image>
-            </div>
-            <div className="mx-16">
-              <Image
-                src="/logo-white-clear.png"
-                alt="Records On The Wall Logo"
-                width={150}
-                height={150}
-              >
-              </Image>
-            </div>
-            <div className="mx-16">
-              <Image
-                src="/logo-white-solid.png"
-                alt="Records On The Wall Logo"
-                width={150}
-                height={150}
-              >
-              </Image>
-            </div>
-            <div className="mx-16">
-              <Image
-                src="/rotw-logo-512.jpg"
-                alt="Records On The Wall Logo"
-                width={150}
-                height={150}
-              >
-              </Image>
-            </div>
-        </Marquee>
-      </div>
+        >
+          <Marquee
+            gradient={false}
+            speed={80}>
+            {artists.map((band, index) => (
+              <div key={index} className="mx-16">
+                <h3 className="text-l font-semibold text-white mt-2 mb-2">
+                  {band.artist}
+                </h3>
+              </div>
+            ))}
+          </Marquee>
+        </div>
     </section>
   )
 }
-
-

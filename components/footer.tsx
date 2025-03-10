@@ -2,6 +2,8 @@ import Link from "next/link"
 import { FaInstagram } from "react-icons/fa";
 import { FaFacebookF } from "react-icons/fa6";
 import { FaXTwitter } from "react-icons/fa6";
+import { LuMail } from "react-icons/lu";
+
 
 export default function Footer() {
   return (
@@ -10,18 +12,18 @@ export default function Footer() {
         <div className="flex-1 space-y-4">
           <h2 className="font-bold">Records On The Wall</h2>
           <p className="text-sm text-muted-foreground mt-8">BOOKING • PROMO • TICKETING<br />
-          Built with ❤️ in Charlotte, NC</p>
+            Built with ❤️ in Charlotte, NC</p>
         </div>
         <div className="grid flex-1 grid-cols-2 gap-12 sm:grid-cols-3">
           <div className="space-y-4">
             <h3 className="text-sm font-medium">Connect With Us</h3>
             <ul className="space-y-5 text-sm">
-            <li>
+              <li>
                 <Link href="/shows" className="text-muted-foreground transition-colors hover:text-primary">
                   <FaInstagram size={24} />
                 </Link>
               </li>
-              <li> 
+              <li>
                 <Link href="/store" className="text-muted-foreground transition-colors hover:text-primary">
                   <FaFacebookF size={24} />
                 </Link>
@@ -58,7 +60,16 @@ export default function Footer() {
               </li>
             </ul>
           </div>
-          <h3 className="text-sm font-medium">Contact</h3>
+          <div className="space-y-4">
+            <h3 className="text-sm font-medium">Contact</h3>
+            <ul className="space-y-3 text-sm">
+              <li>
+                <Link href="/shows" className="text-muted-foreground transition-colors hover:text-primary">
+                  <LuMail size={24} />
+                </Link>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
       <div className="container border-t py-6">

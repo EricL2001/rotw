@@ -6,7 +6,7 @@ import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 export default function Upcoming() {
   return (
     <section className="container space-y-10 py-24 md:py-32">
-      <h2 className="font-bold text-3xl leading-[1.1] sm:text-3xl md:text-5xl">Upcoming Shows</h2>
+      <h2 className="font-bold text-3xl leading-[1..1] text-center">Upcoming Shows</h2>
         <ScrollArea className="w-full whitespace-nowrap rounded-md border">
           <div className="flex space-x-4 p-4 gap-8">
             {shows.map((work, index) => (
