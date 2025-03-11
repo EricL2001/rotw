@@ -10,7 +10,7 @@ export default function Footer() {
     <footer className="border-t">
       <div className="container flex flex-col gap-8 py-8 md:flex-row md:py-12">
         <div className="flex-1 space-y-4">
-          <h2 className="font-bold">Records On The Wall</h2>
+          <h2 className="font-bold text-xl">Records On The Wall</h2>
           <p className="text-sm text-muted-foreground mt-8">BOOKING • PROMO • TICKETING<br />
             Built with ❤️ in Charlotte, NC</p>
         </div>

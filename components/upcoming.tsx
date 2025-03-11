@@ -2,6 +2,7 @@ import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { shows } from "@/test-data"
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
+import { GeistMono } from 'geist/font/mono';
 
 export default function Upcoming() {
   return (
@@ -22,8 +23,8 @@ export default function Upcoming() {
                   className="rounded object-cover"
                 />
                 <h3 className="text-l font-semibold text-white mt-2 mb-2">{work.artist}</h3>
-                <p className="text-white text-sm">{work.venue}</p>
-                <p className="text-white mb-3 text-sm">{work.date}</p>
+                <p className={`text-white text-sm ${GeistMono.className}`}>{work.venue}</p>
+                <p className={`text-white mb-3 text-sm ${GeistMono.className}`}>{work.date}</p>
                 <Button variant="outline" className="border-yellow-400 text-yellow-400 hover:bg-gray-800 hover:text-white">
                   Info & Tickets
                 </Button>
