@@ -2,7 +2,7 @@
 
 Helping Charlotte Boogie Since 2018. Live music website for booking, promotion and ticketing in Charlotte, NC and Denver, CO
 
-## 🛠️ Technologies and Project Details
+## 🛠️ Technologies Used
 
 - **Infrastructure and DX tools**: [Vercel](https://vercel.com/)
 - **Framework**: [Next.js](https://nextjs.org/)

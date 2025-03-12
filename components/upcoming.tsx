@@ -6,9 +6,9 @@ import { GeistMono } from 'geist/font/mono';
 
 export default function Upcoming() {
   return (
-    <section className="container space-y-10 py-24 md:py-32">
+    <section className="container space-y-10 py-24">
       <h2 className="font-bold text-3xl leading-[1..1] text-center">Upcoming Shows</h2>
-        <ScrollArea className="w-full whitespace-nowrap rounded-md border">
+        <ScrollArea className="w-full whitespace-nowrap rounded-md">
           <div className="flex space-x-4 p-4 gap-8">
             {shows.map((work, index) => (
               <div

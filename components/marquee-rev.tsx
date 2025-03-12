@@ -7,7 +7,7 @@ export default function MarqueeRev() {
   return (
     <section>
         <div className={cn(
-          "container flex flex-col items-center gap-4 py-24 text-center md:py-32",
+          "container flex flex-col items-center gap-4 py-24 text-center",
         )}
         >
           <Marquee 

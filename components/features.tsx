@@ -25,7 +25,7 @@ const features = [
 
 export default function Features() {
   return (
-    <section className="container space-y-16 py-24 md:py-32">
+    <section className="container space-y-16 py-24">
       <div className="mx-auto max-w-[58rem] text-center">
         <h2 className="font-bold text-3xl leading-[1.1] sm:text-3xl md:text-5xl">We Book Live Music</h2>
         <p className="mt-4 text-muted-foreground sm:text-lg">
@@ -34,9 +34,9 @@ export default function Features() {
       </div>
       <div className="mx-auto grid max-w-5xl grid-cols-1 gap-8 md:grid-cols-2">
         {features.map((feature) => (
-          <div key={feature.name} className="relative overflow-hidden rounded-lg border bg-background p-8">
+          <div key={feature.name} className="relative overflow-hidden rounded-lg border-[0.5px] border-white bg-background p-8">
             <div className="flex items-center gap-4">
-              <feature.icon className="h-8 w-8" />
+              <feature.icon className="h-8 w-8 stroke-orange-500" />
               <h3 className="font-bold">{feature.name}</h3>
             </div>
             <p className="mt-2 text-muted-foreground">{feature.description}</p>

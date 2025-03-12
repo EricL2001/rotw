@@ -7,7 +7,7 @@ export default function CTA() {
     <section>
       <div
         className={cn(
-          "container flex flex-col items-center gap-4 py-24 text-center md:py-32",
+          "container flex flex-col items-center gap-4 py-24 text-center",
         )}
       >
         <h2 className="font-bold text-3xl leading-[1.1] sm:text-3xl md:text-5xl">
