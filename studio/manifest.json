@@ -1,0 +1,22 @@
+{
+  "name": "Records On The Wall",
+  "short_name": "Records On The Wall",
+  "description": "Helping Charlotte Boogie Since 2018.  Live music booking, promotion and ticketing.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/icon-android-192.jpg",
+      "sizes": "192x192",
+      "type": "image/jpg"
+    },
+    {
+      "src": "/rotw-logo-512.jpg",
+      "sizes": "512x512",
+      "type": "image/jpg",
+      "purpose": "any maskable"
+    }
+  ]
+}

@@ -1,46 +1,48 @@
-import Image from "next/image"
-import { GeistMono } from 'geist/font/mono';
+// import Image from "next/image"
+// import { GeistMono } from 'geist/font/mono';
 
-const partners = [
-  {
-    name: "Heist Brewery",
-    city: "Charlotte, NC",
-    src: "/hba-stage-alt.jpg",
-  },
-  {
-    name: "Jack's Live",
-    city: "Charlotte, NC",
-    src: "/hba-stage-alt.jpg",
-  },
-  {
-    name: "Heist Brewery and Barrel Arts",
-    city: "Charlotte, NC",
-    src: "/hba-stage-alt.jpg",
-  },
-  {
-    name: "Cactus Jack's Saloon & Grill",
-    city: "Evergreen, CO",
-    src: "/hba-stage-alt.jpg",
-  },
-]
+// const partners = [
+//   {
+//     name: "Heist Brewery",
+//     city: "Charlotte, NC",
+//     src: "/heist.jpeg",
+//   },
+//   {
+//     name: "Jack's Live",
+//     city: "Charlotte, NC",
+//     src: "/jacks-small.jpg",
+//   },
+//   {
+//     name: "Heist Brewery and Barrel Arts",
+//     city: "Charlotte, NC",
+//     src: "/hba-stage-alt.jpg",
+//   },
+//   {
+//     name: "Cactus Jack's Saloon",
+//     city: "Evergreen, CO",
+//     src: "/cactus-jacks.jpg",
+//   },
+// ]
 
 
 // export default function Venues() {
 //   return (
-//     <section className="container space-y-16 py-24 md:py-32">
-//       <h2 className="font-bold text-3xl leading-[1.1] text-center">Venues</h2>
-//       <p className="text-lg text-white/80 text-center mt-4">Venues and breweries we partner with</p>
+//     <section className="container py-24">
+<div className="space-y-4 mb-16">
+  <h2 className="font-bold text-3xl leading-[1.1] text-center">Venues</h2>
+  <p className="text-lg text-white/80 text-center">Venue and brewery partners</p>
+</div>
 //       <div className="mx-auto grid max-w-5xl grid-cols-1 gap-8 md:grid-cols-2">
 //         {partners.map((partner) => (
 //           <div
 //             key={partner.name}
-//             className="relative h-[200px] overflow-hidden rounded-lg border border-white"
+//             className="relative h-[200px] overflow-hidden rounded-lg border-[0.5px] border-white"
 //           >
 //             <Image
 //               src={partner.src}
 //               alt={partner.name}
 //               fill
-//               className="object-cover"
+//               className="object-cover" 
 //               priority
 //             />
 //             <div className="absolute inset-0 bg-black/50 flex flex-col justify-end p-6">
@@ -50,37 +52,71 @@ const partners = [
 //           </div>
 //         ))}
 //       </div>
-//     </section>
+//   </section >
 //   )
 // }
+
+import Image from "next/image"
+import Link from "next/link"
+import { GeistMono } from 'geist/font/mono';
+
+const partners = [
+  {
+    name: "Heist Brewery",
+    city: "Charlotte, NC",
+    src: "/heist.jpeg",
+    url: "https://www.heistbrewery.com",
+  },
+  {
+    name: "Jack's Live",
+    city: "Charlotte, NC",
+    src: "/jacks-small.jpg",
+    url: "https://www.jacksliveclt.com/",
+  },
+  {
+    name: "Heist Brewery and Barrel Arts",
+    city: "Charlotte, NC",
+    src: "/hba-stage-alt.jpg",
+    url: "https://heistbrewery.com/home/barrel-arts/",
+  },
+  {
+    name: "Cactus Jack's Saloon",
+    city: "Evergreen, CO",
+    src: "/cactus-jacks.jpg",
+    url: "https://www.evergreenlivemusic.com",
+  },
+]
 
 export default function Venues() {
   return (
     <section className="container py-24">
       <div className="space-y-4 mb-16">
         <h2 className="font-bold text-3xl leading-[1.1] text-center">Venues</h2>
-        <p className="text-lg text-white/80 text-center">Venues and breweries we partner with</p>
+        <p className="text-lg text-white/80 text-center">Venue and brewery partners</p>
       </div>
       <div className="mx-auto grid max-w-5xl grid-cols-1 gap-8 md:grid-cols-2">
         {partners.map((partner) => (
-          <div
+          <Link
+            href={partner.url}
             key={partner.name}
-            className="relative h-[200px] overflow-hidden rounded-lg border-[0.5px] border-white"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group relative h-[200px] overflow-hidden rounded-lg border-[0.5px] border-white transition-transform hover:scale-[1.01]"
           >
             <Image
               src={partner.src}
               alt={partner.name}
               fill
-              className="object-cover"
+              className="object-cover transition-transform group-hover:scale-105"
               priority
             />
             <div className="absolute inset-0 bg-black/50 flex flex-col justify-end p-6">
               <h3 className="font-bold text-xl text-white">{partner.name}</h3>
               <p className={`text-sm text-white/80 ${GeistMono.className}`}>{partner.city}</p>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
-  </section >
+    </section>
   )
 }

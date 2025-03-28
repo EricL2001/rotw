@@ -8,21 +8,18 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-16 items-center relative px-4">
+      <div className="container flex h-16 items-center relative px-8">
         <Link href="/" className="mr-6 flex items-center space-x-2">
           <span className="font-medium text-xl sm:text-2xl md:text-3xl">Records On The Wall</span>
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex flex-1 items-center space-x-6 text-md font-medium justify-end">
+        <nav className="hidden md:flex flex-1 items-center space-x-8 text-xl font-medium justify-end">
           <Link href="/about" className="transition-colors hover:text-primary">
             About
           </Link>
           <Link href="/shows" className="transition-colors hover:text-primary">
             Shows
-          </Link>
-          <Link href="/tickets" className="transition-colors hover:text-primary">
-            Tickets
           </Link>
           <Link href="/store" className="transition-colors hover:text-primary">
             Store
@@ -63,13 +60,6 @@ export default function Navbar() {
                 onClick={() => setIsOpen(false)}
               >
                 Shows
-              </Link>
-              <Link
-                href="/tickets"
-                className="px-4 py-2 text-sm font-medium text-white hover:bg-yellow-400/10"
-                onClick={() => setIsOpen(false)}
-              >
-                Tickets
               </Link>
               <Link
                 href="/store"

@@ -11,10 +11,10 @@ export default function CTA() {
         )}
       >
         <h2 className="font-bold text-3xl leading-[1.1] sm:text-3xl md:text-5xl">
-          Stay updated
+          Stay Updated
         </h2>
         <p className="max-w-[42rem] leading-normal text-muted-foreground sm:text-xl sm:leading-8">
-          Join 3,000+ other music lovers on our e-mail list who stay updated on events, pre-sales, new merch and more.
+          Join the list and take the ride with 3,000+ other music freaks. Stay updated on shows, pre-sales, new merch and more.
         </p>
         <Button size="lg" className="mt-4">
           Join E-mail List

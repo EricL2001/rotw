@@ -49,10 +49,10 @@ export default function Hero() {
           >
             <Link href="/shows">
               <Button
-                className="text-[0.9rem] md:text-lg lg:text-xl px-4 py-2 md:px-6 md:py-3 lg:px-8 lg:py-4"
-                variant="default"
+                className="text-[0.9rem] md:text-lg lg:text-xl px-4 py-2 md:px-6 md:py-3 lg:px-8 lg:py-4 text-white/80"
+                variant="orange"
               >
-                Explore Shows
+                Come see a show
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </Link>
