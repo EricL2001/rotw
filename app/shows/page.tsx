@@ -1,22 +1,12 @@
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
-import { GeistMono } from 'geist/font/mono';
-import Link from "next/link";
-import { type SanityDocument } from "next-sanity";
-import { client } from "../../sanity/lib/client";
+import { GeistMono } from 'geist/font/mono'
+import Link from "next/link"
 import { Badge } from "@/components/ui/badge"
-
-const POSTS_QUERY = `*[
-  _type == "post"
-  && defined(slug.current)
-]|order(showDate asc)[0...12]{_id, title, slug, showDate, venue, "imageUrl": image.asset->url, bandName}`;
-
-const options = { next: { revalidate: 30 } };
-
+import { getAllShows } from "@/lib/actions/getAllShows"
 
 export default async function ShowsPage() {
-
-  const posts = await client.fetch<SanityDocument[]>(POSTS_QUERY, {}, options);
+  const posts = await getAllShows();
 
   return (
     <div className="container mx-auto px-4 mb-6">
@@ -27,7 +17,7 @@ export default async function ShowsPage() {
             key={index}
             className="shrink-0 bg-background p-6 rounded-lg border-[0.5px] border-white"
           >
-            {show.imageUrl ? (
+                        {show.imageUrl ? (
               <Image
                 src={show.imageUrl}
                 alt={show.bandName || 'Show image'}
@@ -45,7 +35,11 @@ export default async function ShowsPage() {
               <Badge variant="green" className={GeistMono.className}>Free Show</Badge>
             </div>
             <p className={`text-white text-sm ${GeistMono.className}`}>{show.venue}</p>
-            <p className={`text-white mb-3 text-sm ${GeistMono.className}`}>{show.showDate}</p>
+            <p className={`text-white mb-3 text-sm ${GeistMono.className}`}>{new Date(show.showDate).toLocaleDateString(undefined, {
+              weekday: 'short',
+              month: 'long',
+              day: 'numeric',
+            })}</p>
             <Link href={`/shows/${show.slug.current}`}>
               <Button variant="outline" className="border-yellow-400 text-yellow-400 hover:bg-gray-800 hover:text-white">
                 Info & Tickets

@@ -1,34 +1,41 @@
-import { PortableText, type SanityDocument } from "next-sanity";
-import imageUrlBuilder from "@sanity/image-url";
-import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
-import { client } from "../../../sanity/lib/client";
-import Image from "next/image";
-import Link from "next/link";
+import { PortableText } from "next-sanity"
+import { PortableTextComponents } from "@portabletext/react";
+import Image from "next/image"
+import Link from "next/link"
+import { getShow } from "@/lib/actions/getShow"
+import { TicketSelector } from "@/components/ticket-selector"
 
-const POST_QUERY = `*[_type == "post" && slug.current == $slug][0]`;
 
-const { projectId, dataset } = client.config();
-const urlFor = (source: SanityImageSource) =>
-  projectId && dataset
-    ? imageUrlBuilder({ projectId, dataset }).image(source)
-    : null;
-
-const options = { next: { revalidate: 30 } };
+const portableTextComponents: PortableTextComponents = {
+  block: {
+    // Customize paragraph rendering
+    normal: ({ children }) => <p className="mb-2">{children}</p>,
+  },
+  list: {
+    // Customize unordered list rendering
+    bullet: ({ children }) => <ul className="list-disc ml-6 mb-2">{children}</ul>,
+    // Customize ordered list rendering
+    number: ({ children }) => <ol className="list-decimal ml-6 mb-4">{children}</ol>,
+  },
+  listItem: {
+    // Customize list item rendering
+    bullet: ({ children }) => <li className="mb-2">{children}</li>,
+    number: ({ children }) => <li className="mb-2">{children}</li>,
+  },
+};
 
 
 export default async function PostPage({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
-  const show = await client.fetch<SanityDocument>(POST_QUERY, await params, options);
-  const postImageUrl = show.image
-    ? urlFor(show.image)?.width(550).height(310).url()
-    : null;
+    params,
+  }: {
+    params: Promise<{ slug: string }>;
+  }) {
+    const resolvedParams = await params;
+    const { show, postImageUrl } = await getShow(resolvedParams.slug);
 
   return (
-    <main className="container mx-auto min-h-screen max-w-3xl p-8 flex flex-col gap-1 ">
-      <Link href="/shows" className="hover:underline">
+    <main className="container mx-auto min-h-screen max-w-3xl p-8 flex flex-col gap-1">
+      <Link href="/shows" className="hover:underline mb-2">
         ← Back to all shows
       </Link>
       {postImageUrl && (
@@ -44,18 +51,24 @@ export default async function PostPage({
       <h2 className="text-2xl font-semibold">{show.venue}</h2>
       <p className="text-xl font-semibold">{new Date(show.showDate).toLocaleDateString(undefined, {
         weekday: 'short',
-        month: 'long',
+        month: 'short',
         day: 'numeric',
       })}</p>
-      <p>GA - ${show.price}</p>
-      <p className="mb-4">DOS - ${show.dosPrice}</p>
-      <div className="prose">
-        {Array.isArray(show.description) && <PortableText value={show.description} />}
-      </div>
+      <p className="mb-4 text-xl font-semibold">Tix: ${show.price} / ${show.dosPrice} DOS</p>
+
+      <TicketSelector show={{ title: show.title, price: show.price }} />
+
       <div>
         <hr className="my-8 border-t border-gray-300" />
-        {/* add some sharing buttons and indicators */}
+        {/* add drawer with cart info for tickets to pass to Stripe checkout*/}
+        {/* add some sharing buttons, indicators, calendar add */}
+      </div>
+      <div className="text-white">
+      {Array.isArray(show.description) && (
+          <PortableText value={show.description} components={portableTextComponents} />
+        )}
       </div>
     </main>
   );
 }
+

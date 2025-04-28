@@ -10,13 +10,13 @@ export default function Footer() {
     <footer className="border-t">
       <div className="container flex flex-col gap-8 py-8 md:flex-row md:py-12">
         <div className="flex-1 space-y-4">
-          <h2 className="font-bold text-xl">Records On The Wall</h2>
+          <h2 className="font-medium text-xl">Records On The Wall</h2>
           <p className="text-sm text-muted-foreground mt-8">BOOKING • PROMO • TICKETING<br />
             Built with ❤️ in Charlotte, NC</p>
         </div>
         <div className="grid flex-1 grid-cols-2 gap-12 sm:grid-cols-3">
           <div className="space-y-4">
-            <h3 className="text-sm font-medium">Connect With Us</h3>
+            <h3 className="text-sm font-medium">Connect</h3>
             <ul className="space-y-5 text-sm">
               <li>
                 <Link href="/shows" className="text-muted-foreground transition-colors hover:text-primary">
@@ -29,7 +29,7 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/tickets" className="text-muted-foreground transition-colors hover:text-primary">
+                <Link href="/store" className="text-muted-foreground transition-colors hover:text-primary">
                   <FaXTwitter size={24} />
                 </Link>
               </li>

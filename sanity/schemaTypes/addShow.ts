@@ -51,8 +51,7 @@ export const addShow = defineType({
         name: 'showDate',
         type: 'datetime',
         description: 'Date and start time of show',
-        initialValue: () => new Date()
-          .toISOString(),
+        initialValue: () => new Date().toISOString().split("T")[0],
         validation: (rule) => rule
           .required(),
       }),

@@ -6,16 +6,14 @@ import { GeistMono } from 'geist/font/mono';
 import { type SanityDocument } from "next-sanity";
 import { client } from "../sanity/lib/client";
 
-const POSTS_QUERY = `*[
-  _type == "post"
-  && defined(slug.current)
-]|order(showDate asc)[0...12]{_id, title, slug, showDate, venue, "imageUrl": image.asset->url, bandName}`;
+const POSTS_QUERY = `*[_type == "post" && defined(slug.current) && showDate >= $today] | order(showDate asc)[0...12]{_id, title, slug, showDate, venue, "imageUrl": image.asset->url, bandName}`;
 
 const options = { next: { revalidate: 30 } };
 
 export default async function Upcoming() {
+  const today = new Date().toISOString().split("T")[0]; // Get today's date in YYYY-MM-DD format
 
-  const posts = await client.fetch<SanityDocument[]>(POSTS_QUERY, {}, options);
+  const posts = await client.fetch<SanityDocument[]>(POSTS_QUERY, { today }, options);
 
   return (
     <section className="container space-y-10 py-24">
@@ -42,7 +40,11 @@ export default async function Upcoming() {
               )}
               <h3 className="text-l font-semibold text-white mt-2 mb-2">{show.title}</h3>
               <p className={`text-white text-sm ${GeistMono.className}`}>{show.venue}</p>
-              <p className={`text-white mb-3 text-sm ${GeistMono.className}`}>{show.showDate}</p>
+              <p className={`text-white mb-3 text-sm ${GeistMono.className}`}>{new Date(show.showDate).toLocaleDateString(undefined, {
+                weekday: 'short',
+                month: 'long',
+                day: 'numeric',
+              })}</p>
               <Link href={`/shows/${show.slug.current}`}>
                 <Button variant="outline" className="border-yellow-400 text-yellow-400 hover:bg-gray-800 hover:text-white">
                   Info & Tickets
