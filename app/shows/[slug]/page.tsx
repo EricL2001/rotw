@@ -24,7 +24,7 @@ const portableTextComponents: PortableTextComponents = {
   },
 };
 
-
+// This is the page that shows the details of a single show
 export default async function PostPage({
     params,
   }: {
