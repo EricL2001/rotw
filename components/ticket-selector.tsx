@@ -19,6 +19,8 @@ interface TicketSelectorProps {
   show: {
     title: string
     price: number
+    venue: string
+    showDate: string
   }
 }
 
@@ -36,7 +38,7 @@ export function TicketSelector({ show }: TicketSelectorProps) {
         show.title,
         show.price,
         quantity,
-        'price_1N1YbaGcf98b29zSdb4cDVhe' // should be the ticket fee of $2.50
+        'price_1N1YbaGcf98b29zSdb4cDVhe', // should be the ticket fee of $2.50
       )
 
       const stripe = await stripePromise
@@ -89,23 +91,25 @@ export function TicketSelector({ show }: TicketSelectorProps) {
             className="w-fit text-lg px-6 py-3 text-white/80 font-semibold"
             variant="orange"
             disabled={quantity === 0 || isLoading}
-            onClick={handleCheckout}
           >
             {isLoading ? 'Processing...' : 'BUY TIX'}
           </Button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
-            <DialogTitle>Tickets</DialogTitle>
+            <DialogTitle>Ticket Cart</DialogTitle>
             <DialogDescription>
               Review your order before checkout
             </DialogDescription>
           </DialogHeader>
           <div className="flex items-center space-x-2 py-4">
             <div>
-              <h4 className="font-medium">{show.title}</h4>
+              <h4 className="font-medium">Tickets to see {show.title}</h4>
               <p className="text-sm text-muted-foreground">
                 {quantity} × ${show.price} = ${subtotal.toFixed(2)}
+              </p>
+              <p className="text-sm text-muted-foreground">
+                {show.venue}
               </p>
             </div>
           </div>
