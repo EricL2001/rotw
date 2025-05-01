@@ -56,7 +56,7 @@ export default async function PostPage({
       })}</p>
       <p className="mb-4 text-xl font-semibold">Tix: ${show.price} / ${show.dosPrice} DOS</p>
 
-      <TicketSelector show={{ title: show.title, price: show.price }} />
+      <TicketSelector show={{ title: show.title, price: show.price, venue: show.venue, showDate: show.showDate }} />
 
       <div>
         <hr className="my-8 border-t border-gray-300" />

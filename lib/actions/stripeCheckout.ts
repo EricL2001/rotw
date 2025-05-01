@@ -52,7 +52,7 @@ export async function createCheckoutSession(showTitle: string, price: number, qu
       cancel_url: `${YOUR_BASE_URL}/canceled`,
     })
 
-    return { clientSecret: session.id }
+    return { sessionId: session.id }
   } catch (error) {
     console.error('Error creating checkout session:', error)
     throw new Error('Failed to create checkout session')

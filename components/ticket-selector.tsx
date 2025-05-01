@@ -34,7 +34,7 @@ export function TicketSelector({ show }: TicketSelectorProps) {
   const handleCheckout = async () => {
     try {
       setIsLoading(true)
-      const { clientSecret } = await createCheckoutSession(
+      const { sessionId } = await createCheckoutSession(
         show.title,
         show.price,
         quantity,
@@ -45,7 +45,7 @@ export function TicketSelector({ show }: TicketSelectorProps) {
       if (!stripe) throw new Error('Stripe failed to initialize')
 
       const result = await stripe.redirectToCheckout({
-        sessionId: clientSecret || (() => { throw new Error('Client secret is null') })()
+        sessionId
       })
 
       if (result.error) {
@@ -57,6 +57,7 @@ export function TicketSelector({ show }: TicketSelectorProps) {
       setIsLoading(false)
     }
   }
+
 
   return (
     <div className="flex flex-col gap-4">
@@ -107,9 +108,6 @@ export function TicketSelector({ show }: TicketSelectorProps) {
               <h4 className="font-medium">Tickets to see {show.title}</h4>
               <p className="text-sm text-muted-foreground">
                 {quantity} × ${show.price} = ${subtotal.toFixed(2)}
-              </p>
-              <p className="text-sm text-muted-foreground">
-                {show.venue}
               </p>
             </div>
           </div>
