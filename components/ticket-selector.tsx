@@ -38,21 +38,24 @@ export function TicketSelector({ show }: TicketSelectorProps) {
         show.title,
         show.price,
         quantity,
-        'price_1N1YbaGcf98b29zSdb4cDVhe', // should be the ticket fee of $2.50
       )
 
       const stripe = await stripePromise
       if (!stripe) throw new Error('Stripe failed to initialize')
+
+      // Add more logging
+      console.log('Redirecting to checkout with session ID:', sessionId);
 
       const result = await stripe.redirectToCheckout({
         sessionId
       })
 
       if (result.error) {
+        console.error('Stripe redirect error:', result.error);
         throw new Error(result.error.message)
       }
     } catch (error) {
-      console.error('Error:', error)
+      console.error('Checkout error:', error)
     } finally {
       setIsLoading(false)
     }
