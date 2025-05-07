@@ -58,30 +58,50 @@ export const addShow = defineType({
     defineField({
         name: 'price',
         type: 'number',
-        description: 'Ticket price. ie, 20 for $20.  Not 20.00',
-        validation: (rule) => rule
-          .required(),
+        description: 'Ticket price. Enter 20 for a $20.00 ticket and so on',
+        hidden: ({document}) => document?.showType !== 'Ticketed',
+        validation: (rule) => rule.custom((price, context) => {
+          const document = context?.document;
+          if (document?.showType === 'Ticketed' && (!price || price <= 0)) {
+            // If the show type is 'Ticketed' and price is less than or equal to 0, return an error message
+            return 'Ticket price must be greater than 0';
+          }
+          return true;
+        }),
       }),
       defineField({
         name: 'promoPrice',
         type: 'number',
         description: 'Promo ticket price',
-        validation: (rule) => rule
-          .required(),
+        hidden: ({document}) => document?.showType !== 'Ticketed',
       }), 
       defineField({
         name: 'dosPrice',
         type: 'number',
         description: 'Day of show price',
-        validation: (rule) => rule
-          .required(),
+        hidden: ({document}) => document?.showType !== 'Ticketed',
+        validation: (rule) => rule.custom((dosPrice, context) => {
+          const document = context?.document;
+          if (document?.showType === 'Ticketed' && (!dosPrice || dosPrice <= 0)) {
+            // If the show type is 'Ticketed' and price is less than or equal to 0, return an error message
+            return 'DOS price must be greater than 0';
+          }
+          return true;
+        }),
       }), 
       defineField({
         name: 'allotment',
         type: 'number',
         description: 'Number of tickets available based on cap',
-        validation: (rule) => rule
-          .required(),
+        hidden: ({document}) => document?.showType !== 'Ticketed',
+        validation: (rule) => rule.custom((allotment, context) => {
+          const document = context?.document;
+          if (document?.showType === 'Ticketed' && (!allotment || allotment <= 0)) {
+            // If the show type is 'Ticketed' and price is less than or equal to 0, return an error message
+            return 'Allotment must be greater than 0';
+          }
+          return true;
+        }),
       }),
       defineField({
         name: 'image',

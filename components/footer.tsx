@@ -69,7 +69,7 @@ export default function Footer() {
       </div>
       <div className="container border-t py-6">
         <p className="text-center text-sm text-muted-foreground">
-          Records On The Wall © {new Date().getFullYear()}
+          © {new Date().getFullYear()} Records On The Wall
         </p>
       </div>
     </footer>

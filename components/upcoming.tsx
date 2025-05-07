@@ -3,10 +3,11 @@ import { Button } from "@/components/ui/button"
 import Link from "next/link";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 import { GeistMono } from 'geist/font/mono';
+import { Badge } from "@/components/ui/badge"
 import { type SanityDocument } from "next-sanity";
 import { client } from "../sanity/lib/client";
 
-const POSTS_QUERY = `*[_type == "post" && defined(slug.current) && showDate >= $today] | order(showDate asc)[0...12]{_id, title, slug, showDate, venue, "imageUrl": image.asset->url, bandName}`;
+const POSTS_QUERY = `*[_type == "post" && defined(slug.current) && showDate >= $today] | order(showDate asc)[0...12]{_id, title, slug, showDate, showType, venue, "imageUrl": image.asset->url, bandName}`;
 
 const options = { next: { revalidate: 30 } };
 
@@ -38,7 +39,12 @@ export default async function Upcoming() {
                   <span className="text-gray-400">No image available</span>
                 </div>
               )}
-              <h3 className="text-l font-semibold text-white mt-2 mb-2">{show.title}</h3>
+              <div className="flex items-center justify-between mt-2 mb-2">
+                <h3 className="text-l font-semibold text-white mt-2">{show.title}</h3>
+                {show.showType == 'Free' && (
+                  <Badge variant="green" className={GeistMono.className}>Free Show</Badge>
+                )}
+              </div>
               <p className={`text-white text-sm ${GeistMono.className}`}>{show.venue}</p>
               <p className={`text-white mb-3 text-sm ${GeistMono.className}`}>{new Date(show.showDate).toLocaleDateString(undefined, {
                 weekday: 'short',
@@ -46,9 +52,15 @@ export default async function Upcoming() {
                 day: 'numeric',
               })}</p>
               <Link href={`/shows/${show.slug.current}`}>
-                <Button variant="outline" className="border-yellow-400 text-yellow-400 hover:bg-gray-800 hover:text-white">
-                  Info & Tickets
-                </Button>
+                {show.showType === 'Free' ? (
+                  <Button variant="outline" className="border-yellow-400 text-yellow-400 hover:bg-gray-800 hover:text-white">
+                    More Info
+                  </Button>
+                ) : (
+                  <Button variant="outline" className="border-yellow-400 text-yellow-400 hover:bg-gray-800 hover:text-white">
+                    Info & Tickets
+                  </Button>
+                )}
               </Link>
             </div>
           ))}

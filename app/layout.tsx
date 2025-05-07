@@ -2,6 +2,7 @@ import "./globals.css"
 import { GeistSans } from 'geist/font/sans';
 import type React from "react"
 import type { Metadata, Viewport } from "next"
+import Navbar from "@/components/navbar";
 
 
 export const viewport: Viewport = {
@@ -65,6 +66,7 @@ export default function RootLayout({
           <div className="absolute bottom-0 left-0 h-[500px] w-[500px] bg-amber-500/10 blur-[100px]" />
         </div>
         <div className="relative z-10">
+          <Navbar />
           {children}
         </div>
       </body>

@@ -2,6 +2,8 @@ import { PortableText } from "next-sanity"
 import { PortableTextComponents } from "@portabletext/react";
 import Image from "next/image"
 import Link from "next/link"
+import { GeistMono } from 'geist/font/mono'
+import { Badge } from "@/components/ui/badge"
 import { getShow } from "@/lib/actions/getShow"
 import { TicketSelector } from "@/components/ticket-selector"
 
@@ -26,12 +28,12 @@ const portableTextComponents: PortableTextComponents = {
 
 // This is the page that shows the details of a single show
 export default async function PostPage({
-    params,
-  }: {
-    params: Promise<{ slug: string }>;
-  }) {
-    const resolvedParams = await params;
-    const { show, postImageUrl } = await getShow(resolvedParams.slug);
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const resolvedParams = await params;
+  const { show, postImageUrl } = await getShow(resolvedParams.slug);
 
   return (
     <main className="container mx-auto min-h-screen max-w-3xl p-8 flex flex-col gap-1">
@@ -54,9 +56,25 @@ export default async function PostPage({
         month: 'short',
         day: 'numeric',
       })}</p>
-      <p className="mb-4 text-xl font-semibold">Tix: ${show.price} / ${show.dosPrice} DOS</p>
+      {show.showType !== 'Free' && (
+        <p className="mb-4 text-xl font-semibold">Tix: ${show.price} / ${show.dosPrice} DOS</p>
+      )}
 
-      <TicketSelector show={{ title: show.title, price: show.price, venue: show.venue, showDate: show.showDate }} />
+      {show.showType !== 'Ticketed' && (
+        <Badge variant="green" className={`w-[200px] flex justify-center text-xl ${GeistMono.className}`}>Free Show</Badge>
+      )}
+
+      {show.showType !== 'Free' && (
+        <TicketSelector
+          show={{
+            title: show.title,
+            price: show.price,
+            venue: show.venue,
+            showDate: show.showDate,
+            showType: show.showType,
+          }}
+        />
+      )}
 
       <div>
         <hr className="my-8 border-t border-gray-300" />
@@ -64,7 +82,7 @@ export default async function PostPage({
         {/* add some sharing buttons, indicators, calendar add */}
       </div>
       <div className="text-white">
-      {Array.isArray(show.description) && (
+        {Array.isArray(show.description) && (
           <PortableText value={show.description} components={portableTextComponents} />
         )}
       </div>

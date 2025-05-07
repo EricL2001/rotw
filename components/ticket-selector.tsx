@@ -21,6 +21,7 @@ interface TicketSelectorProps {
     price: number
     venue: string
     showDate: string
+    showType: string
   }
 }
 
@@ -99,7 +100,7 @@ export function TicketSelector({ show }: TicketSelectorProps) {
             {isLoading ? 'Processing...' : 'BUY TIX'}
           </Button>
         </DialogTrigger>
-        <DialogContent className="sm:max-w-[425px]">
+        <DialogContent className="w-[400px] sm:max-w-[425px]">
           <DialogHeader>
             <DialogTitle>Ticket Cart</DialogTitle>
             <DialogDescription>
