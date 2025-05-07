@@ -26,43 +26,49 @@ if (process.env.VERCEL_URL) {
 // --- Now use YOUR_BASE_URL to create the Stripe checkout session ---
 
 // Add this at the top of your file to debug
-console.log('STRIPE_SECRET_KEY exists:', !!process.env.STRIPE_SECRET_KEY);
-console.log('VERCEL_URL:', process.env.VERCEL_URL);
-console.log('VERCEL_BRANCH_URL:', process.env.VERCEL_BRANCH_URL);
-console.log('NEXT_PUBLIC_BASE_URL:', process.env.NEXT_PUBLIC_BASE_URL);
-
+//console.log('STRIPE_SECRET_KEY exists:', !!process.env.STRIPE_SECRET_KEY);
+//console.log('VERCEL_URL:', process.env.VERCEL_URL);
+//console.log('VERCEL_BRANCH_URL:', process.env.VERCEL_BRANCH_URL);
+//console.log('NEXT_PUBLIC_BASE_URL:', process.env.NEXT_PUBLIC_BASE_URL);
 
 
 export async function createCheckoutSession(showTitle: string, price: number, quantity: number) {
   try {
+    const subtotalCents = Math.round(price * 100) * quantity;
+    const salesTaxCents = Math.round(subtotalCents * 0.0725);
+
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
       line_items: [
         {
           price_data: {
             currency: 'usd',
-            product_data: {
-              name: showTitle,
-            },
+            product_data: { name: showTitle },
             unit_amount: Math.round(price * 100),
           },
-          quantity: quantity,
+          quantity,
         },
         {
           price_data: {
             currency: 'usd',
-            product_data: {
-              name: 'Ticket Fee',
-            },
-            unit_amount: 350, // $3.50 fee
+            product_data: { name: 'Ticket Fee' },
+            unit_amount: price < 10 ? 100 : 350,
           },
-          quantity: quantity,
+          quantity,
+        },
+        {
+          price_data: {
+            currency: 'usd',
+            product_data: { name: 'Sales Tax (7.25%)' },
+            unit_amount: salesTaxCents,
+          },
+          quantity: 1,
         }
       ],
       mode: 'payment',
       success_url: `${BASE_URL}/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${BASE_URL}/canceled`,
-    })
+    });
 
     return { sessionId: session.id }
   } catch (error) {

@@ -87,6 +87,7 @@ export function TicketSelector({ show }: TicketSelectorProps) {
         <div className="text-right">
           <p className="text-sm text-gray-400">Subtotal</p>
           <p className="text-xl font-mono">${(subtotal).toFixed(2)}</p>
+          <p className="text-xs text-gray-400">plus tax and fee</p>
         </div>
       </div>
 
@@ -109,14 +110,26 @@ export function TicketSelector({ show }: TicketSelectorProps) {
           </DialogHeader>
           <div className="flex items-center space-x-2 py-4">
             <div>
-              <h4 className="font-medium">Tickets to see {show.title}</h4>
+              <h4 className="font-medium">
+                {show.title} on {new Date(show.showDate).toLocaleDateString(undefined, {
+                  weekday: 'short',
+                  month: 'short',
+                  day: 'numeric',
+                })}
+              </h4>
               <p className="text-sm text-muted-foreground">
                 {quantity} × ${show.price} = ${subtotal.toFixed(2)}
+              </p>
+              <p className="text-sm text-muted-foreground">
+                Sales Tax
+              </p>
+              <p className="text-sm text-muted-foreground">
+                Fee
               </p>
             </div>
           </div>
           <DialogFooter>
-            <Button 
+            <Button
               onClick={handleCheckout}
               disabled={isLoading}
             >
