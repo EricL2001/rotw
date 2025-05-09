@@ -13,11 +13,11 @@ export const projectId: string = process.env.SANITY_STUDIO_PROJECT_ID || '47h2dt
 
 // dev error check for sanity env variables
 if (!nextPubDataset) {
-    throw new Error(`Missing the environment variable: SANITY_STUDIO_DATASET. Dataset from env: ${dataset}`);
+    throw new Error(`Missing the environment variable: NEXT_PUBLIC_SANITY_DATASET. Dataset from env: ${nextPubDataset}`);
 }
 
 if (!nextPubProjectId) {
-    throw new Error(`Missing environment variable: SANITY_STUDIO_PROJECT_ID.  ProjectID from env: ${projectId}`);
+    throw new Error(`Missing environment variable: NEXT_PUBLIC_SANITY_PROJECT_ID.  ProjectID from env: ${nextPubProjectId}`);
 }
 
 
@@ -27,5 +27,5 @@ if (!dataset) {
 }
 
 if (!projectId) {
-    throw new Error(`Missing environment variable: SANITY_STUDIO_PROJECT_ID.  ProjectID from env: ${projectId}`);
+    throw new Error(`Missing environment variable: SANITY_STUDIO_PROJECT_ID. ProjectID from env: ${projectId}`);
 }
