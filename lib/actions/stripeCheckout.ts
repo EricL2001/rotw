@@ -32,10 +32,41 @@ if (process.env.VERCEL_URL) {
 //console.log('NEXT_PUBLIC_BASE_URL:', process.env.NEXT_PUBLIC_BASE_URL);
 
 
-export async function createCheckoutSession(showTitle: string, price: number, quantity: number) {
+export async function createCheckoutSession(
+  showTitle: string,
+  price: number,
+  dosPrice: number,
+  quantity: number,
+  showDate?: string
+) {
+  console.log('DEBUG: args', { showTitle, price, dosPrice, quantity, showDate });
+
+  // Helper to compare only year, month, day (ignoring time)
+  function isSameDay(dateA: Date, dateB: Date) {
+    return (
+      dateA.getFullYear() === dateB.getFullYear() &&
+      dateA.getMonth() === dateB.getMonth() &&
+      dateA.getDate() === dateB.getDate()
+    );
+  }
+
   try {
-    const subtotalCents = Math.round(price * 100) * quantity;
+    let useDos = false;
+
+    if (showDate) {
+      const today = new Date();
+      const show = new Date(showDate);
+     
+      useDos = isSameDay(today, show);
+    }
+
+    const ticketPrice = useDos ? dosPrice : price;
+    const subtotalCents = Math.round(ticketPrice * 100) * quantity;
     const salesTaxCents = Math.round(subtotalCents * 0.0725);
+
+    // console.log('DEBUG: ticketPrice:', ticketPrice);
+    // console.log('DEBUG: subtotalCents:', subtotalCents);
+    // console.log('DEBUG: salesTaxCents:', salesTaxCents);
 
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
@@ -44,7 +75,7 @@ export async function createCheckoutSession(showTitle: string, price: number, qu
           price_data: {
             currency: 'usd',
             product_data: { name: showTitle },
-            unit_amount: Math.round(price * 100),
+            unit_amount: Math.round(ticketPrice * 100),
           },
           quantity,
         },
@@ -52,7 +83,7 @@ export async function createCheckoutSession(showTitle: string, price: number, qu
           price_data: {
             currency: 'usd',
             product_data: { name: 'Ticket Fee' },
-            unit_amount: price < 10 ? 100 : 350,
+            unit_amount: ticketPrice < 10 ? 100 : 350,
           },
           quantity,
         },
@@ -69,6 +100,8 @@ export async function createCheckoutSession(showTitle: string, price: number, qu
       success_url: `${BASE_URL}/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${BASE_URL}/canceled`,
     });
+
+    console.log('DEBUG: Stripe session created:', session.id);
 
     return { sessionId: session.id }
   } catch (error) {

@@ -69,6 +69,8 @@ export default async function PostPage({
           show={{
             title: show.title,
             price: show.price,
+            promoPrice: show.promoPrice,
+            dosPrice: show.dosPrice,
             venue: show.venue,
             showDate: show.showDate,
             showType: show.showType,
@@ -78,7 +80,6 @@ export default async function PostPage({
 
       <div>
         <hr className="my-8 border-t border-gray-300" />
-        {/* add drawer with cart info for tickets to pass to Stripe checkout*/}
         {/* add some sharing buttons, indicators, calendar add */}
       </div>
       <div className="text-white">

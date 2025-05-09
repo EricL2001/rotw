@@ -19,18 +19,31 @@ interface TicketSelectorProps {
   show: {
     title: string
     price: number
+    promoPrice: number
+    dosPrice: number
     venue: string
-    showDate: string
+    showDate: Date | string
     showType: string
   }
 }
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!)
 
+function isSameDay(dateA: Date, dateB: Date) {
+  return (
+    dateA.getFullYear() === dateB.getFullYear() &&
+    dateA.getMonth() === dateB.getMonth() &&
+    dateA.getDate() === dateB.getDate()
+  );
+}
+
 export function TicketSelector({ show }: TicketSelectorProps) {
   const [quantity, setQuantity] = useState(1)
   const [isLoading, setIsLoading] = useState(false)
   const subtotal = quantity * show.price
+  //const promoSubtotal = quantity * show.promoPrice
+  const dosSubtotal = quantity * show.dosPrice
+  const date = new Date(show.showDate)
 
   const handleCheckout = async () => {
     try {
@@ -38,7 +51,9 @@ export function TicketSelector({ show }: TicketSelectorProps) {
       const { sessionId } = await createCheckoutSession(
         show.title,
         show.price,
+        show.dosPrice,
         quantity,
+        new Date(show.showDate).toISOString(),
       )
 
       const stripe = await stripePromise
@@ -62,7 +77,6 @@ export function TicketSelector({ show }: TicketSelectorProps) {
     }
   }
 
-
   return (
     <div className="flex flex-col gap-4">
       <div className="flex items-center justify-between p-4 border border-gray-700 rounded-lg">
@@ -79,14 +93,21 @@ export function TicketSelector({ show }: TicketSelectorProps) {
           <Button
             variant="outline"
             size="icon"
-            onClick={() => setQuantity(quantity + 1)}
+            onClick={() => setQuantity(Math.min(8, quantity + 1))} // <-- Set max to 8
+            disabled={quantity >= 8} // <-- Disable if at max
           >
             <Plus className="h-4 w-4" />
           </Button>
         </div>
         <div className="text-right">
           <p className="text-sm text-gray-400">Subtotal</p>
-          <p className="text-xl font-mono">${(subtotal).toFixed(2)}</p>
+          <p className="text-xl font-mono">
+            {(() => {
+              const today = new Date();
+              const isDosDay = isSameDay(date, today);
+              return `$${(isDosDay ? dosSubtotal : subtotal).toFixed(2)}`;
+            })()}
+          </p>
           <p className="text-xs text-gray-400">plus tax and fee</p>
         </div>
       </div>
@@ -118,7 +139,13 @@ export function TicketSelector({ show }: TicketSelectorProps) {
                 })}
               </h4>
               <p className="text-sm text-muted-foreground">
-                {quantity} × ${show.price} = ${subtotal.toFixed(2)}
+                {(() => {
+                  const today = new Date();
+                  const isDosDay = isSameDay(date, today);
+                  const price = isDosDay ? show.dosPrice : show.price;
+                  const total = isDosDay ? dosSubtotal : subtotal;
+                  return `${quantity} × $${price} = $${total.toFixed(2)}`;
+                })()}
               </p>
               <p className="text-sm text-muted-foreground">
                 Sales Tax

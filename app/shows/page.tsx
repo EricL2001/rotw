@@ -9,7 +9,7 @@ export default async function ShowsPage() {
   const posts = await getAllShows();
 
   return (
-    <div className="container mx-auto px-4 mb-6">
+    <div className="container mx-auto px-8 mb-6">
       <h1 className="text-3xl font-bold mt-8 mb-2">Upcoming Shows</h1>
       <p className="mb-6 text-muted-foreground sm:text-lg">
         All of our upcoming shows...
