@@ -6,6 +6,7 @@ import { GeistMono } from 'geist/font/mono'
 import { Badge } from "@/components/ui/badge"
 import { getShow } from "@/lib/actions/getShow"
 import { TicketSelector } from "@/components/ticket-selector"
+import { toZonedTime, format } from 'date-fns-tz';
 
 
 const portableTextComponents: PortableTextComponents = {
@@ -51,11 +52,18 @@ export default async function PostPage({
       )}
       <h1 className="text-4xl font-bold text-orange-500/90 mb-4">{show.title}</h1>
       <h2 className="text-2xl font-semibold">{show.venue}</h2>
-      <p className="text-xl font-semibold">{new Date(show.showDate).toLocaleDateString(undefined, {
+      {/* <p className="text-xl font-semibold">{new Date(show.showDate).toLocaleDateString(undefined, {
         weekday: 'short',
         month: 'short',
         day: 'numeric',
-      })}</p>
+      })}</p> */}
+      <p className="text-xl font-semibold">
+        {format(
+          toZonedTime(show.showDate, 'America/New_York'),
+          'EEE, MMM d',
+          { timeZone: 'America/New_York' }
+        )}
+      </p>
       {show.showType !== 'Free' && (
         <p className="mb-4 text-xl font-semibold">Tix: ${show.price} / ${show.dosPrice} DOS</p>
       )}
