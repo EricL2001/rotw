@@ -43,7 +43,7 @@ export function TicketSelector({ show }: TicketSelectorProps) {
   const subtotal = quantity * show.price
   //const promoSubtotal = quantity * show.promoPrice
   const dosSubtotal = quantity * show.dosPrice
-  const date = new Date(show.showDate)
+  const shDate = new Date(show.showDate)  // this is the correct date for the show
 
   const handleCheckout = async () => {
     try {
@@ -53,7 +53,7 @@ export function TicketSelector({ show }: TicketSelectorProps) {
         show.price,
         show.dosPrice,
         quantity,
-        new Date(show.showDate).toISOString(),
+        typeof show.showDate === "string" ? show.showDate : show.showDate.toISOString(),
       )
 
       const stripe = await stripePromise
@@ -101,10 +101,27 @@ export function TicketSelector({ show }: TicketSelectorProps) {
         </div>
         <div className="text-right">
           <p className="text-sm text-gray-400">Subtotal</p>
+          {/* <p className="text-xl font-mono">
+            {(() => {
+              const today = new Date();
+              const isDosDay = isSameDay(shDate, today);
+              return `$${(isDosDay ? dosSubtotal : subtotal).toFixed(2)}`;
+            })()}
+          </p> */}
           <p className="text-xl font-mono">
             {(() => {
               const today = new Date();
-              const isDosDay = isSameDay(date, today);
+              const isDosDay = isSameDay(shDate, today);
+              console.log('DEBUG TicketSelector:', {
+                showDate: show.showDate,
+                shDate,
+                today,
+                isDosDay,
+                dosSubtotal,
+                subtotal,
+                dosPrice: show.dosPrice,
+                price: show.price,
+              });
               return `$${(isDosDay ? dosSubtotal : subtotal).toFixed(2)}`;
             })()}
           </p>
@@ -141,7 +158,7 @@ export function TicketSelector({ show }: TicketSelectorProps) {
               <p className="text-sm text-muted-foreground">
                 {(() => {
                   const today = new Date();
-                  const isDosDay = isSameDay(date, today);
+                  const isDosDay = isSameDay(shDate, today);
                   const price = isDosDay ? show.dosPrice : show.price;
                   const total = isDosDay ? dosSubtotal : subtotal;
                   return `${quantity} × $${price} = $${total.toFixed(2)}`;

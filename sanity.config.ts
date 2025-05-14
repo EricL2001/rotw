@@ -32,6 +32,7 @@ export default defineConfig({
       'https://rotw.sanity.studio',
       'https://rotw.vercel.app/',
       'https://recordsonthewall.co',
+      'https://www.recordsonthewall.co',
     ],
     credentials: true,
   }

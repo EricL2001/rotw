@@ -55,8 +55,7 @@ export async function createCheckoutSession(
 
     if (showDate) {
       const today = new Date();
-      const show = new Date(showDate);
-     
+      const show = new Date(showDate); // works for both ISO and 'YYYY-MM-DD'
       useDos = isSameDay(today, show);
     }
 
