@@ -27,9 +27,9 @@ export default function Features() {
   return (
     <section className="container space-y-16 py-24">
       <div className="mx-auto max-w-[58rem] text-center">
-        <h2 className="font-bold text-3xl leading-[1.1] sm:text-3xl md:text-5xl">We Book Live Music</h2>
+        <h2 className="font-bold text-3xl leading-[1.1] sm:text-3xl md:text-5xl">Welcome to the new website</h2>
         <p className="mt-4 text-muted-foreground sm:text-lg">
-          We&apos;ve booked and promoted hundreds of shows over the years.  Partner with us on an upcoming event
+          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
         </p>
       </div>
       <div className="mx-auto grid max-w-5xl grid-cols-1 gap-8 md:grid-cols-2">

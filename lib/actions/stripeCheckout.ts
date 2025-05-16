@@ -1,6 +1,7 @@
 'use server'
 
 import Stripe from 'stripe'
+import { toZonedTime } from 'date-fns-tz';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: '2025-03-31.basil'
@@ -42,22 +43,39 @@ export async function createCheckoutSession(
   console.log('DEBUG: args', { showTitle, price, dosPrice, quantity, showDate });
 
   // Helper to compare only year, month, day (ignoring time)
-  function isSameDay(dateA: Date, dateB: Date) {
+  // function isSameDay(dateA: Date, dateB: Date) {
+  //   return (
+  //     dateA.getFullYear() === dateB.getFullYear() &&
+  //     dateA.getMonth() === dateB.getMonth() &&
+  //     dateA.getDate() === dateB.getDate()
+  //   );
+  // }
+
+  // Helper to compare only year, month, day (ignoring time)
+  function isSameDayInZone(dateA: Date, dateB: Date, timeZone: string) {
+    const zonedA = toZonedTime(dateA, timeZone);
+    const zonedB = toZonedTime(dateB, timeZone);
     return (
-      dateA.getFullYear() === dateB.getFullYear() &&
-      dateA.getMonth() === dateB.getMonth() &&
-      dateA.getDate() === dateB.getDate()
+      zonedA.getFullYear() === zonedB.getFullYear() &&
+      zonedA.getMonth() === zonedB.getMonth() &&
+      zonedA.getDate() === zonedB.getDate()
     );
   }
 
   try {
     let useDos = false;
 
+    // if (showDate) {
+    //   const today = new Date();
+    //   const show = new Date(showDate); // works for both ISO and 'YYYY-MM-DD'
+    //   useDos = isSameDay(today, show);
+    // }
     if (showDate) {
       const today = new Date();
-      const show = new Date(showDate); // works for both ISO and 'YYYY-MM-DD'
-      useDos = isSameDay(today, show);
+      const show = new Date(showDate);
+      useDos = isSameDayInZone(today, show, 'America/New_York');
     }
+
 
     const ticketPrice = useDos ? dosPrice : price;
     const subtotalCents = Math.round(ticketPrice * 100) * quantity;
