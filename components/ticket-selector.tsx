@@ -60,7 +60,7 @@ export function TicketSelector({ show }: TicketSelectorProps) {
       if (!stripe) throw new Error('Stripe failed to initialize')
 
       // Add more logging
-      console.log('Redirecting to checkout with session ID:', sessionId);
+      // console.log('Redirecting to checkout with session ID:', sessionId);
 
       const result = await stripe.redirectToCheckout({
         sessionId
@@ -101,27 +101,10 @@ export function TicketSelector({ show }: TicketSelectorProps) {
         </div>
         <div className="text-right">
           <p className="text-sm text-gray-400">Subtotal</p>
-          {/* <p className="text-xl font-mono">
-            {(() => {
-              const today = new Date();
-              const isDosDay = isSameDay(shDate, today);
-              return `$${(isDosDay ? dosSubtotal : subtotal).toFixed(2)}`;
-            })()}
-          </p> */}
           <p className="text-xl font-mono">
             {(() => {
               const today = new Date();
               const isDosDay = isSameDay(shDate, today);
-              console.log('DEBUG TicketSelector:', {
-                showDate: show.showDate,
-                shDate,
-                today,
-                isDosDay,
-                dosSubtotal,
-                subtotal,
-                dosPrice: show.dosPrice,
-                price: show.price,
-              });
               return `$${(isDosDay ? dosSubtotal : subtotal).toFixed(2)}`;
             })()}
           </p>

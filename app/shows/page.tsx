@@ -48,11 +48,6 @@ export default async function ShowsPage() {
                 { timeZone: 'America/New_York' }
               )}
             </p>
-            {/* <p className={`text-white mb-3 text-sm ${GeistMono.className}`}>{new Date(show.showDate).toLocaleDateString(undefined, {
-              weekday: 'short',
-              month: 'long',
-              day: 'numeric',
-            })}</p> */}
             <Link href={`/shows/${show.slug.current}`}>
               {show.showType === 'Free' ? (
                 <Button variant="outline" className="border-yellow-400 text-yellow-400 hover:bg-gray-800 hover:text-white">

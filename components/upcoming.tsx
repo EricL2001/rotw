@@ -47,11 +47,6 @@ export default async function Upcoming() {
                 )}
               </div>
               <p className={`text-white text-sm ${GeistMono.className}`}>{show.venue}</p>
-              {/* <p className={`text-white mb-3 text-sm ${GeistMono.className}`}>{new Date(show.showDate).toLocaleDateString(undefined, {
-                weekday: 'short',
-                month: 'long',
-                day: 'numeric',
-              })}</p> */}
               <p className={`text-white mb-3 text-sm ${GeistMono.className}`}>
                 {format(
                   toZonedTime(show.showDate, 'America/New_York'),

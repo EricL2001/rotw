@@ -26,7 +26,6 @@ if (process.env.VERCEL_URL) {
 
 // --- Now use YOUR_BASE_URL to create the Stripe checkout session ---
 
-// Add this at the top of your file to debug
 //console.log('STRIPE_SECRET_KEY exists:', !!process.env.STRIPE_SECRET_KEY);
 //console.log('VERCEL_URL:', process.env.VERCEL_URL);
 //console.log('VERCEL_BRANCH_URL:', process.env.VERCEL_BRANCH_URL);
@@ -42,14 +41,6 @@ export async function createCheckoutSession(
 ) {
   console.log('DEBUG: args', { showTitle, price, dosPrice, quantity, showDate });
 
-  // Helper to compare only year, month, day (ignoring time)
-  // function isSameDay(dateA: Date, dateB: Date) {
-  //   return (
-  //     dateA.getFullYear() === dateB.getFullYear() &&
-  //     dateA.getMonth() === dateB.getMonth() &&
-  //     dateA.getDate() === dateB.getDate()
-  //   );
-  // }
 
   // Helper to compare only year, month, day (ignoring time)
   function isSameDayInZone(dateA: Date, dateB: Date, timeZone: string) {
@@ -62,14 +53,10 @@ export async function createCheckoutSession(
     );
   }
 
+
   try {
     let useDos = false;
 
-    // if (showDate) {
-    //   const today = new Date();
-    //   const show = new Date(showDate); // works for both ISO and 'YYYY-MM-DD'
-    //   useDos = isSameDay(today, show);
-    // }
     if (showDate) {
       const today = new Date();
       const show = new Date(showDate);
@@ -81,9 +68,6 @@ export async function createCheckoutSession(
     const subtotalCents = Math.round(ticketPrice * 100) * quantity;
     const salesTaxCents = Math.round(subtotalCents * 0.0725);
 
-    // console.log('DEBUG: ticketPrice:', ticketPrice);
-    // console.log('DEBUG: subtotalCents:', subtotalCents);
-    // console.log('DEBUG: salesTaxCents:', salesTaxCents);
 
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
@@ -91,7 +75,9 @@ export async function createCheckoutSession(
         {
           price_data: {
             currency: 'usd',
-            product_data: { name: showTitle },
+            product_data: {
+              name: showTitle,
+            },
             unit_amount: Math.round(ticketPrice * 100),
           },
           quantity,
@@ -116,6 +102,9 @@ export async function createCheckoutSession(
       mode: 'payment',
       success_url: `${BASE_URL}/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${BASE_URL}/canceled`,
+      payment_intent_data: {
+        description: showTitle, // <-- This sets the dashboard Description
+      },
     });
 
     console.log('DEBUG: Stripe session created:', session.id);

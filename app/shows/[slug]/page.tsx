@@ -52,11 +52,6 @@ export default async function PostPage({
       )}
       <h1 className="text-4xl font-bold text-orange-500/90 mb-4">{show.title}</h1>
       <h2 className="text-2xl font-semibold">{show.venue}</h2>
-      {/* <p className="text-xl font-semibold">{new Date(show.showDate).toLocaleDateString(undefined, {
-        weekday: 'short',
-        month: 'short',
-        day: 'numeric',
-      })}</p> */}
       <p className="text-xl font-semibold">
         {format(
           toZonedTime(show.showDate, 'America/New_York'),
