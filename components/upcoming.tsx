@@ -6,6 +6,7 @@ import { GeistMono } from 'geist/font/mono';
 import { Badge } from "@/components/ui/badge"
 import { type SanityDocument } from "next-sanity";
 import { client } from "../sanity/lib/client";
+import { toZonedTime, format } from 'date-fns-tz';
 
 const POSTS_QUERY = `*[_type == "post" && defined(slug.current) && showDate >= $today] | order(showDate asc)[0...12]{_id, title, slug, showDate, showType, venue, "imageUrl": image.asset->url, bandName}`;
 
@@ -46,11 +47,18 @@ export default async function Upcoming() {
                 )}
               </div>
               <p className={`text-white text-sm ${GeistMono.className}`}>{show.venue}</p>
-              <p className={`text-white mb-3 text-sm ${GeistMono.className}`}>{new Date(show.showDate).toLocaleDateString(undefined, {
+              {/* <p className={`text-white mb-3 text-sm ${GeistMono.className}`}>{new Date(show.showDate).toLocaleDateString(undefined, {
                 weekday: 'short',
                 month: 'long',
                 day: 'numeric',
-              })}</p>
+              })}</p> */}
+              <p className={`text-white mb-3 text-sm ${GeistMono.className}`}>
+                {format(
+                  toZonedTime(show.showDate, 'America/New_York'),
+                  'EEE, MMMM d',
+                  { timeZone: 'America/New_York' }
+                )}
+              </p>
               <Link href={`/shows/${show.slug.current}`}>
                 {show.showType === 'Free' ? (
                   <Button variant="outline" className="border-yellow-400 text-yellow-400 hover:bg-gray-800 hover:text-white">
