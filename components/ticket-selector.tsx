@@ -78,8 +78,8 @@ export function TicketSelector({ show }: TicketSelectorProps) {
   }
 
   return (
-    <div className="flex flex-col gap-4">
-      <div className="flex items-center justify-between p-4 border border-gray-700 rounded-lg">
+    <div className="flex flex-col gap-5">
+      <div className="flex items-center justify-between p-4 border border-gray-600 rounded-lg">
         <div className="flex items-center gap-4">
           <Button
             variant="outline"
@@ -148,10 +148,20 @@ export function TicketSelector({ show }: TicketSelectorProps) {
                 })()}
               </p>
               <p className="text-sm text-muted-foreground">
-                Sales Tax
+                Sales Tax (7.25%): ${(() => {
+                  const today = new Date();
+                  const isDosDay = isSameDay(shDate, today);
+                  const total = isDosDay ? dosSubtotal : subtotal;
+                  const salesTax = total * 0.0725;
+                  return salesTax.toFixed(2);
+                })()}
               </p>
               <p className="text-sm text-muted-foreground">
-                Fee
+                Fee: ${(() => {
+                  const feePerTicket = show.price < 10 ? 1.00 : 3.50;
+                  const totalFee = feePerTicket * quantity;
+                  return totalFee.toFixed(2);
+                })()}
               </p>
             </div>
           </div>

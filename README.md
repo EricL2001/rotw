@@ -12,3 +12,4 @@ Helping Charlotte Boogie Since 2018. Live music website for booking, promotion a
 - **Styling**: [Tailwind CSS](https://tailwindcss.com/)
 - **Font**: [Geist by Vercel](https://vercel.com/font)
 - **Payments**: [Stripe](https://stripe.com/)
+- **Emails**: [Resend](https://resend.com/)

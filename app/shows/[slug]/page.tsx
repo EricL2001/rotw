@@ -37,7 +37,7 @@ export default async function PostPage({
   const { show, postImageUrl } = await getShow(resolvedParams.slug);
 
   return (
-    <main className="container mx-auto min-h-screen max-w-3xl p-8 flex flex-col gap-1">
+    <main className="container mx-auto min-h-screen max-w-3xl p-8 flex flex-col gap-[2px]">
       <Link href="/shows" className="hover:underline mb-2">
         ← Back to all shows
       </Link>
@@ -82,7 +82,7 @@ export default async function PostPage({
       )}
 
       <div>
-        <hr className="my-8 border-t border-gray-300" />
+        <hr className="my-8 border-gray-600" />
         {/* add some sharing buttons, indicators, calendar add */}
       </div>
       <div className="text-white">

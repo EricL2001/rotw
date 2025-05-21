@@ -45,7 +45,7 @@ export default function Navbar() {
 
         {/* Mobile Dropdown Menu */}
         {isOpen && (
-          <div className="absolute top-16 right-4 w-48 bg-black/95 border border-yellow-400 rounded-md shadow-lg">
+          <div className="absolute top-16 right-4 w-56 bg-black/95 border border-orange-500/70 rounded-md shadow-lg">
             <nav className="flex flex-col py-2">
               <Link
                 href="/about"
@@ -68,6 +68,7 @@ export default function Navbar() {
               >
                 Store
               </Link>
+              <hr className="mt-4 mb-12 border-gray-600" />
             </nav>
           </div>
         )}

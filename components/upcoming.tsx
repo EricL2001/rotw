@@ -56,11 +56,11 @@ export default async function Upcoming() {
               </p>
               <Link href={`/shows/${show.slug.current}`}>
                 {show.showType === 'Free' ? (
-                  <Button variant="outline" className="border-yellow-400 text-yellow-400 hover:bg-gray-800 hover:text-white">
+                  <Button variant="outline" className="border-orange-500 text-orange-500 hover:bg-gray-800 hover:text-white">
                     More Info
                   </Button>
                 ) : (
-                  <Button variant="outline" className="border-yellow-400 text-yellow-400 hover:bg-gray-800 hover:text-white">
+                  <Button variant="outline" className="border-orange-500 text-orange-500 hover:bg-gray-800 hover:text-white">
                     Info & Tickets
                   </Button>
                 )}
