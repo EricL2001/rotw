@@ -100,7 +100,7 @@ export default async function PostPage({
         )}
       </p>
       {show.showType !== 'Free' && (
-        <p className="mb-4 text-xl font-semibold">Tix: ${show.price} / ${show.dosPrice} DOS</p>
+        <p className="mb-4 text-xl sm:text-2xl font-semibold">Tix: ${show.price} / ${show.dosPrice} DOS</p>
       )}
 
       {show.showType !== 'Free' && (
