@@ -11,7 +11,14 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  // Add this to ignore TypeScript errors during build
+  // Compiler optimizations
+  compiler: {
+    // Remove all console.* calls except console.error
+    removeConsole: {
+      exclude: ['error'],
+    },
+  },
+  // Note: Consider removing this in production
   typescript: {
     ignoreBuildErrors: true,
   },

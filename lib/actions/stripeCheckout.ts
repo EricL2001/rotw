@@ -1,7 +1,7 @@
 'use server'
 
 import Stripe from 'stripe'
-import { toZonedTime } from 'date-fns-tz';
+import { toZonedTime, format } from 'date-fns-tz';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: '2025-03-31.basil'
@@ -45,14 +45,10 @@ export async function createCheckoutSession(
 
 
   // Helper to compare only year, month, day (ignoring time)
-  function isSameDayInZone(dateA: Date, dateB: Date, timeZone: string) {
-    const zonedA = toZonedTime(dateA, timeZone);
-    const zonedB = toZonedTime(dateB, timeZone);
-    return (
-      zonedA.getFullYear() === zonedB.getFullYear() &&
-      zonedA.getMonth() === zonedB.getMonth() &&
-      zonedA.getDate() === zonedB.getDate()
-    );
+  function isSameDayInZoneString(dateA: Date, dateB: Date, timeZone: string) {
+    const a = format(toZonedTime(dateA, timeZone), 'yyyy-MM-dd');
+    const b = format(toZonedTime(dateB, timeZone), 'yyyy-MM-dd');
+    return a === b;
   }
 
 
@@ -61,11 +57,12 @@ export async function createCheckoutSession(
 
     if (showDate) {
       const today = new Date();
-      const show = new Date(showDate);
-      useDos = isSameDayInZone(today, show, 'America/New_York');
+      // showDate is expected as 'yyyy-MM-dd'
+      const show = new Date(`${showDate}T00:00:00-05:00`); // force NY time
+      useDos = isSameDayInZoneString(today, show, 'America/New_York');
     }
 
-
+  
     const ticketPrice = useDos ? dosPrice : price;
     const subtotalCents = Math.round(ticketPrice * 100) * quantity;
     const salesTaxCents = Math.round(subtotalCents * 0.0725);
@@ -117,11 +114,11 @@ export async function createCheckoutSession(
       customer_creation: 'always', // double check this setup
     });
 
-  console.log('DEBUG: Stripe session created:', session.id);
+    console.log('DEBUG: Stripe session created:', session.id);
 
-  return { sessionId: session.id }
-} catch (error) {
-  console.error('Error creating checkout session:', error)
-  throw new Error('Failed to create checkout session')
+    return { sessionId: session.id }
+  } catch (error) {
+    console.error('Error creating checkout session:', error)
+    throw new Error('Failed to create checkout session')
   }
 }
