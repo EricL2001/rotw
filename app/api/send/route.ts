@@ -3,7 +3,6 @@
 import React from 'react';
 import { EmailTemplate } from '@/components/emails/email-template';
 import { Resend } from 'resend';
-import { format, parseISO } from 'date-fns';
 
 // The verified subdomain you've set up
 const EMAIL_DOMAIN = 'tickets.recordsonthewall.co';
@@ -24,13 +23,12 @@ export async function POST() {
     // Default subject
     let subject = 'Your Ticket Purchase';
 
-    const formattedShowDate = format(parseISO("2025-10-31"), 'EEE, MMM d');
 
     // Create props for the email template
     const templateProps = {
       firstName: "Eric",
       showTitle: "Test Show",
-      showDate: formattedShowDate,
+      showDate: "2025-10-31",
       quantity: "2",
       venue: "Test Venue",
       isPreview: isTestEnvironment
