@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { format, parseISO } from 'date-fns';
 
 interface EmailTemplateProps {
   firstName: string;
@@ -35,7 +36,9 @@ export const EmailTemplate: React.FC<EmailTemplateProps> = ({
     <ul>
       <li><strong>Show:</strong> {showTitle}</li>
       <li><strong>Venue:</strong> {venue}</li>
-      <li><strong>Date:</strong> {showDate}</li>
+      <li>
+        <strong>Date:</strong> {format(parseISO(showDate), 'EEE, MMM d')}
+      </li>
       <li><strong>Quantity:</strong> {quantity}</li>
     </ul>
   </div>
