@@ -2,11 +2,19 @@ import * as React from 'react';
 
 interface EmailTemplateProps {
   firstName: string;
+  showTitle: string;
+  showDate: string;
+  quantity: string;
+  venue: string;
   isPreview?: boolean;
 }
 
-export const EmailTemplate: React.FC<EmailTemplateProps> = ({ 
+export const EmailTemplate: React.FC<EmailTemplateProps> = ({
   firstName,
+  showTitle,
+  showDate,
+  quantity,
+  venue,
   isPreview = false
 }) => (
   <div>
@@ -21,7 +29,14 @@ export const EmailTemplate: React.FC<EmailTemplateProps> = ({
         ⚠️ This is a test email from a preview environment
       </div>
     )}
-    <h1>Welcome, {firstName}!</h1>
-    <p>This is your email content.</p>
+    <h1>Hi, {firstName}</h1>
+    <p>Thanks for your purchase from Records On The Wall!</p>
+    <p>Here are the ticket details to your show:</p>
+    <ul>
+      <li><strong>Show:</strong> {showTitle}</li>
+      <li><strong>Venue:</strong> {venue}</li>
+      <li><strong>Date:</strong> {showDate}</li>
+      <li><strong>Quantity:</strong> {quantity}</li>
+    </ul>
   </div>
 );

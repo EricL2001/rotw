@@ -7,6 +7,26 @@ import { Badge } from "@/components/ui/badge"
 import { getShow } from "@/lib/actions/getShow"
 import { TicketSelector } from "@/components/ticket-selector"
 import { toZonedTime, format } from 'date-fns-tz';
+import { MapPin } from "lucide-react";
+
+const venueMaps = [
+  {
+    name: "Heist Brewery - NoDa",
+    mapsUrl: "https://maps.app.goo.gl/NhCDkcmRAihom6mt5"
+  },
+  {
+    name: "Jacks Live",
+    mapsUrl: "https://maps.app.goo.gl/mj1xgUFZv8DRNM297"
+  },
+  {
+    name: "Heist Barrel Arts",
+    mapsUrl: "https://maps.app.goo.gl/Sbser9fELVP5nW9V9"
+  },
+  {
+    name: "Cactus Jacks",
+    mapsUrl: "https://maps.app.goo.gl/ZxxtG3iLnmkhFKz57"
+  },
+]
 
 
 const portableTextComponents: PortableTextComponents = {
@@ -36,6 +56,9 @@ export default async function PostPage({
   const resolvedParams = await params;
   const { show, postImageUrl } = await getShow(resolvedParams.slug);
 
+  const venueInfo = venueMaps.find((v) => v.name === show.venue);
+  const mapUrl = venueInfo?.mapsUrl;
+
   return (
     <main className="container mx-auto min-h-screen max-w-3xl p-8 flex flex-col gap-[2px]">
       <Link href="/shows" className="hover:underline mb-2">
@@ -51,7 +74,14 @@ export default async function PostPage({
         />
       )}
       <h1 className="text-4xl font-bold text-orange-500/90 mb-4">{show.title}</h1>
-      <h2 className="text-2xl font-semibold">{show.venue}</h2>
+      <h2 className="text-2xl font-semibold flex items-center gap-2">
+        {show.venue}
+        {mapUrl && (
+          <a href={mapUrl} target="_blank" rel="noopener noreferrer">
+            <MapPin className="w-5 h-5 text-orange-500 ml-1 hover:text-orange-400" />
+          </a>
+        )}
+      </h2>
       <p className="text-xl font-semibold">
         {format(
           toZonedTime(show.showDate, 'America/New_York'),

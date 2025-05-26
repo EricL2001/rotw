@@ -37,9 +37,11 @@ export async function createCheckoutSession(
   price: number,
   dosPrice: number,
   quantity: number,
-  showDate?: string
+  showDate?: string,
+  venue?: string, // Add venue
+  customerEmail?: string // Add customerEmail
 ) {
-  console.log('DEBUG: args', { showTitle, price, dosPrice, quantity, showDate });
+  console.log('DEBUG: args', { showTitle, price, dosPrice, quantity, showDate, venue, customerEmail });
 
 
   // Helper to compare only year, month, day (ignoring time)
@@ -105,13 +107,21 @@ export async function createCheckoutSession(
       payment_intent_data: {
         description: showTitle, // <-- This sets the dashboard Description
       },
+      metadata: {
+        showTitle: showTitle,
+        showDate: showDate || '',
+        quantity: quantity.toString(),
+        venue: venue || '',
+        customerEmail: customerEmail || '',
+      },
+      customer_creation: 'always', // double check this setup
     });
 
-    console.log('DEBUG: Stripe session created:', session.id);
+  console.log('DEBUG: Stripe session created:', session.id);
 
-    return { sessionId: session.id }
-  } catch (error) {
-    console.error('Error creating checkout session:', error)
-    throw new Error('Failed to create checkout session')
+  return { sessionId: session.id }
+} catch (error) {
+  console.error('Error creating checkout session:', error)
+  throw new Error('Failed to create checkout session')
   }
 }

@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/dialog"
 import { loadStripe } from '@stripe/stripe-js'
 import { createCheckoutSession } from '@/lib/actions/stripeCheckout'
+import { format } from 'date-fns-tz';
 
 interface TicketSelectorProps {
   show: {
@@ -26,6 +27,10 @@ interface TicketSelectorProps {
     showType: string
   }
 }
+
+// Mock customer email -- this will need to be replaced with the actual email from the Stripe checkout session
+// and passed to the email template
+const getCustomerEmail = (): string => 'erdev.levasseur@gmail.com';
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!)
 
@@ -43,17 +48,26 @@ export function TicketSelector({ show }: TicketSelectorProps) {
   const subtotal = quantity * show.price
   //const promoSubtotal = quantity * show.promoPrice
   const dosSubtotal = quantity * show.dosPrice
-  const shDate = new Date(show.showDate)  // this is the correct date for the show
+  const shDate = typeof show.showDate === "string" ? new Date(show.showDate) : show.showDate;
+  const dateOfShow = format(
+    shDate,
+    'yyyy-MM-dd',
+    { timeZone: 'America/New_York' }
+  );
 
   const handleCheckout = async () => {
     try {
       setIsLoading(true)
+      const customerEmail = getCustomerEmail() // Replace with your actual email source
+
       const { sessionId } = await createCheckoutSession(
         show.title,
         show.price,
         show.dosPrice,
         quantity,
-        typeof show.showDate === "string" ? show.showDate : show.showDate.toISOString(),
+        dateOfShow,
+        show.venue,
+        customerEmail,
       )
 
       const stripe = await stripePromise
@@ -122,7 +136,7 @@ export function TicketSelector({ show }: TicketSelectorProps) {
             {isLoading ? 'Processing...' : 'BUY TIX'}
           </Button>
         </DialogTrigger>
-        <DialogContent className="w-[400px] sm:max-w-[425px]">
+        <DialogContent className="w-[350px] sm:max-w-[425px]">
           <DialogHeader>
             <DialogTitle>Ticket Cart</DialogTitle>
             <DialogDescription>
@@ -131,7 +145,7 @@ export function TicketSelector({ show }: TicketSelectorProps) {
           </DialogHeader>
           <div className="flex items-center space-x-2 py-4">
             <div>
-              <h4 className="font-medium">
+              <h4 className="font-medium mb-1">
                 {show.title} on {new Date(show.showDate).toLocaleDateString(undefined, {
                   weekday: 'short',
                   month: 'short',
@@ -148,19 +162,19 @@ export function TicketSelector({ show }: TicketSelectorProps) {
                 })()}
               </p>
               <p className="text-sm text-muted-foreground">
+                TIcket Fee: ${(() => {
+                  const feePerTicket = show.price < 10 ? 1.00 : 3.50;
+                  const totalFee = feePerTicket * quantity;
+                  return totalFee.toFixed(2);
+                })()}
+              </p>
+              <p className="text-sm text-muted-foreground">
                 Sales Tax (7.25%): ${(() => {
                   const today = new Date();
                   const isDosDay = isSameDay(shDate, today);
                   const total = isDosDay ? dosSubtotal : subtotal;
                   const salesTax = total * 0.0725;
                   return salesTax.toFixed(2);
-                })()}
-              </p>
-              <p className="text-sm text-muted-foreground">
-                Fee: ${(() => {
-                  const feePerTicket = show.price < 10 ? 1.00 : 3.50;
-                  const totalFee = feePerTicket * quantity;
-                  return totalFee.toFixed(2);
                 })()}
               </p>
             </div>

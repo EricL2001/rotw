@@ -8,24 +8,28 @@ const partners = [
     city: "Charlotte, NC",
     src: "/heist.jpeg",
     url: "https://www.heistbrewery.com",
+    mapsUrl: "https://maps.app.goo.gl/NhCDkcmRAihom6mt5"
   },
   {
     name: "Jack's Live",
     city: "Charlotte, NC",
     src: "/jacks-small.jpg",
     url: "https://www.jacksliveclt.com/",
+    mapsUrl: "https://maps.app.goo.gl/mj1xgUFZv8DRNM297"
   },
   {
     name: "Heist Brewery and Barrel Arts",
     city: "Charlotte, NC",
     src: "/hba-stage-alt.jpg",
     url: "https://heistbrewery.com/home/barrel-arts/",
+    mapsUrl: "https://maps.app.goo.gl/Sbser9fELVP5nW9V9"    
   },
   {
     name: "Cactus Jack's Saloon",
     city: "Evergreen, CO",
     src: "/cactus-jacks.jpg",
     url: "https://www.evergreenlivemusic.com",
+    mapsUrl: "https://maps.app.goo.gl/ZxxtG3iLnmkhFKz57"
   },
 ]
 
