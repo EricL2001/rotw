@@ -17,12 +17,26 @@ export async function POST(req: Request) { // Use standard Request object for Ap
   let event: Stripe.Event;
 
   if (!signature) {
+    console.error('❌ Missing stripe-signature header');
     return new Response('No stripe-signature header', { status: 400 });
   }
+
+  // Add logging for environment variables (without exposing secrets)
+  console.log('🔍 Environment check:', {
+    hasStripeSecret: !!process.env.STRIPE_SECRET_KEY,
+    hasWebhookSecret: !!process.env.STRIPE_WEBHOOK_SECRET,
+    hasResendKey: !!process.env.RESEND_API_KEY
+  });
 
   try {
     // Read the raw body of the request for signature verification
     const rawBody = await req.text(); // Read raw body as text for signature verification
+
+    // Add more detailed logging
+    console.log('🔍 Webhook verification attempt:', {
+      bodyLength: rawBody.length,
+      signaturePresent: !!signature
+    });
 
     // Verify the webhook signature
     event = stripe.webhooks.constructEvent(
@@ -30,6 +44,8 @@ export async function POST(req: Request) { // Use standard Request object for Ap
       signature,
       process.env.STRIPE_WEBHOOK_SECRET as string
     );
+    console.log('✅ Webhook signature verified successfully');
+
   } catch (err: unknown) {
     const errorMessage = err instanceof Error ? err.message : String(err);
     console.error(`❌ Error verifying Stripe webhook signature: ${errorMessage}`);
