@@ -18,14 +18,14 @@ export default async function Upcoming() {
   const posts = await client.fetch<SanityDocument[]>(POSTS_QUERY, { today }, options);
 
   return (
-    <section className="container space-y-10 py-24">
-      <h2 className="font-bold text-3xl leading-[1.1] text-center">Upcoming Shows</h2>
+    <section className="container space-y-10 py-16">
+      <h2 className="font-bold text-3xl md:text-4xl leading-[1.1] text-center">Upcoming Shows</h2>
       <ScrollArea className="w-full whitespace-nowrap rounded-md">
         <div className="flex space-x-4 pb-4">
           {posts.map((show, index) => (
             <div
               key={index}
-              className="w-[375px] shrink-0 bg-background p-6 rounded-lg border-[0.5px] border-white"
+              className="w-[300px] sm:w-[375px] shrink-0 bg-background p-6 rounded-lg border-[0.5px] border-white"
             >
               {show.imageUrl ? (
                 <Image

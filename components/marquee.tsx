@@ -6,8 +6,8 @@ import { artists } from "@/marquee-data"
 export default function GetMarquee() {
   return (
     <section>
-      <div className="container flex flex-col items-center gap-4 py-24 text-center">
-        <h2 className="font-bold text-3xl leading-[1..1] text-center">Bands & Artists</h2>
+      <div className="container flex flex-col items-center gap-4 py-16 text-center">
+        <h2 className="font-bold text-3xl md:text-4xl text-center">Bands & Artists</h2>
         <p className="max-w-[42rem] leading-normal text-muted-foreground sm:text-xl sm:leading-8">
           Bands and artists we had the pleasure of working with over the years.
         </p>

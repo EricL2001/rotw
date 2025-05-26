@@ -11,9 +11,9 @@ export default async function ShowsPage() {
 
   return (
     <div className="container mx-auto px-8 mb-6">
-      <h1 className="text-3xl font-bold mt-8 mb-2">Upcoming Shows</h1>
-      <p className="mb-6 text-muted-foreground sm:text-lg">
-        All of our upcoming shows...
+      <h1 className="font-medium text-xl sm:text-2xl md:text-3xl mt-8 mb-2 text-center">Upcoming Shows</h1>
+      <p className="mb-8 text-muted-foreground sm:text-lg text-center">
+        All of our free and ticketed shows
       </p>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {posts.map((show, index) => (

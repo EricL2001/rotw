@@ -2,6 +2,8 @@
 
 import { useState } from "react"
 import Link from "next/link"
+import { FaInstagram } from "react-icons/fa";
+import { FaFacebookF } from "react-icons/fa6";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
@@ -68,7 +70,15 @@ export default function Navbar() {
               >
                 Store
               </Link>
-              <hr className="mt-4 mb-12 border-gray-600" />
+              <hr className="mt-4 mb-4 border-orange-500/70" />
+              <div className="flex justify-evenly items-center mb-4">
+                <a href="https://facebook.com/reconthewall" target="_blank" rel="noopener noreferrer">
+                  <FaFacebookF className="w-6 h-6 text-white hover:text-orange-400 transition-colors" />
+                </a>
+                <a href="https://instagram.com/recsonthewall" target="_blank" rel="noopener noreferrer">
+                  <FaInstagram className="w-6 h-6 text-white hover:text-orange-400 transition-colors" />
+                </a>
+              </div>
             </nav>
           </div>
         )}

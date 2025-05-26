@@ -69,12 +69,22 @@ export default async function PostPage({
           src={postImageUrl}
           alt={show.title}
           className="aspect-video rounded-xl mb-2"
-          width="550"
+          width="750"
           height="310"
         />
       )}
-      <h1 className="text-4xl font-bold text-orange-500/90 mb-4">{show.title}</h1>
-      <h2 className="text-2xl font-semibold flex items-center gap-2">
+      <div className="flex items-center justify-between mb-4">
+        <h1 className="text-2xl sm:text-3xl font-bold text-orange-500/90">{show.title}</h1>
+        {show.showType !== 'Ticketed' && (
+          <Badge
+            variant="green"
+            className={`w-[100px] flex justify-center text-sm ${GeistMono.className}`}
+          >
+            Free Show
+          </Badge>
+        )}
+      </div>
+      <h2 className="text-xl sm:text-2xl font-semibold flex items-center gap-2">
         {show.venue}
         {mapUrl && (
           <a href={mapUrl} target="_blank" rel="noopener noreferrer">
@@ -82,7 +92,7 @@ export default async function PostPage({
           </a>
         )}
       </h2>
-      <p className="text-xl font-semibold">
+      <p className="text-xl sm:text-2xl font-semibold">
         {format(
           toZonedTime(show.showDate, 'America/New_York'),
           'EEE, MMM d',
@@ -91,10 +101,6 @@ export default async function PostPage({
       </p>
       {show.showType !== 'Free' && (
         <p className="mb-4 text-xl font-semibold">Tix: ${show.price} / ${show.dosPrice} DOS</p>
-      )}
-
-      {show.showType !== 'Ticketed' && (
-        <Badge variant="green" className={`w-[200px] flex justify-center text-xl ${GeistMono.className}`}>Free Show</Badge>
       )}
 
       {show.showType !== 'Free' && (
