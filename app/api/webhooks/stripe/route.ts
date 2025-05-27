@@ -75,6 +75,9 @@ export async function POST(req: Request) { // Use standard Request object for Ap
       // Use the name, or fallback to the email username
       const firstName = purchaserName?.split(' ')[0] || purchaserEmail.split('@')[0];
 
+      // ---- ADD THIS LOG ----
+      console.log('[Vercel Webhook] showDate from metadata before sending to EmailTemplate:', showDate);
+
       try {
         const { data, error } = await resend.emails.send({
           from: 'Tickets <notifications@tickets.recordsonthewall.co>',
