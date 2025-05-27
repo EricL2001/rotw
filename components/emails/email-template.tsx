@@ -37,14 +37,7 @@ export const EmailTemplate: React.FC<EmailTemplateProps> = ({
       <li><strong>Show:</strong> {showTitle}</li>
       <li><strong>Venue:</strong> {venue}</li>
       <li>
-        <strong>Date:</strong>{" "}
-        {(() => {
-          try {
-            return format(parseISO(showDate), 'EEE, MMM d');
-          } catch {
-            return showDate;
-          }
-        })()}
+        <strong>Date:</strong> {showDate ? format(parseISO(showDate), 'EEE, MMM d') : 'N/A'}
       </li>
       <li><strong>Quantity:</strong> {quantity}</li>
     </ul>
