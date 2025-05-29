@@ -1,6 +1,8 @@
 import Marquee from "react-fast-marquee";
 import { cn } from "@/lib/utils"
-import { artists } from "@/marquee-data"
+import { localArtists } from "@/marquee-data"
+import { GeistMono } from 'geist/font/mono'
+
 
 
 export default function MarqueeRev() {
@@ -14,10 +16,10 @@ export default function MarqueeRev() {
             gradient={false} 
             speed={80}
             direction="right">
-            {artists.map((band, index) => (
-              <div key={index} className="mx-16">
-                <h3 className="text-l font-semibold text-white mt-2 mb-2">
-                  {band.artist}
+            {localArtists.map((artist, index) => (
+              <div key={index} className="mx-12">
+                <h3 className={`text-lg font-semibold text-white mt-2 mb-2 ${GeistMono.className}`}>
+                  {artist.artist}
                 </h3>
               </div>
             ))}

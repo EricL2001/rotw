@@ -12,18 +12,22 @@ import { MapPin } from "lucide-react";
 const venueMaps = [
   {
     name: "Heist Brewery - NoDa",
+    city: "Charlotte, NC",
     mapsUrl: "https://maps.app.goo.gl/NhCDkcmRAihom6mt5"
   },
   {
     name: "Jacks Live",
+    city: "Charlotte, NC",
     mapsUrl: "https://maps.app.goo.gl/mj1xgUFZv8DRNM297"
   },
   {
     name: "Heist Barrel Arts",
+    city: "Charlotte, NC",
     mapsUrl: "https://maps.app.goo.gl/Sbser9fELVP5nW9V9"
   },
   {
     name: "Cactus Jacks",
+    city: "Evergreen, CO",
     mapsUrl: "https://maps.app.goo.gl/ZxxtG3iLnmkhFKz57"
   },
 ]
@@ -58,6 +62,7 @@ export default async function PostPage({
 
   const venueInfo = venueMaps.find((v) => v.name === show.venue);
   const mapUrl = venueInfo?.mapsUrl;
+  
 
   return (
     <main className="container mx-auto min-h-screen max-w-3xl p-8 flex flex-col gap-[2px]">
@@ -92,6 +97,7 @@ export default async function PostPage({
           </a>
         )}
       </h2>
+      <p className={`text-sm text-white/80 mb-1 ${GeistMono.className}`}>{venueInfo?.city}</p>
       <p className="text-xl sm:text-2xl font-semibold">
         {format(
           toZonedTime(show.showDate, 'America/New_York'),
