@@ -1,4 +1,3 @@
-// CACHE BUSTER v3 - 2025-05-30-15:30
 import Stripe from 'stripe';
 import { Resend } from 'resend';
 
