@@ -102,14 +102,7 @@ export async function POST(req: Request) {
           from: 'Tickets <notifications@tickets.recordsonthewall.co>',
           to: purchaserEmail,
           subject: `Your Tickets for ${showTitle || 'Your Event'}`,
-          react: React.createElement(EmailTemplate, {
-            firstName: firstName || 'N/A',
-            showTitle: showTitle || 'N/A',
-            showDate: showDate || 'N/A',
-            quantity: quantity || 'N/A',
-            venue: venue || 'N/A',
-            isPreview: isPreview
-          }),
+          react: `<h1>Hello ${firstName}</h1><p>Show: ${showTitle}</p><p>Date: ${showDate}</p>`,
         });
 
         console.log('🔍 STEP 3: Resend response received');
