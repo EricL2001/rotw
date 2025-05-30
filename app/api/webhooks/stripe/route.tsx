@@ -104,6 +104,7 @@ export async function POST(req: Request) {
           showDate={showDate || 'N/A'}
           quantity={quantity || 'N/A'}
           venue={venue || 'N/A'}
+          isPreview={isPreview}
         />);
 
         const { data, error } = await resend.emails.send({

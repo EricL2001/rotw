@@ -1,6 +1,6 @@
 import type React from "react"
 import { Body, Container, Head, Heading, Html, Img, Link, Preview, Section, Text } from "@react-email/components"
-// import { format, parseISO } from "date-fns"
+import { format, parseISO } from "date-fns"
 
 interface EmailTemplateProps {
   firstName: string
@@ -64,7 +64,15 @@ export const EmailTemplate: React.FC<EmailTemplateProps> = ({
 
                 <Section style={detailItem}>
                   <Text style={detailLabel}>Date</Text>
-                  <Text style={detailValue}>{showDate}</Text>
+                  <Text style={detailValue}>
+                    {(() => {
+                      try {
+                        return format(parseISO(showDate), 'EEE, MMM d');
+                      } catch {
+                        return showDate; // Fallback to original if formatting fails
+                      }
+                    })()}
+                  </Text>
                 </Section>
 
                 <Section style={detailItem}>
