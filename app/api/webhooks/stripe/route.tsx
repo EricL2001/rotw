@@ -84,13 +84,15 @@ export async function POST(req: Request) { // Use standard Request object for Ap
           from: 'Tickets <notifications@tickets.recordsonthewall.co>',
           to: purchaserEmail,
           subject: `Your Tickets for ${showTitle || 'Your Event'}`,
-          react: <EmailTemplate
-            firstName={firstName || 'N/A'}
-            showTitle={showTitle || 'N/A'}
-            showDate={showDate || 'N/A'}
-            quantity={quantity || 'N/A'}
-            venue={venue || 'N/A'}
-          />,
+          react: (
+            <EmailTemplate
+              firstName={firstName || 'N/A'}
+              showTitle={showTitle || 'N/A'}
+              showDate={showDate || 'N/A'}
+              quantity={quantity || 'N/A'}
+              venue={venue || 'N/A'}
+            />
+          ),
         });
 
         if (error) {
