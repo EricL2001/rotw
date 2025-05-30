@@ -72,7 +72,17 @@ export async function POST(req: Request) {
 
       // Use the name, or fallback to the email username
       const firstName = purchaserName?.split(' ')[0] || purchaserEmail.split('@')[0];
-      
+
+      // ADD THIS LOG:
+      console.log('📧 Email props being sent:', {
+        firstName,
+        showTitle,
+        showDate,
+        quantity,
+        venue,
+        purchaserEmail
+      });
+
       // Check if we're in preview/staging environment
       const isPreview = process.env.VERCEL_ENV === 'preview' || process.env.NODE_ENV !== 'production';
 
@@ -116,10 +126,10 @@ export async function POST(req: Request) {
         const errorMessage = emailError instanceof Error ? emailError.message : String(emailError);
         console.error('❌ General error sending email:', errorMessage);
         console.error('❌ Full error object:', emailError);
-        return new Response(JSON.stringify({ 
-          received: true, 
-          emailSent: false, 
-          error: `Email sending failed: ${errorMessage}` 
+        return new Response(JSON.stringify({
+          received: true,
+          emailSent: false,
+          error: `Email sending failed: ${errorMessage}`
         }), { status: 200 });
       }
 
