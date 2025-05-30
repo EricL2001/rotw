@@ -100,7 +100,7 @@ export async function POST(req: Request) {
           from: 'Tickets <notifications@tickets.recordsonthewall.co>',
           to: purchaserEmail,
           subject: `Your Tickets for ${showTitle || 'Your Event'}`,
-          react: `<h1>Hello ${firstName}</h1><p>Show: ${showTitle}</p><p>Date: ${showDate}</p>`,
+          html: `<h1>Hello ${firstName}</h1><p>Show: ${showTitle}</p><p>Date: ${showDate}</p>`,
         });
 
         console.log('🔍 STEP 3: Resend response received');
