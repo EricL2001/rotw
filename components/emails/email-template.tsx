@@ -25,7 +25,7 @@ export const EmailTemplate: React.FC<EmailTemplateProps> = ({
   return (
     <Html>
       <Head />
-      <Preview>Your tickets for {showTitle} from Records On The Wall</Preview>
+      <Preview>Your tickets from Records On The Wall</Preview>
       <Body style={main}>
         <Container style={container}>
           <Section style={header}>
@@ -75,15 +75,15 @@ export const EmailTemplate: React.FC<EmailTemplateProps> = ({
             </Section>
 
             <Text style={paragraph}>
-              Your tickets will be waiting for you at the venue door under your name. In the event that you need to transfer the tickets to someone else, please email us at{" "}
-              <Link href="mailto:info@recsonthewall.com" style={{ color: "#1a73e8", textDecoration: "underline" }}>
-                info@recsonthewall.com
+              Your tickets will be waiting for you at the venue door under your name. In the event that you need to transfer the tickets to someone else or have a general question, please contact us {" "}
+              <Link href="https://recordsonthewall.co" style={{ color: "#1a73e8", textDecoration: "underline" }}>
+                here.
               </Link>
             </Text>
 
             <Text style={paragraph}>We hope you have a great show!</Text>
 
-            <Text style={signature}>— Records On The Wall Ticket Team</Text>
+            <Text style={signature}>— Ticket Team</Text>
           </Section>
 
           <Section style={footer}>
@@ -159,13 +159,13 @@ const heading = {
 
 const paragraph = {
   fontSize: "16px",
-  lineHeight: "1",
+  lineHeight: "1.5",
   color: "#444444",
   margin: "0 0 24px",
 }
 
 const ticketInfo = {
-  marginBottom: "32px",
+  marginBottom: "24px",
 }
 
 const showTitleStyle = {

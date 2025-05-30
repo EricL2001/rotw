@@ -62,11 +62,11 @@ export default async function PostPage({
 
   const venueInfo = venueMaps.find((v) => v.name === show.venue);
   const mapUrl = venueInfo?.mapsUrl;
-  
+
 
   return (
     <main className="container mx-auto min-h-screen max-w-3xl p-8 flex flex-col gap-[2px]">
-      <Link href="/shows" className="hover:underline mb-2">
+      <Link href="/shows" className="hover:underline mb-3">
         ← Back to all shows
       </Link>
       {postImageUrl && (
@@ -78,12 +78,14 @@ export default async function PostPage({
           height="310"
         />
       )}
-      <div className="flex items-center justify-between mb-4">
-        <h1 className="text-2xl sm:text-3xl font-bold text-orange-500/90">{show.title}</h1>
+      <div className="flex justify-between items-start mb-4">
+        <h1 className="text-2xl sm:text-3xl font-bold text-orange-500/90 flex-1 break-words">
+          {show.title}
+        </h1>
         {show.showType !== 'Ticketed' && (
           <Badge
             variant="green"
-            className={`w-[100px] flex justify-center text-sm ${GeistMono.className}`}
+            className={`w-[100px] flex justify-center text-sm ${GeistMono.className} ml-4 shrink-0`}
           >
             Free Show
           </Badge>

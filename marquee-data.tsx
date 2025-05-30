@@ -22,6 +22,9 @@ export interface Band {
       artist: "Mountain Grass Unit",
     },
     {
+      artist: "Sneezy",
+    },
+    {
       artist: "Clay Street Unit",
     },
     {

@@ -25,7 +25,7 @@ export default async function Upcoming() {
           {posts.map((show, index) => (
             <div
               key={index}
-              className="w-[300px] sm:w-[375px] shrink-0 bg-background p-6 rounded-lg border-[0.5px] border-white"
+              className="w-[325px] sm:w-[375px] shrink-0 bg-background p-6 rounded-lg border-[0.5px] border-white"
             >
               {show.imageUrl ? (
                 <Image

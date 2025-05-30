@@ -25,7 +25,7 @@ export default async function ShowsPage() {
               <Image
                 src={show.imageUrl}
                 alt={show.bandName || 'Show image'}
-                width={300}
+                width={300} //350 maybe
                 height={200}
                 className="rounded object-cover w-full h-[200px]"
               />
