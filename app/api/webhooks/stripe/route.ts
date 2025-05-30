@@ -1,6 +1,7 @@
 import Stripe from 'stripe';
 import { Resend } from 'resend';
 import { EmailTemplate } from '@/components/emails/email-template'; // Import the EmailTemplate
+import React from 'react';
 
 // Initialize Stripe with your secret key (from environment variables)
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
@@ -83,13 +84,13 @@ export async function POST(req: Request) { // Use standard Request object for Ap
           from: 'Tickets <notifications@tickets.recordsonthewall.co>',
           to: purchaserEmail,
           subject: `Your Tickets for ${showTitle || 'Your Event'}`,
-          react: await (typeof EmailTemplate === 'function' ? EmailTemplate({
+          react: React.createElement(EmailTemplate, {
             firstName: firstName || 'N/A',
             showTitle: showTitle || 'N/A',
             showDate: showDate || 'N/A',
             quantity: quantity || 'N/A',
-            venue: venue || 'N/A',
-          }) : EmailTemplate),
+            venue: venue || 'N/A'
+          }),   
         });
 
         if (error) {
