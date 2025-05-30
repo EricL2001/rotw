@@ -1,5 +1,7 @@
 import Stripe from 'stripe';
 import { Resend } from 'resend';
+import { render } from '@react-email/render';
+import { EmailTemplate } from '@/components/emails/email-template';
 
 // Initialize Stripe with your secret key (from environment variables)
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
@@ -94,16 +96,24 @@ export async function POST(req: Request) {
       });
 
       try {
-        console.log('🔍 STEP 2: Sending email via Resend - FORCE REBUILD v2...');
+        console.log('🔍 STEP 2: Rendering React Email template...');
+
+        const emailHtml = await render(<EmailTemplate
+          firstName={firstName || 'N/A'}
+          showTitle={showTitle || 'N/A'}
+          showDate={showDate || 'N/A'}
+          quantity={quantity || 'N/A'}
+          venue={venue || 'N/A'}
+        />);
 
         const { data, error } = await resend.emails.send({
           from: 'Tickets <notifications@tickets.recordsonthewall.co>',
           to: purchaserEmail,
           subject: `Your Tickets for ${showTitle || 'Your Event'}`,
-          html: `<h1>Hello ${firstName}</h1><p>Show: ${showTitle}</p><p>Date: ${showDate}</p>`,
+          html: emailHtml,
         });
 
-        console.log('🔍 STEP 3: Resend response received');
+        console.log('🔍 STEP 3: Sending email via Resend...');
 
         if (error) {
           console.error('❌ Resend email error:', error);
