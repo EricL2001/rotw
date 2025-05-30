@@ -1,6 +1,5 @@
 import Stripe from 'stripe';
 import { Resend } from 'resend';
-import { render } from '@react-email/render';
 import { EmailTemplate } from '@/components/emails/email-template';
 import React from 'react';
 
@@ -77,48 +76,33 @@ export async function POST(req: Request) {
       // Check if we're in preview/staging environment
       const isPreview = process.env.VERCEL_ENV === 'preview' || process.env.NODE_ENV !== 'production';
 
+      console.log('🔍 STEP 1: Preparing to send email with props:', {
+        firstName: firstName || 'N/A',
+        showTitle: showTitle || 'N/A',
+        showDate: showDate || 'N/A',
+        quantity: quantity || 'N/A',
+        venue: venue || 'N/A',
+        isPreview: isPreview
+      });
+
       try {
-        // Pre-render the email template to HTML
-        console.log('🔍 Attempting to render email template...');
-        
-        let emailHtml: string;
-        
-        try {
-          // Try JSX approach first
-          emailHtml = await render(
-            <EmailTemplate
-              firstName={firstName || 'N/A'}
-              showTitle={showTitle || 'N/A'}
-              showDate={showDate || 'N/A'}
-              quantity={quantity || 'N/A'}
-              venue={venue || 'N/A'}
-              isPreview={isPreview}
-            />
-          );
-          console.log('✅ JSX render successful, HTML length:', emailHtml.length);
-        } catch (jsxError) {
-          console.log('⚠️ JSX render failed, trying React.createElement approach:', jsxError);
-          
-          // Fallback to createElement approach
-          emailHtml = await render(
-            React.createElement(EmailTemplate, {
-              firstName: firstName || 'N/A',
-              showTitle: showTitle || 'N/A',
-              showDate: showDate || 'N/A',
-              quantity: quantity || 'N/A',
-              venue: venue || 'N/A',
-              isPreview: isPreview
-            })
-          );
-          console.log('✅ createElement render successful, HTML length:', emailHtml.length);
-        }
+        console.log('🔍 STEP 2: Sending email via Resend native React support...');
 
         const { data, error } = await resend.emails.send({
           from: 'Tickets <notifications@tickets.recordsonthewall.co>',
           to: purchaserEmail,
           subject: `Your Tickets for ${showTitle || 'Your Event'}`,
-          html: emailHtml,
+          react: React.createElement(EmailTemplate, {
+            firstName: firstName || 'N/A',
+            showTitle: showTitle || 'N/A',
+            showDate: showDate || 'N/A',
+            quantity: quantity || 'N/A',
+            venue: venue || 'N/A',
+            isPreview: isPreview
+          }),
         });
+
+        console.log('🔍 STEP 3: Resend response received');
 
         if (error) {
           console.error('❌ Resend email error:', error);
@@ -135,7 +119,7 @@ export async function POST(req: Request) {
         return new Response(JSON.stringify({ 
           received: true, 
           emailSent: false, 
-          error: `Email rendering/sending failed: ${errorMessage}` 
+          error: `Email sending failed: ${errorMessage}` 
         }), { status: 200 });
       }
 
