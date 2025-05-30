@@ -85,7 +85,7 @@ export default async function PostPage({
         {show.showType !== 'Ticketed' && (
           <Badge
             variant="green"
-            className={`w-[100px] flex justify-center text-sm ${GeistMono.className} ml-4 shrink-0`}
+            className={`w-[100px] flex justify-center text-xs sm:text-sm ${GeistMono.className} ml-2 shrink-0`}
           >
             Free Show
           </Badge>
