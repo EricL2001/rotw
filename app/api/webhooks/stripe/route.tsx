@@ -1,7 +1,7 @@
 import Stripe from 'stripe';
 import { Resend } from 'resend';
-import { EmailTemplate } from '@/components/emails/email-template';
-import React from 'react';
+// import { EmailTemplate } from '@/components/emails/email-template';
+//import React from 'react';
 
 // Initialize Stripe with your secret key (from environment variables)
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
