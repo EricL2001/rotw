@@ -18,19 +18,9 @@ const nextConfig: NextConfig = {
       exclude: ['error'],
     },
   },
-  // Note: Consider removing this in production
+  
   typescript: {
     ignoreBuildErrors: true,
-  },
-  // Redirects configuration
-  async redirects() {
-    return [
-      {
-        source: 'https://www.recsonthewall.com/',
-        destination: 'https://www.recordsonthewall.co/',
-        permanent: true, // 308 status code (permanent redirect)
-      },
-    ];
   },
 };
 
