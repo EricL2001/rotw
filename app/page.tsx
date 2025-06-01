@@ -5,7 +5,6 @@ import Features from "@/components/features"
 import CTA from "@/components/cta"
 import Upcoming from "@/components/upcoming"
 import Venues from "@/components/venues"
-import Footer from "@/components/footer"
 
 export default function Home() {
   return (
@@ -18,7 +17,6 @@ export default function Home() {
         <MarqueeRev />
         <Upcoming />
         <Venues />
-        <Footer />
       </div>
     </div>
   )

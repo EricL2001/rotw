@@ -22,6 +22,16 @@ const nextConfig: NextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
+  // Redirects configuration
+  async redirects() {
+    return [
+      {
+        source: 'https://recsonthewall.com/',
+        destination: 'https://www.recordsonthewall.co/',
+        permanent: true, // 308 status code (permanent redirect)
+      },
+    ];
+  },
 };
 
 export default nextConfig;

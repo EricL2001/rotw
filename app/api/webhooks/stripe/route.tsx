@@ -98,6 +98,8 @@ export async function POST(req: Request) {
       try {
         console.log('🔍 STEP 2: Rendering React Email template...');
 
+        const emailText = `Hi ${firstName || 'there'},\n\nThank you for your purchase of ${quantity || 'N/A'} ticket(s) for "${showTitle || 'Your Event'}" on ${showDate || 'N/A'} at ${venue || 'N/A'}.`;
+
         const emailHtml = await render(<EmailTemplate
           firstName={firstName || 'N/A'}
           showTitle={showTitle || 'N/A'}
@@ -112,6 +114,7 @@ export async function POST(req: Request) {
           to: purchaserEmail,
           subject: `Your Tickets for ${showTitle || 'Your Event'}`,
           html: emailHtml,
+          text: emailText,
         });
 
         console.log('🔍 STEP 3: Sending email via Resend...');

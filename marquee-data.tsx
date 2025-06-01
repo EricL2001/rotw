@@ -40,6 +40,9 @@ export interface Band {
       artist: "Jon Stickley Trio",
     },
     {
+      artist: "Ettore Buzzini",
+    },
+    {
       artist: "DJ Williams",
     },
     {

@@ -19,8 +19,6 @@ export const EmailTemplate: React.FC<EmailTemplateProps> = ({
   venue,
   isPreview = false,
 }) => {
-  // const formattedDate = showDate ? format(parseISO(showDate), "MMMM d, yyyy") : "N/A"
-  //const formattedTime = showDate ? format(parseISO(showDate), "h:mm a") : ""
 
   return (
     <Html>
@@ -83,7 +81,7 @@ export const EmailTemplate: React.FC<EmailTemplateProps> = ({
             </Section>
 
             <Text style={paragraph}>
-              Your tickets will be waiting for you at the venue door under your name. In the event that you need to transfer the tickets to someone else or have a general question, please contact us {" "}
+              Your tickets will be waiting for you at the venue door under your name and you&apos;ll need your ID to enter. In the event that you need to transfer the tickets to someone else or have a general question, please contact us {" "}
               <Link href="https://recordsonthewall.co" style={{ color: "#1a73e8", textDecoration: "underline" }}>
                 here.
               </Link>

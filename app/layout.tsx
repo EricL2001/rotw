@@ -3,6 +3,7 @@ import { GeistSans } from 'geist/font/sans';
 import type React from "react"
 import type { Metadata, Viewport } from "next"
 import Navbar from "@/components/navbar";
+import Footer from "@/components/footer";
 
 
 export const viewport: Viewport = {
@@ -51,6 +52,30 @@ export const metadata: Metadata = {
 };
 
 
+// export default function RootLayout({
+//   children,
+// }: {
+//   children: React.ReactNode
+// }) {
+//   return (
+//     <html lang="en">
+//       <body className={`dark ${GeistSans.className}`}>
+//         {/* Background gradients */}
+//         <div className="pointer-events-none fixed inset-0">
+//           <div className="absolute inset-0 bg-gradient-to-b from-background via-background/90 to-background" />
+//           <div className="absolute right-0 top-0 h-[500px] w-[500px] bg-amber-500/10 blur-[100px]" />
+//           <div className="absolute bottom-0 left-0 h-[500px] w-[500px] bg-amber-500/10 blur-[100px]" />
+//         </div>
+//         <div className="relative z-10">
+//           <Navbar />
+//           {children}
+//         </div>
+//       </body>
+//     </html>
+//   )
+// }
+
+
 export default function RootLayout({
   children,
 }: {
@@ -65,9 +90,12 @@ export default function RootLayout({
           <div className="absolute right-0 top-0 h-[500px] w-[500px] bg-amber-500/10 blur-[100px]" />
           <div className="absolute bottom-0 left-0 h-[500px] w-[500px] bg-amber-500/10 blur-[100px]" />
         </div>
-        <div className="relative z-10">
+        <div className="relative z-10 flex flex-col min-h-screen">
           <Navbar />
-          {children}
+          <main className="flex-1">
+            {children}
+          </main>
+          <Footer />
         </div>
       </body>
     </html>
