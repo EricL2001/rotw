@@ -26,7 +26,7 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
-        source: 'https://recsonthewall.com/',
+        source: 'https://www.recsonthewall.com/',
         destination: 'https://www.recordsonthewall.co/',
         permanent: true, // 308 status code (permanent redirect)
       },
