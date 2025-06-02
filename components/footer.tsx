@@ -1,7 +1,6 @@
 import Link from "next/link"
 import { FaInstagram } from "react-icons/fa";
 import { FaFacebookF } from "react-icons/fa6";
-import { FaXTwitter } from "react-icons/fa6";
 import { LuMail } from "react-icons/lu";
 
 
@@ -18,18 +17,13 @@ export default function Footer() {
             <h3 className="text-sm font-medium">Connect</h3>
             <ul className="space-y-5 text-sm">
               <li>
-                <Link href="/shows" className="text-muted-foreground transition-colors hover:text-primary">
+                <Link href="https://instagram.com/recsonthewall" target="_blank" rel="noopener noreferrer" className="text-muted-foreground transition-colors hover:text-primary">
                   <FaInstagram size={24} />
                 </Link>
               </li>
               <li>
-                <Link href="/store" className="text-muted-foreground transition-colors hover:text-primary">
+                <Link href="https://facebook.com/reconthewall" target="_blank" rel="noopener noreferrer" className="text-muted-foreground transition-colors hover:text-primary">
                   <FaFacebookF size={24} />
-                </Link>
-              </li>
-              <li>
-                <Link href="/store" className="text-muted-foreground transition-colors hover:text-primary">
-                  <FaXTwitter size={24} />
                 </Link>
               </li>
             </ul>
@@ -58,7 +52,7 @@ export default function Footer() {
             <h3 className="text-sm font-medium">Contact</h3>
             <ul className="space-y-3 text-sm">
               <li>
-                <Link href="/shows" className="text-muted-foreground transition-colors hover:text-primary">
+                <Link href="mailto:info@recsonthewall.com" className="text-muted-foreground transition-colors hover:text-primary">
                   <LuMail size={24} />
                 </Link>
               </li>

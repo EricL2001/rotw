@@ -72,12 +72,12 @@ export default function Navbar() {
               </Link>
               <hr className="mt-4 mb-4 border-orange-500/70" />
               <div className="flex justify-evenly items-center mb-4">
-                <a href="https://facebook.com/reconthewall" target="_blank" rel="noopener noreferrer">
+                <Link href="https://facebook.com/reconthewall" target="_blank" rel="noopener noreferrer">
                   <FaFacebookF className="w-6 h-6 text-white hover:text-orange-400 transition-colors" />
-                </a>
-                <a href="https://instagram.com/recsonthewall" target="_blank" rel="noopener noreferrer">
+                </Link>
+                <Link href="https://instagram.com/recsonthewall" target="_blank" rel="noopener noreferrer">
                   <FaInstagram className="w-6 h-6 text-white hover:text-orange-400 transition-colors" />
-                </a>
+                </Link>
               </div>
             </nav>
           </div>
