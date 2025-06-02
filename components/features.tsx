@@ -28,11 +28,11 @@ export default function Features() {
     <section className="container space-y-16 py-20">
       <div className="mx-auto max-w-[58rem] text-center">
         <h2 className="font-bold text-3xl leading-tight md:text-4xl">Welcome To The New Website</h2>
-        <p className="mt-4 text-muted-foreground sm:text-lg">
+        <p className="mt-4 leading-normal text-muted-foreground sm:text-xl sm:leading-8">
           Records On The Wall is focused on booking the best local and national talent at venues located in Charlotte, NC and Denver, CO.
         </p>
-        <p className="mt-4 text-muted-foreground sm:text-lg">
-          While we don&#39;t necessarily focus on any specific genre, we tend to book a diverse range of acts, from up-and-coming artists to established names in the areas of bluegrass, jam, funk, rock and more.
+        <p className="mt-4 leading-normal text-muted-foreground sm:text-lg sm:leading-8">
+          While we don&#39;t necessarily focus on any specific genre, we tend to book a diverse range of acts, from up-and-coming artists to established names in the areas of bluegrass, jam, funk, rock and beyond.
         </p>
       </div>
       <div className="mx-auto grid max-w-5xl grid-cols-1 gap-8 md:grid-cols-2">
