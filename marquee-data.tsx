@@ -82,7 +82,7 @@ export interface Band {
       artist: "Josh Daniels",
     },
     {
-      artist: "Charlotte Bluegrass All-Stars",
+      artist: "Charlotte Bluegrass Allstars",
     },
     {
       artist: "Joe May",

@@ -3,33 +3,36 @@ import { Music, Shirt, Zap, Ticket } from "lucide-react"
 const features = [
   {
     name: "Booking",
-    description: "Vivamus arcu odio, eleifend ut libero ut, vulputate tristique leo.",
+    description: "We handle talent buying for free and ticketed live music events in NC and CO.",
     icon: Music,
   },
   {
     name: "Promotion",
-    description: "Vivamus arcu odio, eleifend ut libero ut, vulputate tristique leo.",
+    description: "We partner with the venues to promote all shows across available social media channels, email lists and media outlets.",
     icon: Zap,
   },
   {
     name: "Ticketing",
-    description: "Vivamus arcu odio, eleifend ut libero ut, vulputate tristique leo.",
+    description: "We run tickets for our own shows where permitted through our custom ticketing app.",
     icon: Ticket,
   },
   {
     name: "Merch Store",
-    description: "Vivamus arcu odio, eleifend ut libero ut, vulputate tristique leo.",
+    description: "Coming soon...",
     icon: Shirt,
   },
 ]
 
 export default function Features() {
   return (
-    <section className="container space-y-16 py-24">
+    <section className="container space-y-16 py-20">
       <div className="mx-auto max-w-[58rem] text-center">
-        <h2 className="font-bold text-3xl leading-[1.1] md:text-4xl lg:text-5xl">Welcome to the new ROTW</h2>
+        <h2 className="font-bold text-3xl leading-tight md:text-4xl">Welcome To The New Website</h2>
         <p className="mt-4 text-muted-foreground sm:text-lg">
-          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+          Records On The Wall is focused on booking the best local and national talent at venues located in Charlotte, NC and Denver, CO.
+        </p>
+        <p className="mt-4 text-muted-foreground sm:text-lg">
+          While we don&#39;t necessarily focus on any specific genre, we tend to book a diverse range of acts, from up-and-coming artists to established names in the areas of bluegrass, jam, funk, rock and more.
         </p>
       </div>
       <div className="mx-auto grid max-w-5xl grid-cols-1 gap-8 md:grid-cols-2">

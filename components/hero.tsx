@@ -24,8 +24,6 @@ export default function Hero() {
             alt="rotw logo"
             width={300}
             height={300}
-            // blurDataURL="data:..." automatically provided
-            // placeholder="blur" // Optional blur-up while loading
             className={cn("mx-auto w-[250px] h-[250px] md:w-[300px] md:h-[300px]",
               "animate-in fade-in-5 slide-in-from-top-20 duration-1000",
             )}
@@ -33,7 +31,7 @@ export default function Hero() {
           <p
             className={cn(
               "mx-auto max-w-[42rem] leading-relaxed text-white",
-              "text-[18px] md:text-lg lg:text-2xl", // Adjusted font sizes for different breakpoints
+              "text-[18px] md:text-lg lg:text-2xl font-medium", // Adjusted font sizes for different breakpoints
               "animate-in fade-in-5 slide-in-from-bottom-20 duration-1000",
             )}
           >

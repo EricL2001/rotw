@@ -74,14 +74,14 @@ export const EmailTemplate: React.FC<EmailTemplateProps> = ({
                 </Section>
 
                 <Section style={detailItem}>
-                  <Text style={detailLabel}>Quantity</Text>
+                  <Text style={detailLabel}>Quantity - GA Tickets</Text>
                   <Text style={detailValue}>{quantity}</Text>
                 </Section>
               </Section>
             </Section>
 
             <Text style={paragraph}>
-              Your tickets will be waiting for you at the venue door under your name and you&apos;ll need your ID to enter. In the event that you need to transfer the tickets to someone else or have a general question, please contact us {" "}
+              Your tickets will be waiting for you at the venue door under your name and you&apos;ll need a valid ID to enter. In the event that you need to transfer the tickets to someone else or have a general question, please contact us {" "}
               <Link href="https://recordsonthewall.co" style={{ color: "#1a73e8", textDecoration: "underline" }}>
                 here.
               </Link>
