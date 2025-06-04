@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     siteName: 'Records On The Wall',
     images: [
       {
-        url: '/open-graph.png', // Path to your open graph image
+        url: '/open-graph-2.png', // Path to your open graph image
         width: 1200,
         height: 630,
       },
@@ -50,31 +50,6 @@ export const metadata: Metadata = {
     type: 'website',
   },
 };
-
-
-// export default function RootLayout({
-//   children,
-// }: {
-//   children: React.ReactNode
-// }) {
-//   return (
-//     <html lang="en">
-//       <body className={`dark ${GeistSans.className}`}>
-//         {/* Background gradients */}
-//         <div className="pointer-events-none fixed inset-0">
-//           <div className="absolute inset-0 bg-gradient-to-b from-background via-background/90 to-background" />
-//           <div className="absolute right-0 top-0 h-[500px] w-[500px] bg-amber-500/10 blur-[100px]" />
-//           <div className="absolute bottom-0 left-0 h-[500px] w-[500px] bg-amber-500/10 blur-[100px]" />
-//         </div>
-//         <div className="relative z-10">
-//           <Navbar />
-//           {children}
-//         </div>
-//       </body>
-//     </html>
-//   )
-// }
-
 
 export default function RootLayout({
   children,

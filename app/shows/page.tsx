@@ -11,7 +11,7 @@ export default async function ShowsPage() {
 
   return (
     <div className="container mx-auto px-8 mb-6">
-      <h1 className="font-medium text-xl sm:text-2xl md:text-3xl mt-8 mb-2 text-center">Upcoming Shows</h1>
+      <h1 className="font-semibold text-xl sm:text-2xl md:text-3xl mt-8 mb-2 text-center">Upcoming Shows</h1>
       <p className="mb-8 text-muted-foreground sm:text-lg text-center">
         All of our free and ticketed shows
       </p>

@@ -33,7 +33,7 @@ export default function Venues() {
   return (
     <section className="container py-16">
       <div className="space-y-4 mb-12">
-        <h2 className="font-bold text-3xl md:text-4xl leading-[1.1] text-center">Venues</h2>
+        <h2 className="font-semibold text-3xl md:text-4xl leading-[1.1] text-center">Venues</h2>
         <p className="leading-normal text-muted-foreground sm:text-xl sm:leading-8 text-center">Venue and brewery partners</p>
       </div>
       <div className="mx-auto grid max-w-5xl grid-cols-1 gap-8 md:grid-cols-2">

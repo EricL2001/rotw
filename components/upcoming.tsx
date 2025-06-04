@@ -19,7 +19,7 @@ export default async function Upcoming() {
 
   return (
     <section className="container space-y-10 py-16">
-      <h2 className="font-bold text-3xl md:text-4xl leading-[1.1] text-center">Upcoming Shows</h2>
+      <h2 className="font-semibold text-3xl md:text-4xl leading-[1.1] text-center">Upcoming Shows</h2>
       <ScrollArea className="w-full whitespace-nowrap rounded-md">
         <div className="flex space-x-4 pb-4">
           {posts.map((show, index) => (

@@ -1,7 +1,7 @@
 export default function StorePage() {
   return (
     <div className="flex items-center justify-center min-h-[60vh]">
-      <h2 className="font-bold text-3xl md:text-4xl lg:text-5xl text-center">
+      <h2 className="font-semibold text-3xl md:text-4xl lg:text-5xl text-center">
         Coming Soon
       </h2>
     </div>
