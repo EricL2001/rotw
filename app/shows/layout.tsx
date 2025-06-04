@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     siteName: 'Records On The Wall',
     images: [
       {
-        url: '/open-graph-2.png', // You can create a specific image for shows
+        url: '/open-graph.png', // You can create a specific image for shows
         width: 1200,
         height: 630,
       },
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Upcoming Shows • Records On The Wall',
     description: 'Buy tickets to all of our upcoming shows in Charlotte, NC and Denver, CO.',
-    images: ['/open-graph-2.png'],
+    images: ['/open-graph.png'],
   },
 };
 
