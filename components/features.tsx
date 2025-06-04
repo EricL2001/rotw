@@ -13,7 +13,7 @@ const features = [
   },
   {
     name: "Ticketing",
-    description: "We run tickets for our own shows where permitted through our custom ticketing app.",
+    description: "We run tickets for our own shows, where permitted, through our custom ticketing app.",
     icon: Ticket,
   },
   {
