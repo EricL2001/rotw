@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     siteName: 'Records On The Wall',
     images: [
       {
-        url: '/open-graph-shows.png', // You can create a specific image for shows
+        url: '/open-graph-2.png', // You can create a specific image for shows
         width: 1200,
         height: 630,
       },

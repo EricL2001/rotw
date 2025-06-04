@@ -32,7 +32,7 @@ export default function Features() {
           Records On The Wall is focused on booking the best local, regional and national talent at venues in Charlotte, NC and Denver, CO.
         </p>
         <p className="mt-4 leading-normal text-muted-foreground sm:text-xl sm:leading-8">
-          We book a diverse range of acts, from up-and-coming artists to established names in the areas of bluegrass, jam, funk, rock and beyond.
+          We book a diverse range of acts, from up-and-coming artists to established bands in the areas of bluegrass, jam, funk, rock and beyond.
         </p>
       </div>
       <div className="mx-auto grid max-w-5xl grid-cols-1 gap-8 md:grid-cols-2">
