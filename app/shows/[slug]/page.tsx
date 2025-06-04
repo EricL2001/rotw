@@ -8,6 +8,7 @@ import { getShow } from "@/lib/actions/getShow"
 import { TicketSelector } from "@/components/ticket-selector"
 import { toZonedTime, format } from 'date-fns-tz';
 import { MapPin } from "lucide-react";
+import type { Metadata } from "next";
 
 const venueMaps = [
   {
@@ -50,6 +51,42 @@ const portableTextComponents: PortableTextComponents = {
     number: ({ children }) => <li className="mb-2">{children}</li>,
   },
 };
+
+// This function generates metadata for the show page based on the slug parameter
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const resolvedParams = await params;
+  const { show } = await getShow(resolvedParams.slug);
+
+  return {
+    title: `Tickets On Sale For ${show.title} • Records On The Wall`,
+    description: `Grab tickets to see ${show.title} at ${show.venue}. ${show.showType === 'Free' ? 'Free show!' : `Tickets from $${show.price}`}`,
+    openGraph: {
+      title: `Tickets On Sale For ${show.title} • Records On The Wall`,
+      description: `Grab tickets to see ${show.title} at ${show.venue}. ${show.showType === 'Free' ? 'Free show!' : `Tickets from $${show.price}`}`,
+      url: `https://recordsonthewall.co/shows/${resolvedParams.slug}`,
+      siteName: 'Records On The Wall',
+      images: [
+        {
+          url: '/open-graph.png',
+          width: 1200,
+          height: 630,
+        },
+      ],
+      locale: 'en_US',
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `Tickets On Sale For ${show.title} • Records On The Wall`,
+      description: `Grab tickets to see ${show.title} at ${show.venue}. ${show.showType === 'Free' ? 'Free show!' : `Tickets from $${show.price}`}`,
+      images: ['/open-graph.png'],
+    },
+  };
+}
 
 // This is the page that shows the details of a single show
 export default async function PostPage({
