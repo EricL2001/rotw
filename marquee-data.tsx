@@ -76,7 +76,7 @@ export interface Band {
 
   export const localArtists: localBand[] = [
     {
-      artist: "Cosmic Collective",
+      artist: "Barcerado",
     },
     {
       artist: "Josh Daniels",
@@ -97,7 +97,7 @@ export interface Band {
       artist: "Funkwondo",
     },
     {
-      artist: "Barcerado",
+      artist: "Cosmic Collective",
     },
     {
       artist: "AKITA",
