@@ -1,11 +1,11 @@
 import type { Metadata } from "next"
 
 export const metadata: Metadata = {
-  title: "Buy Tickets to Upcoming Shows - Records On The Wall",
-  description: "Purchase tickets to all our upcoming shows in Charlotte, NC and Denver, CO.",
+  title: "Upcoming Shows • Records On The Wall",
+  description: "Buy tickets to all our upcoming shows in Charlotte, NC and Denver, CO.",
   openGraph: {
-    title: 'Upcoming Shows - Records On The Wall',
-    description: 'Purchase tickets to all our upcoming shows in Charlotte, NC and Denver, CO.',
+    title: 'Upcoming Shows • Records On The Wall', // this is what shows up
+    description: 'Buy tickets to all of our upcoming shows in Charlotte, NC and Denver, CO.', // description for the shows page when shared on social media
     url: 'https://recordsonthewall.co/shows',
     siteName: 'Records On The Wall',
     images: [
@@ -20,9 +20,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Upcoming Shows - Records On The Wall',
-    description: 'Browse all our upcoming free and ticketed shows in Charlotte, NC and Denver, CO.',
-    images: ['/open-graph-shows.png'],
+    title: 'Upcoming Shows • Records On The Wall',
+    description: 'Buy tickets to all of our upcoming shows in Charlotte, NC and Denver, CO.',
+    images: ['/open-graph-2.png'],
   },
 };
 
