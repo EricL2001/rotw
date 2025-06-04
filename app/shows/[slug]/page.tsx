@@ -62,11 +62,15 @@ export async function generateMetadata({
   const { show } = await getShow(resolvedParams.slug);
 
   return {
-    title: `Tickets On Sale For ${show.title} • Records On The Wall`,
-    description: `Grab tickets to see ${show.title} at ${show.venue}. ${show.showType === 'Free' ? 'Free show!' : `Tickets from $${show.price}`}`,
+    title: show.showType === 'Free'
+      ? `${show.title} at ${show.venue}`
+      : `Tickets On Sale For ${show.title} • Records On The Wall`,
+    description: `${show.showType === 'Free' ? 'Free show!' : `Grab tickets to see ${show.title} at ${show.venue}.`}`,
     openGraph: {
-      title: `Tickets On Sale For ${show.title} • Records On The Wall`,
-      description: `Grab tickets to see ${show.title} at ${show.venue}. ${show.showType === 'Free' ? 'Free show!' : `Tickets from $${show.price}`}`,
+      title: show.showType === 'Free'
+      ? `${show.title} at ${show.venue}`
+      : `Tickets On Sale For ${show.title} • Records On The Wall`,
+      description: `${show.showType === 'Free' ? 'Free show!' : `Grab tickets to see ${show.title} at ${show.venue}.`}`,
       url: `https://recordsonthewall.co/shows/${resolvedParams.slug}`,
       siteName: 'Records On The Wall',
       images: [
