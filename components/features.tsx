@@ -27,7 +27,7 @@ export default function Features() {
   return (
     <section className="container space-y-16 py-20">
       <div className="mx-auto max-w-[58rem] text-center">
-        <h2 className="font-semibold text-3xl leading-tight md:text-4xl">Welcome To The New Website</h2>
+        <h2 className="font-semibold text-3xl leading-tight md:text-4xl">Welcome To Our New Website</h2>
         <p className="mt-4 leading-normal text-muted-foreground sm:text-xl sm:leading-8">
           Records On The Wall is focused on booking the best local, regional and national talent at venues in Charlotte, NC and Denver, CO.
         </p>

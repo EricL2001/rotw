@@ -103,10 +103,16 @@ export interface Band {
       artist: "AKITA",
     },
     {
+      artist: "Once Below Joy",
+    },
+    {
       artist: "Pluto Gang",
     },
     {
       artist: "The Local Boys",
+    },
+    {
+      artist: "Menastree",
     },
     {
       artist: "Eternally Grateful",
