@@ -41,16 +41,13 @@ export default function CTA() {
             <DialogHeader>
               <DialogTitle>Join Our Email List</DialogTitle>
               <DialogDescription>
-                Stay updated on shows, pre-sales, new merch and more
+                We&#39;re working on our email signup so check back soon.
               </DialogDescription>
             </DialogHeader>
             <div className="flex items-center justify-center py-8">
               <div className="text-center">
                 <Mail className="h-12 w-12 mx-auto mb-4 text-muted-foreground" />
                 <h4 className="font-medium mb-2">Coming Soon!</h4>
-                <p className="text-sm text-muted-foreground">
-                  We&#39;re working on our email signup so check back soon.
-                </p>
               </div>
             </div>
             <DialogFooter>
