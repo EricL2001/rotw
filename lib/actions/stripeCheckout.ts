@@ -41,7 +41,6 @@ export async function createCheckoutSession(
   venue?: string, // Add venue
   customerEmail?: string // Add customerEmail
 ) {
-  console.log('DEBUG: args', { showTitle, price, dosPrice, quantity, showDate, venue, customerEmail });
 
 
   // Helper to compare only year, month, day (ignoring time)
@@ -113,8 +112,6 @@ export async function createCheckoutSession(
       },
       customer_creation: 'always', // double check this setup
     });
-
-    console.log('DEBUG: Stripe session created:', session.id);
 
     return { sessionId: session.id }
   } catch (error) {

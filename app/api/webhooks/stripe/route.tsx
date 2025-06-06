@@ -73,30 +73,12 @@ export async function POST(req: Request) {
       // Use the name, or fallback to the email username
       const firstName = purchaserName?.split(' ')[0] || purchaserEmail.split('@')[0];
 
-      // ADD THIS LOG:
-      console.log('📧 Email props being sent:', {
-        firstName,
-        showTitle,
-        showDate,
-        quantity,
-        venue,
-        purchaserEmail
-      });
 
       // Check if we're in preview/staging environment
       const isPreview = process.env.VERCEL_ENV === 'preview' || process.env.NODE_ENV !== 'production';
 
-      console.log('🔍 STEP 1: Preparing to send email with props:', {
-        firstName: firstName || 'N/A',
-        showTitle: showTitle || 'N/A',
-        showDate: showDate || 'N/A',
-        quantity: quantity || 'N/A',
-        venue: venue || 'N/A',
-        isPreview: isPreview
-      });
 
       try {
-        console.log('🔍 STEP 2: Rendering React Email template...');
 
         const emailText = `Hi ${firstName || 'there'},\n\nThank you for your purchase of ${quantity || 'N/A'} ticket(s) for "${showTitle || 'Your Event'}" on ${showDate || 'N/A'} at ${venue || 'N/A'}.`;
 
@@ -116,8 +98,6 @@ export async function POST(req: Request) {
           html: emailHtml,
           text: emailText,
         });
-
-        console.log('🔍 STEP 3: Sending email via Resend...');
 
         if (error) {
           console.error('❌ Resend email error:', error);
