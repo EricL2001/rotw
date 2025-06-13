@@ -119,7 +119,7 @@ export default async function PostPage({
           height="310"
         />
       )}
-      <div className="flex justify-between items-start mb-4">
+      <div className="flex justify-between items-start">
         <h1 className="text-2xl sm:text-3xl font-bold text-orange-500/90 flex-1 break-words">
           {show.title}
         </h1>
@@ -132,6 +132,7 @@ export default async function PostPage({
           </Badge>
         )}
       </div>
+      <p className="text-sm sm:text-base text-gray-400 mb-4">{show.supportName}</p>
       <h2 className="text-xl sm:text-2xl font-semibold flex items-center gap-2">
         {show.venue}
         {mapUrl && (
