@@ -9,6 +9,7 @@ const POSTS_QUERY = `*[_type == "post" && defined(slug.current) && showDate >= $
   showDate, 
   venue, 
   showType,
+  supportName,
   "imageUrl": image.asset->url, 
   bandName
 }`;

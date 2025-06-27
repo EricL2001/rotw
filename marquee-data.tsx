@@ -31,16 +31,13 @@ export interface Band {
       artist: "Yam Yam",
     },
     {
-      artist: "Rebekah Todd",
+      artist: "Lucky Strokes",
     },
     {
-      artist: "The Snozzberries",
+      artist: "Siccard Hollow",
     },
     {
       artist: "Jon Stickley Trio",
-    },
-    {
-      artist: "Ettore Buzzini",
     },
     {
       artist: "DJ Williams",
@@ -82,6 +79,12 @@ export interface Band {
       artist: "Josh Daniels",
     },
     {
+      artist: "Rebekah Todd",
+    },
+    {
+      artist: "The Snozzberries",
+    },
+    {
       artist: "Charlotte Bluegrass Allstars",
     },
     {
@@ -104,6 +107,9 @@ export interface Band {
     },
     {
       artist: "Once Below Joy",
+    },
+    {
+      artist: "Ettore Buzzini",
     },
     {
       artist: "Pluto Gang",

@@ -9,7 +9,7 @@ import { client } from "../sanity/lib/client";
 import { toZonedTime, format } from 'date-fns-tz';
 import { GoArrowBoth } from "react-icons/go";
 
-const POSTS_QUERY = `*[_type == "post" && defined(slug.current) && showDate >= $today] | order(showDate asc)[0...12]{_id, title, slug, showDate, showType, venue, "imageUrl": image.asset->url, bandName}`;
+const POSTS_QUERY = `*[_type == "post" && defined(slug.current) && showDate >= $today] | order(showDate asc)[0...12]{_id, title, slug, showDate, showType, supportName, venue, "imageUrl": image.asset->url, bandName}`;
 
 const options = { next: { revalidate: 30 } };
 
@@ -44,12 +44,13 @@ export default async function Upcoming() {
                   <span className="text-gray-400">No image available</span>
                 </div>
               )}
-              <div className="flex items-center justify-between mt-2 mb-2">
+              <div className="flex items-center justify-between mt-2">
                 <h3 className="text-l font-semibold text-white mt-2">{show.title}</h3>
                 {show.showType == 'Free' && (
                   <Badge variant="green" className={GeistMono.className}>Free Show</Badge>
                 )}
               </div>
+              <p className="text-sm sm:text-base text-gray-400 mb-2">{show.supportName}</p>
               <p className={`text-white text-sm ${GeistMono.className}`}>{show.venue}</p>
               <p className={`text-white mb-3 text-sm ${GeistMono.className}`}>
                 {format(
@@ -72,7 +73,7 @@ export default async function Upcoming() {
             </div>
           ))}
         </div>
-        <ScrollBar orientation="horizontal" />
+        <ScrollBar orientation="horizontal"/>
       </ScrollArea>
     </section>
   )
