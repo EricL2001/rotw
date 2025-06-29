@@ -34,7 +34,7 @@ export interface Band {
       artist: "Lucky Strokes",
     },
     {
-      artist: "Siccard Hollow",
+      artist: "Sicard Hollow",
     },
     {
       artist: "Jon Stickley Trio",
