@@ -13,7 +13,7 @@ export default function SignupPage() {
           SEE. MORE. MUSIC
         </h1>
         <p className="text-muted-foreground text-lg">
-          Join the list and take the ride with 3,000+ other music freaks. Stay updated on shows, pre-sales, new merch and more.
+          Take the ride with 3,000+ other music freaks. Stay updated on shows, pre-sales, new merch and more.
         </p>
       </div>
 
