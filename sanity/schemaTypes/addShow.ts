@@ -20,6 +20,16 @@ export const addShow = defineType({
         validation: (rule) => rule
           .required(),
       }),
+      defineField({
+        name: 'show_id',
+        title: 'Show ID',
+        type: 'string',
+        description: 'Unique identifier for the show',
+        initialValue: () => Math.floor(100000 + Math.random() * 900000).toString(),
+        readOnly: true,
+        validation: (rule) => rule
+          .required(),
+      }),
     defineField({
         name: 'showType',
         type: 'string',
