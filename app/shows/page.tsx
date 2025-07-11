@@ -1,10 +1,9 @@
 import Image from "next/image"
-import { Button } from "@/components/ui/button"
 import { GeistMono } from 'geist/font/mono'
-import Link from "next/link"
 import { Badge } from "@/components/ui/badge"
 import { getAllShows } from "@/lib/actions/getAllShows"
 import { toZonedTime, format } from 'date-fns-tz';
+import { ShowButton } from "@/components/show-button"
 
 export default async function ShowsPage() {
   const posts = await getAllShows();
@@ -49,17 +48,10 @@ export default async function ShowsPage() {
                 { timeZone: 'America/New_York' }
               )}
             </p>
-            <Link href={`/shows/${show.slug.current}`}>
-              {show.showType === 'Free' ? (
-                <Button variant="outline" className="border-orange-500 hover:bg-gray-800 hover:text-white">
-                  More Info
-                </Button>
-              ) : (
-                <Button variant="outline" className="border-orange-500 hover:bg-gray-800 hover:text-white">
-                  Info & Tickets
-                </Button>
-              )}
-            </Link>
+            <ShowButton 
+              slug={show.slug.current}
+              showType={show.showType}
+            />
           </div>
         ))}
       </div>

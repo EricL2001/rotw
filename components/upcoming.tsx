@@ -1,6 +1,5 @@
 import Image from "next/image"
-import { Button } from "@/components/ui/button"
-import Link from "next/link";
+import { ShowButton } from "@/components/show-button"
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 import { GeistMono } from 'geist/font/mono';
 import { Badge } from "@/components/ui/badge"
@@ -59,21 +58,14 @@ export default async function Upcoming() {
                   { timeZone: 'America/New_York' }
                 )}
               </p>
-              <Link href={`/shows/${show.slug.current}`}>
-                {show.showType === 'Free' ? (
-                  <Button variant="outline" className="border-orange-500 hover:bg-gray-800">
-                    More Info
-                  </Button>
-                ) : (
-                  <Button variant="outline" className="border-orange-500 hover:bg-gray-800">
-                    Info & Tickets
-                  </Button>
-                )}
-              </Link>
+              <ShowButton
+                slug={show.slug.current}
+                showType={show.showType}
+              />
             </div>
           ))}
         </div>
-        <ScrollBar orientation="horizontal"/>
+        <ScrollBar orientation="horizontal" />
       </ScrollArea>
     </section>
   )
