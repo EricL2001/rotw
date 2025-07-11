@@ -165,7 +165,7 @@ export default function Dashboard() {
             )
             .sort(([, a], [, b]) => new Date(a.showDate).getTime() - new Date(b.showDate).getTime())
             .map(([showTitle, data]) => (
-              <Card key={showTitle} className="border-gray-600 border-l-4 border-l-orange-600">
+              <Card key={showTitle} className="border-gray-600 border-l-4 border-l-orange-600 border-r-4 border-r-orange-600">
                 <CardHeader className="pb-3">
                   <CardTitle className="text-lg">{showTitle}</CardTitle>
                   <CardDescription className="flex items-center gap-1">
