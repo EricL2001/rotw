@@ -165,7 +165,7 @@ export default function Dashboard() {
             )
             .sort(([, a], [, b]) => new Date(a.showDate).getTime() - new Date(b.showDate).getTime())
             .map(([showTitle, data]) => (
-              <Card key={showTitle} className="border-l-4 border-l-orange-600">
+              <Card key={showTitle} className="border-gray-600 border-l-4 border-l-orange-600">
                 <CardHeader className="pb-3">
                   <CardTitle className="text-lg">{showTitle}</CardTitle>
                   <CardDescription className="flex items-center gap-1">
@@ -183,7 +183,7 @@ export default function Dashboard() {
                       <span className="text-sm text-muted-foreground">Tickets Sold</span>
                       <span className="font-semibold text-blue-600">{data.totalTickets}</span>
                     </div>
-                    <div className="flex justify-between items-center pt-1 border-t">
+                    <div className="flex justify-between items-center pt-3 border-t">
                       <span className="text-xs text-muted-foreground">Show Date</span>
                       <span className="text-xs font-medium">{format(new Date(data.showDate), 'MMM dd, yyyy')}</span>
                     </div>
