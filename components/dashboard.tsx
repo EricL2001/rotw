@@ -137,11 +137,11 @@ export default function Dashboard() {
             Show Performance
           </CardTitle>
           <CardDescription>
-            Revenue and ticket sales by individual show
+            Revenue and ticket sales by show
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {Object.entries(
               payments.reduce((acc: Record<string, {
                 venue: string;
@@ -162,8 +162,10 @@ export default function Dashboard() {
                 acc[key].totalTickets += Number(payment.ticket_quantity);
                 return acc;
               }, {})
-            ).map(([showTitle, data]) => (
-              <Card key={showTitle} className="border-l-4 border-l-blue-500">
+            )
+            .sort(([, a], [, b]) => new Date(a.showDate).getTime() - new Date(b.showDate).getTime())
+            .map(([showTitle, data]) => (
+              <Card key={showTitle} className="border-l-4 border-l-orange-600">
                 <CardHeader className="pb-3">
                   <CardTitle className="text-lg">{showTitle}</CardTitle>
                   <CardDescription className="flex items-center gap-1">
