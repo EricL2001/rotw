@@ -19,7 +19,7 @@ const venueMaps = [
   {
     name: "The Rabbit Hole",
     city: "Charlotte, NC",
-    mapsUrl: "https://maps.app.goo.gl/mj1xgUFZv8DRNM297"
+    mapsUrl: "https://maps.app.goo.gl/tfe67yXm6ZoiDgbJ6"
   },
   {
     name: "Heist Barrel Arts",
