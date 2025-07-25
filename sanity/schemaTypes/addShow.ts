@@ -51,7 +51,7 @@ export const addShow = defineType({
           options: {
             list: [
               {title: 'Heist Brewery', value: 'Heist Brewery - NoDa'},
-              {title: 'Jacks Live', value: 'Jacks Live'},
+              {title: 'The Rabbit Hole', value: 'The Rabbit Hole'},
               {title: 'Heist Barrel Arts', value: 'Heist Barrel Arts'},
               {title: 'Cactus Jacks', value: 'Cactus Jacks'}
             ],
@@ -133,14 +133,7 @@ export const addShow = defineType({
       defineField({
         name: 'supportName',
         type: 'string',
-        description: 'Support name',
-      }),
-      defineField({
-        name: 'googleMapsUrl',
-        type: 'url',
-        description: 'Google Maps URL',
-        validation: (rule) => rule
-          .required(),
+        description: 'Support name or additional show info',
       }),
   ],
 })

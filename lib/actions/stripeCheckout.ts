@@ -67,6 +67,7 @@ export async function createCheckoutSession(
     const salesTaxCents = Math.round(subtotalCents * 0.0725);
     const ticketFeeTotal = (ticketPrice < 10 ? 100 : 350) * quantity;
     const checkoutTotalCents = subtotalCents + salesTaxCents + ticketFeeTotal;
+    const ticketPriceTotal = ticketPrice * quantity;
 
 
     const session = await stripe.checkout.sessions.create({
@@ -116,6 +117,7 @@ export async function createCheckoutSession(
         ticketFeeTotal: ticketFeeTotal.toString(),
         taxTotal: salesTaxCents.toString(),
         checkoutTotal: checkoutTotalCents.toString(),
+        ticketPriceTotal: ticketPriceTotal.toString(), // total of gross ticket price only without taxes or fees.
       },
       customer_creation: 'always', // double check this setup
     });
