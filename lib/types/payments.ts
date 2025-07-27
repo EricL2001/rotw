@@ -30,6 +30,7 @@ export interface RecentActivity {
   revenueLast7Days: number;
 }
 
+// complete API response structure from app/api/dashboard/route.ts
 export interface PaymentsResponse {
   success: boolean;
   data: {
