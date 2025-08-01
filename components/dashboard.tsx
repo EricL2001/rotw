@@ -77,7 +77,7 @@ export default function Dashboard() {
         <Card className="border border-green-200 dark:border-green-800">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium"> YTD Total Revenue</CardTitle>
-            <DollarSign className="h-4 w-4 text-muted-foreground" />
+            <DollarSign className="h-4 w-4 text-green-600" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-green-600">${summary.totalRevenue.toFixed(2)}</div>
@@ -90,7 +90,7 @@ export default function Dashboard() {
         <Card className="border border-blue-200 dark:border-blue-800">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium">YTD Tickets Sold</CardTitle>
-            <Ticket className="h-4 w-4 text-muted-foreground" />
+            <Ticket className="h-4 w-4 text-blue" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-blue-600">{summary.totalTicketsSold}</div>
@@ -158,7 +158,7 @@ export default function Dashboard() {
                     showDate: payment.show_date
                   };
                 }
-                acc[key].totalRevenue += Number(payment.amount_paid);
+                acc[key].totalRevenue += Number(payment.total_amount_paid);
                 acc[key].totalTickets += Number(payment.ticket_quantity);
                 return acc;
               }, {})

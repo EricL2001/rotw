@@ -4,13 +4,18 @@ export interface ShowPayment {
   show_title: string;
   venue: string;
   show_date: string;
-  price: number;
-  dos_price?: number;
-  stripe_payment_id: string;
+  ticket_price: number;
+  is_dos_price?: boolean;
   ticket_quantity: number;
-  amount_paid: number;
+  total_ticket_price?: number;
+  customer_name?: string;
+  customer_email?: string;
+  total_amount_paid: number;
+  tax_total?: number;
   fee_amount: number;
   payment_status: string;
+  stripe_payment_id?: string;
+  stripe_fee?: number;
   created_at: string;
   updated_at: string;
 }

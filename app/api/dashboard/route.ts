@@ -13,16 +13,21 @@ export async function GET() {
         show_title,
         venue,
         show_date,
-        price,
-        dos_price,
-        stripe_payment_id,
+        ticket_price,
+        is_dos_price,
         ticket_quantity,
-        amount_paid,
+        total_ticket_price,
+        customer_name,
+        customer_email,
+        total_amount_paid,
+        tax_total,
         fee_amount,
         payment_status,
+        stripe_payment_id,
+        stripe_fee,
         created_at,
         updated_at
-      FROM show_payments 
+      FROM show_payments_final 
       ORDER BY created_at DESC
       LIMIT 100
     `;
@@ -32,12 +37,12 @@ export async function GET() {
       SELECT 
         COUNT(*) as total_payments,
         SUM(ticket_quantity) as total_tickets_sold,
-        SUM(amount_paid) as total_revenue,
+        SUM(total_amount_paid) as total_revenue,
         SUM(fee_amount) as total_fees,
         COUNT(DISTINCT show_id) as unique_shows,
         COUNT(DISTINCT venue) as unique_venues
-      FROM show_payments
-      WHERE payment_status = 'completed'
+      FROM show_payments_final
+      WHERE payment_status = 'complete'
     `;
 
     // Recent activity (last 7 days)
@@ -45,10 +50,10 @@ export async function GET() {
       SELECT 
         COUNT(*) as recent_payments,
         SUM(ticket_quantity) as recent_tickets,
-        SUM(amount_paid) as recent_revenue
-      FROM show_payments
+        SUM(total_amount_paid) as recent_revenue
+      FROM show_payments_final
       WHERE created_at >= NOW() - INTERVAL '7 days'
-      AND payment_status = 'completed'
+      AND payment_status = 'complete'
     `;
 
     return Response.json({
