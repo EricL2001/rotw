@@ -51,7 +51,7 @@ export async function GET() {
         COUNT(*) as recent_payments,
         SUM(ticket_quantity) as recent_tickets,
         SUM(total_amount_paid) as recent_revenue
-      FROM show_paymen
+      FROM show_payments_final
       WHERE created_at >= NOW() - INTERVAL '7 days'
       AND payment_status = 'complete'
     `;
