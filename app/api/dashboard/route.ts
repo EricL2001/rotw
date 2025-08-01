@@ -27,7 +27,7 @@ export async function GET() {
         stripe_fee,
         created_at,
         updated_at
-      FROM show_payments_final 
+      FROM show_payments_final
       ORDER BY created_at DESC
       LIMIT 100
     `;
@@ -51,7 +51,7 @@ export async function GET() {
         COUNT(*) as recent_payments,
         SUM(ticket_quantity) as recent_tickets,
         SUM(total_amount_paid) as recent_revenue
-      FROM show_payments_final
+      FROM show_paymen
       WHERE created_at >= NOW() - INTERVAL '7 days'
       AND payment_status = 'complete'
     `;
