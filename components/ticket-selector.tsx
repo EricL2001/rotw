@@ -25,12 +25,13 @@ interface TicketSelectorProps {
     venue: string
     showDate: Date | string
     showType: string
+    show_id: string
   }
 }
 
 // Mock customer email -- this will need to be replaced with the actual email from the Stripe checkout session
 // and passed to the email template
-const getCustomerEmail = (): string => 'erdev.levasseur@gmail.com';
+// const getCustomerEmail = (): string => 'erdev.levasseur@gmail.com';
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!)
 
@@ -58,7 +59,7 @@ export function TicketSelector({ show }: TicketSelectorProps) {
   const handleCheckout = async () => {
     try {
       setIsLoading(true)
-      const customerEmail = getCustomerEmail() // Replace with your actual email source
+      //const customerEmail = getCustomerEmail()
 
       const { sessionId } = await createCheckoutSession(
         show.title,
@@ -67,7 +68,7 @@ export function TicketSelector({ show }: TicketSelectorProps) {
         quantity,
         dateOfShow,
         show.venue,
-        customerEmail,
+        show.show_id,
       )
 
       const stripe = await stripePromise

@@ -39,7 +39,7 @@ export async function createCheckoutSession(
   quantity: number,
   showDate?: string,
   venue?: string, // Add venue
-  customerEmail?: string // Add customerEmail
+  show_id?: string
 ) {
 
 
@@ -61,10 +61,13 @@ export async function createCheckoutSession(
       useDos = isSameDayInZoneString(today, show, 'America/New_York');
     }
 
-  
+
     const ticketPrice = useDos ? dosPrice : price;
     const subtotalCents = Math.round(ticketPrice * 100) * quantity;
     const salesTaxCents = Math.round(subtotalCents * 0.0725);
+    const ticketFeePerTicket = ticketPrice < 10 ? 100 : 350;
+    const ticketFeeTotal = ticketFeePerTicket * quantity;
+    const checkoutTotal = subtotalCents + ticketFeeTotal + salesTaxCents;
 
 
     const session = await stripe.checkout.sessions.create({
@@ -104,11 +107,17 @@ export async function createCheckoutSession(
         description: showTitle, // <-- This sets the dashboard Description
       },
       metadata: {
+        show_id: show_id || '',
         showTitle: showTitle,
         showDate: showDate || '',
         quantity: quantity.toString(),
         venue: venue || '',
-        customerEmail: customerEmail || '',
+        ticketPrice: (ticketPrice * 100).toString(), // Convert to cents for metadata
+        isDayOfShow: useDos.toString(),
+        ticketPriceTotal: subtotalCents.toString(),
+        checkoutTotal: checkoutTotal.toString(),
+        taxTotal: salesTaxCents.toString(),
+        ticketFeeTotal: ticketFeeTotal.toString(),
       },
       customer_creation: 'always', // double check this setup
     });

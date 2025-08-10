@@ -22,9 +22,7 @@ export async function GET() {
         total_amount_paid,
         tax_total,
         fee_amount,
-        payment_status,
         stripe_payment_id,
-        stripe_fee,
         created_at,
         updated_at
       FROM show_payments_final
@@ -42,7 +40,6 @@ export async function GET() {
         COUNT(DISTINCT show_id) as unique_shows,
         COUNT(DISTINCT venue) as unique_venues
       FROM show_payments_final
-      WHERE payment_status = 'complete'
     `;
 
     // Recent activity (last 7 days)
@@ -53,7 +50,6 @@ export async function GET() {
         SUM(total_amount_paid) as recent_revenue
       FROM show_payments_final
       WHERE created_at >= NOW() - INTERVAL '7 days'
-      AND payment_status = 'complete'
     `;
 
     return Response.json({
