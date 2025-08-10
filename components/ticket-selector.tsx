@@ -18,6 +18,7 @@ import { format } from 'date-fns-tz';
 
 interface TicketSelectorProps {
   show: {
+    show_id: string
     title: string
     price: number
     promoPrice: number
@@ -25,7 +26,6 @@ interface TicketSelectorProps {
     venue: string
     showDate: Date | string
     showType: string
-    show_id: string
   }
 }
 
