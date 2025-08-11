@@ -13,9 +13,7 @@ export interface ShowPayment {
   total_amount_paid: number;
   tax_total?: number;
   fee_amount: number;
-  payment_status: string;
   stripe_payment_id?: string;
-  stripe_fee?: number;
   created_at: string;
   updated_at: string;
 }

@@ -3,7 +3,7 @@ import { client } from "../../sanity/lib/client";
 
 const POSTS_QUERY = `*[_type == "post" && defined(slug.current) && showDate >= $today] | order(showDate asc)[0...12]
 {
-  _id, 
+  show_id, 
   title, 
   slug, 
   showDate, 
