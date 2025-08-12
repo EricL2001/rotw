@@ -135,12 +135,5 @@ export const addShow = defineType({
         type: 'string',
         description: 'Support name',
       }),
-      defineField({
-        name: 'googleMapsUrl',
-        type: 'url',
-        description: 'Google Maps URL',
-        validation: (rule) => rule
-          .required(),
-      }),
   ],
 })
