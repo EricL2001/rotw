@@ -45,7 +45,7 @@ async function insertPaymentRecord(session: Stripe.Checkout.Session) {
         show_id, show_title, venue, show_date, ticket_price,
         is_dos_price, ticket_quantity, total_ticket_price,
         customer_name, customer_email, total_amount_paid,
-        tax_total, fee_amount, payment_status, stripe_payment_id
+        tax_total, fee_amount, stripe_payment_id
       ) VALUES (
         ${paymentData.show_id}, ${paymentData.show_title}, ${paymentData.venue}, 
         ${paymentData.show_date}, ${paymentData.ticket_price}, ${paymentData.is_dos_price},
