@@ -17,7 +17,7 @@ const venueMaps = [
     mapsUrl: "https://maps.app.goo.gl/NhCDkcmRAihom6mt5"
   },
   {
-    name: "Jacks Live",
+    name: "The Rabbit Hole",
     city: "Charlotte, NC",
     mapsUrl: "https://maps.app.goo.gl/mj1xgUFZv8DRNM297"
   },
@@ -68,8 +68,8 @@ export async function generateMetadata({
     description: `${show.showType === 'Free' ? 'Free show!' : `Grab tickets to see ${show.title} at ${show.venue}.`}`,
     openGraph: {
       title: show.showType === 'Free'
-      ? `${show.title} at ${show.venue}`
-      : `Tickets On Sale For ${show.title} • Records On The Wall`,
+        ? `${show.title} at ${show.venue}`
+        : `Tickets On Sale For ${show.title} • Records On The Wall`,
       description: `${show.showType === 'Free' ? 'Free show!' : `Grab tickets to see ${show.title} at ${show.venue}.`}`,
       url: `https://recordsonthewall.co/shows/${resolvedParams.slug}`,
       siteName: 'Records On The Wall',
@@ -134,12 +134,12 @@ export default async function PostPage({
       </div>
       <p className="text-sm sm:text-base text-gray-400 mb-4">{show.supportName}</p>
       <h2 className="text-xl sm:text-2xl font-semibold flex items-center gap-2">
-        {show.venue}
         {mapUrl && (
           <a href={mapUrl} target="_blank" rel="noopener noreferrer">
-            <MapPin className="w-5 h-5 text-orange-500 ml-1 hover:text-orange-400" />
+            <MapPin className="w-5 h-5 text-orange-500 hover:text-orange-400" />
           </a>
         )}
+        {show.venue}
       </h2>
       <p className={`text-sm text-white/80 mb-1 ${GeistMono.className}`}>{venueInfo?.city}</p>
       <p className="text-xl sm:text-2xl font-semibold">
