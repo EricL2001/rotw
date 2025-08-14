@@ -65,7 +65,7 @@ export default function AboutPage() {
       </div>
 
       {/* FAQ Section */}
-      <section className="container py-24"> {/* Adjust padding for spacing */}
+      <section className="container py-24" id="faq"> {/* Adjust padding for spacing */}
         <h2 className="font-semibold text-xl sm:text-2xl md:text-3xl text-center mb-8">
           Frequently Asked Questions
         </h2>

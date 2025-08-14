@@ -29,10 +29,6 @@ interface TicketSelectorProps {
   }
 }
 
-// Mock customer email -- this will need to be replaced with the actual email from the Stripe checkout session
-// and passed to the email template
-// const getCustomerEmail = (): string => 'erdev.levasseur@gmail.com';
-
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!)
 
 function isSameDay(dateA: Date, dateB: Date) {
@@ -59,7 +55,6 @@ export function TicketSelector({ show }: TicketSelectorProps) {
   const handleCheckout = async () => {
     try {
       setIsLoading(true)
-      //const customerEmail = getCustomerEmail()
 
       const { sessionId } = await createCheckoutSession(
         show.title,

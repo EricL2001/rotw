@@ -38,7 +38,7 @@ export async function createCheckoutSession(
   dosPrice: number,
   quantity: number,
   showDate?: string,
-  venue?: string, // Add venue
+  venue?: string,
   show_id?: string
 ) {
 

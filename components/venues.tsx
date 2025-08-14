@@ -10,10 +10,10 @@ const partners = [
     url: "https://www.heistbrewery.com",
   },
   {
-    name: "Jack's Live",
+    name: "The Rabbit Hole",
     city: "Charlotte, NC",
     src: "/jacks-small.jpg",
-    url: "https://www.jacksliveclt.com/",
+    url: "https://www.therabbitholeclt.com/",
   },
   {
     name: "Heist Brewery and Barrel Arts",
