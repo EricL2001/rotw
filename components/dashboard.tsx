@@ -16,7 +16,7 @@ export default function Dashboard() {
       try {
         const response = await fetch('/api/dashboard')
         const result = await response.json()
-        
+
         if (result.success) {
           setData(result)
         } else {
@@ -125,10 +125,10 @@ export default function Dashboard() {
             </p>
           </CardContent>
         </Card>
-      </div> 
+      </div>
 
       <hr className="border-t border-gray-600 my-8 py-4" />
-      
+
       {/* Individual Show Performance */}
       <Card>
         <CardHeader>
@@ -163,34 +163,36 @@ export default function Dashboard() {
                 return acc;
               }, {})
             )
-            .sort(([, a], [, b]) => new Date(a.showDate).getTime() - new Date(b.showDate).getTime())
-            .map(([showTitle, data]) => (
-              <Card key={showTitle} className="border-gray-600 border-l-4 border-l-orange-600 border-r-4 border-r-orange-600">
-                <CardHeader className="pb-3">
-                  <CardTitle className="text-lg">{showTitle}</CardTitle>
-                  <CardDescription className="flex items-center gap-1">
-                    <MapPin className="h-3 w-3" />
-                    {data.venue}
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="pt-0">
-                  <div className="space-y-2">
-                    <div className="flex justify-between items-center">
-                      <span className="text-sm text-muted-foreground">Total Revenue</span>
-                      <span className="font-semibold text-green-600">${data.totalRevenue.toFixed(2)}</span>
+              .sort(([, a], [, b]) => new Date(a.showDate).getTime() - new Date(b.showDate).getTime())
+              .map(([showTitle, data]) => (
+                <Card key={showTitle} className="border-gray-600 border-l-4 border-l-orange-600 border-r-4 border-r-orange-600">
+                  <CardHeader className="pb-3">
+                    <CardTitle className="text-lg">{showTitle}</CardTitle>
+                    <CardDescription className="flex items-center gap-1">
+                      <MapPin className="h-3 w-3" />
+                      {data.venue}
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="pt-0">
+                    <div className="space-y-2">
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm text-muted-foreground">Total Revenue</span>
+                        <span className="font-semibold text-green-600">${data.totalRevenue.toFixed(2)}</span>
+                      </div>
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm text-muted-foreground">Tickets Sold</span>
+                        <span className="font-semibold text-blue-600">{data.totalTickets}</span>
+                      </div>
+                      <div className="flex justify-between items-center pt-3 border-t">
+                        <span className="text-xs text-muted-foreground">Show Date</span>
+                        <span className="text-xs font-medium">
+                          {format(new Date(data.showDate + 'T12:00:00'), 'MMM dd, yyyy')}
+                        </span>
+                      </div>
                     </div>
-                    <div className="flex justify-between items-center">
-                      <span className="text-sm text-muted-foreground">Tickets Sold</span>
-                      <span className="font-semibold text-blue-600">{data.totalTickets}</span>
-                    </div>
-                    <div className="flex justify-between items-center pt-3 border-t">
-                      <span className="text-xs text-muted-foreground">Show Date</span>
-                      <span className="text-xs font-medium">{format(new Date(data.showDate), 'MMM dd, yyyy')}</span>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
+                  </CardContent>
+                </Card>
+              ))}
           </div>
         </CardContent>
       </Card>
