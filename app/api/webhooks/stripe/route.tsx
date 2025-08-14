@@ -37,7 +37,6 @@ async function insertPaymentRecord(session: Stripe.Checkout.Session) {
       total_amount_paid: parseFloat(metadata.checkoutTotal || '0') / 100,
       tax_total: parseFloat(metadata.taxTotal || '0') / 100,
       fee_amount: parseFloat(metadata.ticketFeeTotal || '0') / 100,
-      payment_status: 'paid',
       stripe_payment_id: session.payment_intent as string,
     };
 
@@ -53,7 +52,7 @@ async function insertPaymentRecord(session: Stripe.Checkout.Session) {
         ${paymentData.ticket_quantity}, ${paymentData.total_ticket_price},
         ${paymentData.customer_name}, ${paymentData.customer_email}, 
         ${paymentData.total_amount_paid}, ${paymentData.tax_total}, 
-        ${paymentData.fee_amount}, ${paymentData.payment_status}, 
+        ${paymentData.fee_amount}, 
         ${paymentData.stripe_payment_id}
       )
     `;
