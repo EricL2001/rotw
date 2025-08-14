@@ -186,7 +186,7 @@ export default function Dashboard() {
                       <div className="flex justify-between items-center pt-3 border-t">
                         <span className="text-xs text-muted-foreground">Show Date</span>
                         <span className="text-xs font-medium">
-                          {format(new Date(data.showDate + 'T12:00:00'), 'MMM dd, yyyy')}
+                          {format(new Date(data.showDate), 'MMM dd, yyyy')}
                         </span>
                       </div>
                     </div>
