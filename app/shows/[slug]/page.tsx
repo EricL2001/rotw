@@ -156,6 +156,7 @@ export default async function PostPage({
       {show.showType !== 'Free' && (
         <TicketSelector
           show={{
+            show_id: show.show_id,
             title: show.title,
             price: show.price,
             promoPrice: show.promoPrice,
