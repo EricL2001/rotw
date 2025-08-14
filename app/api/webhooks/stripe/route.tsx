@@ -2,6 +2,7 @@ import Stripe from 'stripe';
 import { Resend } from 'resend';
 import { render } from '@react-email/render';
 import { EmailTemplate } from '@/components/emails/email-template';
+import { neon } from '@neondatabase/serverless';
 
 // Initialize Stripe with your secret key (from environment variables)
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
@@ -10,6 +11,61 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
 
 // Initialize Resend with your API key (from environment variables)
 const resend = new Resend(process.env.RESEND_API_KEY);
+
+// Initialize Neon client for database operations
+const sql = neon(process.env.DATABASE_URL!);
+
+
+// Function to insert payment record into database
+async function insertPaymentRecord(session: Stripe.Checkout.Session) {
+  try {
+    const metadata = session.metadata || {};
+
+    console.log('🔍 Raw metadata from Stripe:', JSON.stringify(metadata, null, 2));
+
+    const paymentData = {
+      show_id: metadata.show_id || '',
+      show_title: metadata.showTitle || '',
+      venue: metadata.venue || '',
+      show_date: metadata.showDate || '',
+      ticket_price: parseFloat(metadata.ticketPrice || '0') / 100,
+      is_dos_price: metadata.isDayOfShow === 'true',
+      ticket_quantity: parseInt(metadata.quantity || '1'),
+      total_ticket_price: parseFloat(metadata.ticketPriceTotal || '0') / 100,
+      customer_name: session.customer_details?.name || '',
+      customer_email: session.customer_details?.email || '',
+      total_amount_paid: parseFloat(metadata.checkoutTotal || '0') / 100,
+      tax_total: parseFloat(metadata.taxTotal || '0') / 100,
+      fee_amount: parseFloat(metadata.ticketFeeTotal || '0') / 100,
+      payment_status: 'paid',
+      stripe_payment_id: session.payment_intent as string,
+    };
+
+    const result = await sql`
+      INSERT INTO show_payments_final (
+        show_id, show_title, venue, show_date, ticket_price,
+        is_dos_price, ticket_quantity, total_ticket_price,
+        customer_name, customer_email, total_amount_paid,
+        tax_total, fee_amount, payment_status, stripe_payment_id
+      ) VALUES (
+        ${paymentData.show_id}, ${paymentData.show_title}, ${paymentData.venue}, 
+        ${paymentData.show_date}, ${paymentData.ticket_price}, ${paymentData.is_dos_price},
+        ${paymentData.ticket_quantity}, ${paymentData.total_ticket_price},
+        ${paymentData.customer_name}, ${paymentData.customer_email}, 
+        ${paymentData.total_amount_paid}, ${paymentData.tax_total}, 
+        ${paymentData.fee_amount}, ${paymentData.payment_status}, 
+        ${paymentData.stripe_payment_id}
+      )
+    `;
+
+    console.log('✅ Payment record inserted successfully:', result);
+    return true;
+  } catch (error) {
+    console.error('❌ Error inserting payment record:', error);
+    return false;
+  }
+}
+
 
 // Function to handle POST requests
 export async function POST(req: Request) {
@@ -105,7 +161,6 @@ export async function POST(req: Request) {
         }
 
         console.log('✅ Email sent successfully via Resend:', data);
-        return new Response(JSON.stringify({ received: true, emailSent: true }), { status: 200 });
 
       } catch (emailError: unknown) {
         const errorMessage = emailError instanceof Error ? emailError.message : String(emailError);
@@ -117,6 +172,17 @@ export async function POST(req: Request) {
           error: `Email sending failed: ${errorMessage}`
         }), { status: 200 });
       }
+
+
+      // ADD THIS: Insert payment record into database
+      const dbResult = await insertPaymentRecord(session);
+      if (!dbResult) {
+        console.error('❌ Failed to insert payment record for session:', session.id);
+      } else {
+        console.log('✅ Payment record inserted successfully for session:', session.id);
+      }
+
+      return new Response(JSON.stringify({ received: true, emailSent: true }), { status: 200 });
 
     default:
       console.log(`Unhandled event type ${event.type}`);
