@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { PaymentsResponse, ShowPayment } from "@/lib/types/payments"
-import { format } from "date-fns"
+import { format, parseISO } from "date-fns"
 import { DollarSign, Ticket, Calendar, MapPin, Users } from "lucide-react"
 
 export default function Dashboard() {
@@ -163,10 +163,13 @@ export default function Dashboard() {
                 return acc;
               }, {})
             )
-              .sort(([, a], [, b]) => new Date(a.showDate).getTime() - new Date(b.showDate).getTime())
+             // Convert to array and sort by show date
+              .sort(([, a], [, b]) => parseISO(a.showDate).getTime() - parseISO(b.showDate).getTime())
+
+              // Map to render cards
               .map(([showTitle, data]) => (
                 <Card key={showTitle} className="border-gray-600 border-l-4 border-l-orange-600 border-r-4 border-r-orange-600">
-                  <CardHeader className="pb-3">
+                  <CardHeader className="pb-4">
                     <CardTitle className="text-lg">{showTitle}</CardTitle>
                     <CardDescription className="flex items-center gap-1">
                       <MapPin className="h-3 w-3" />
@@ -186,7 +189,7 @@ export default function Dashboard() {
                       <div className="flex justify-between items-center pt-3 border-t">
                         <span className="text-xs text-muted-foreground">Show Date</span>
                         <span className="text-xs font-medium">
-                          {format(new Date(data.showDate), 'MMM dd, yyyy')}
+                          {format(parseISO(data.showDate), 'MMM dd, yyyy')}
                         </span>
                       </div>
                     </div>
