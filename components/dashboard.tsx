@@ -3,8 +3,28 @@
 import { useState, useEffect } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { PaymentsResponse, ShowPayment } from "@/lib/types/payments"
-import { format, parseISO } from "date-fns"
+import { format } from "date-fns"
 import { DollarSign, Ticket, Calendar, MapPin, Users } from "lucide-react"
+
+
+// helper function to parse local date strings with error handling
+const parseLocalDate = (dateString: string) => {
+  if (!dateString || typeof dateString !== 'string') {
+    console.error('Invalid date string:', dateString)
+    return new Date() // fallback to current date
+  }
+
+  // The Date constructor can parse both "YYYY-MM-DD" and full ISO strings.
+  // It correctly interprets "YYYY-MM-DD" as UTC midnight.
+  const date = new Date(dateString)
+
+  if (isNaN(date.getTime())) {
+    console.error('Invalid date created from string:', dateString)
+    return new Date() // fallback to current date
+  }
+
+  return date
+}
 
 export default function Dashboard() {
   const [data, setData] = useState<PaymentsResponse | null>(null)
@@ -164,7 +184,7 @@ export default function Dashboard() {
               }, {})
             )
              // Convert to array and sort by show date
-              .sort(([, a], [, b]) => parseISO(a.showDate).getTime() - parseISO(b.showDate).getTime())
+              .sort(([, a], [, b]) => parseLocalDate(a.showDate).getTime() - parseLocalDate(b.showDate).getTime())
 
               // Map to render cards
               .map(([showTitle, data]) => (
@@ -189,7 +209,7 @@ export default function Dashboard() {
                       <div className="flex justify-between items-center pt-3 border-t">
                         <span className="text-xs text-muted-foreground">Show Date</span>
                         <span className="text-xs font-medium">
-                          {format(parseISO(data.showDate), 'MMM dd, yyyy')}
+                          {format(parseLocalDate(data.showDate), 'MMM dd, yyyy')}
                         </span>
                       </div>
                     </div>
