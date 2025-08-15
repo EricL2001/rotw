@@ -4,18 +4,19 @@ import { useState, useEffect } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { PaymentsResponse, ShowPayment } from "@/lib/types/payments"
 import { format } from "date-fns"
+import { toZonedTime } from "date-fns-tz"
 import { DollarSign, Ticket, Calendar, MapPin, Users } from "lucide-react"
 
 
-// helper function to parse local date strings with error handling
+// helper function to parse date strings as UTC
 const parseLocalDate = (dateString: string) => {
   if (!dateString || typeof dateString !== 'string') {
     console.error('Invalid date string:', dateString)
     return new Date() // fallback to current date
   }
 
-  // The Date constructor can parse both "YYYY-MM-DD" and full ISO strings.
-  // It correctly interprets "YYYY-MM-DD" as UTC midnight.
+  // Create a date object from the string. This will be in the runtime's timezone
+  // or UTC if the string is in ISO format.
   const date = new Date(dateString)
 
   if (isNaN(date.getTime())) {
@@ -23,7 +24,9 @@ const parseLocalDate = (dateString: string) => {
     return new Date() // fallback to current date
   }
 
-  return date
+  // Convert the parsed date to a UTC date object. This effectively "removes" the timezone
+  // offset, treating the local date parts (year, month, day) as if they were UTC.
+  return toZonedTime(date, 'UTC')
 }
 
 export default function Dashboard() {
