@@ -22,6 +22,7 @@ export interface PaymentsSummary {
   totalPayments: number;
   totalTicketsSold: number;
   totalRevenue: number;
+  grossTicketRevenue: number;
   totalFees: number;
   uniqueShows: number;
   uniqueVenues: number;

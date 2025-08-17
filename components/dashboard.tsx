@@ -103,9 +103,9 @@ export default function Dashboard() {
             <DollarSign className="h-4 w-4 text-green-600" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-green-600">${summary.totalRevenue.toFixed(2)}</div>
+            <div className="text-2xl font-bold text-green-600">${summary.totalRevenue.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</div>
             <p className="text-xs text-muted-foreground">
-              +${recentActivity.revenueLast7Days.toFixed(2)} last 7 days
+              +${recentActivity.revenueLast7Days.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} last 7 days
             </p>
           </CardContent>
         </Card>
@@ -169,6 +169,7 @@ export default function Dashboard() {
               payments.reduce((acc: Record<string, {
                 venue: string;
                 totalRevenue: number;
+                grossTicketRevenue?: number;
                 totalTickets: number;
                 showDate: string;
               }>, payment: ShowPayment) => {
@@ -177,11 +178,13 @@ export default function Dashboard() {
                   acc[key] = {
                     venue: payment.venue,
                     totalRevenue: 0,
+                    grossTicketRevenue: 0,
                     totalTickets: 0,
                     showDate: payment.show_date
                   };
                 }
                 acc[key].totalRevenue += Number(payment.total_amount_paid);
+                acc[key].grossTicketRevenue = (acc[key].grossTicketRevenue || 0) + Number(payment.total_ticket_price || 0);
                 acc[key].totalTickets += Number(payment.ticket_quantity);
                 return acc;
               }, {})
@@ -192,7 +195,7 @@ export default function Dashboard() {
               // Map to render cards
               .map(([showTitle, data]) => (
                 <Card key={showTitle} className="border-gray-600 border-l-4 border-l-orange-600 border-r-4 border-r-orange-600">
-                  <CardHeader className="pb-4">
+                  <CardHeader className="pb-4 space-y-0.5">
                     <CardTitle className="text-lg">{showTitle}</CardTitle>
                     <CardDescription className="flex items-center gap-1">
                       <MapPin className="h-3 w-3" />
@@ -203,7 +206,11 @@ export default function Dashboard() {
                     <div className="space-y-2">
                       <div className="flex justify-between items-center">
                         <span className="text-sm text-muted-foreground">Total Revenue</span>
-                        <span className="font-semibold text-green-600">${data.totalRevenue.toFixed(2)}</span>
+                        <span className="font-semibold text-green-600">${data.totalRevenue.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+                      </div>
+                      <div className="flex justify-between items-center">
+                        <span className="text-sm text-muted-foreground">Gross Ticket Revenue</span>
+                        <span className="font-semibold text-green-400">${(data.grossTicketRevenue || 0).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
                       </div>
                       <div className="flex justify-between items-center">
                         <span className="text-sm text-muted-foreground">Tickets Sold</span>

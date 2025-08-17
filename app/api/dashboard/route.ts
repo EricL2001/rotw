@@ -36,6 +36,7 @@ export async function GET() {
         COUNT(*) as total_payments,
         SUM(ticket_quantity) as total_tickets_sold,
         SUM(total_amount_paid) as total_revenue,
+        SUM(total_ticket_price) as gross_ticket_revenue,
         SUM(fee_amount) as total_fees,
         COUNT(DISTINCT show_id) as unique_shows,
         COUNT(DISTINCT venue) as unique_venues
@@ -60,6 +61,7 @@ export async function GET() {
           totalPayments: parseInt(summary.total_payments || 0),
           totalTicketsSold: parseInt(summary.total_tickets_sold || 0),
           totalRevenue: parseFloat(summary.total_revenue || 0),
+          grossTicketRevenue: parseFloat(summary.gross_ticket_revenue || 0),
           totalFees: parseFloat(summary.total_fees || 0),
           uniqueShows: parseInt(summary.unique_shows || 0),
           uniqueVenues: parseInt(summary.unique_venues || 0),
