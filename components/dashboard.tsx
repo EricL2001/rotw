@@ -189,7 +189,13 @@ export default function Dashboard() {
                 return acc;
               }, {})
             )
-             // Convert to array and sort by show date
+              // Convert to array and filter for today or future dates, then sort by show date
+              .filter(([, data]) => {
+                const showDate = parseLocalDate(data.showDate);
+                const today = new Date();
+                today.setHours(0, 0, 0, 0); // Set to start of today
+                return showDate >= today;
+              })
               .sort(([, a], [, b]) => parseLocalDate(a.showDate).getTime() - parseLocalDate(b.showDate).getTime())
 
               // Map to render cards
@@ -210,7 +216,7 @@ export default function Dashboard() {
                       </div>
                       <div className="flex justify-between items-center">
                         <span className="text-sm text-muted-foreground">Gross Ticket Revenue</span>
-                        <span className="font-semibold text-green-400">${(data.grossTicketRevenue || 0).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+                        <span className="font-semibold text-green-400">${(data.grossTicketRevenue ?? 0).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
                       </div>
                       <div className="flex justify-between items-center">
                         <span className="text-sm text-muted-foreground">Tickets Sold</span>
