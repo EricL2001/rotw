@@ -10,7 +10,6 @@ import { Button } from "@/components/ui/button"
 interface CustomerTicket {
   id: number;
   customer_name: string;
-  customer_email: string;
   ticket_quantity: number;
   total_amount_paid: number;
   created_at: string;
@@ -93,10 +92,9 @@ export default function ShowDetailsComponent({ slug }: ShowDetailsProps) {
   }
 
   return (
-    <div className="container mx-auto p-6 space-y-6">
+    <div className="container mx-auto p-6 space-y-6 mt-4">
       {/* Header with Back Button */}
-      <div className="flex items-center gap-4">
-        <Button 
+      <Button 
           onClick={() => router.push('/dashboard')} 
           variant="outline"
           size="sm"
@@ -104,7 +102,8 @@ export default function ShowDetailsComponent({ slug }: ShowDetailsProps) {
           <ArrowLeft className="mr-2 h-4 w-4" />
           Back to Dashboard
         </Button>
-        <div>
+      <div className="flex items-center gap-6">
+        <div className="mt-2">
           <h1 className="text-3xl font-semibold">{data.show_title}</h1>
           <div className="flex items-center gap-4 text-muted-foreground mt-1">
             <div className="flex items-center gap-1">
@@ -140,7 +139,6 @@ export default function ShowDetailsComponent({ slug }: ShowDetailsProps) {
               <TableHeader>
                 <TableRow>
                   <TableHead>Customer Name</TableHead>
-                  <TableHead>Email</TableHead>
                   <TableHead className="text-center">Tickets</TableHead>
                   <TableHead className="text-right">Amount Paid</TableHead>
                   <TableHead className="text-right">Purchase Date</TableHead>
@@ -152,7 +150,6 @@ export default function ShowDetailsComponent({ slug }: ShowDetailsProps) {
                     <TableCell className="font-medium">
                       {customer.customer_name || 'N/A'}
                     </TableCell>
-                    <TableCell>{customer.customer_email || 'N/A'}</TableCell>
                     <TableCell className="text-center">
                       {customer.ticket_quantity}
                     </TableCell>

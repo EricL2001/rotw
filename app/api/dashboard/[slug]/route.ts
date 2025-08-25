@@ -4,7 +4,6 @@ import { pool } from '../../../../lib/db'
 interface CustomerTicket {
     id: number;
     customer_name: string;
-    customer_email: string;
     ticket_quantity: number;
     total_amount_paid: number;
     created_at: string;
@@ -44,7 +43,6 @@ export async function GET(
       SELECT 
         id,
         customer_name,
-        customer_email,
         ticket_quantity,
         total_amount_paid,
         created_at
