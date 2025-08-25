@@ -6,7 +6,7 @@ import { PaymentsResponse, ShowPayment } from "@/lib/types/payments"
 import { format } from "date-fns"
 import { toZonedTime } from "date-fns-tz"
 import { DollarSign, Ticket, Calendar, MapPin, Users } from "lucide-react"
-
+import { useRouter } from "next/navigation"
 
 // helper function to parse date strings as UTC
 const parseLocalDate = (dateString: string) => {
@@ -33,6 +33,7 @@ export default function Dashboard() {
   const [data, setData] = useState<PaymentsResponse | null>(null)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+  const router = useRouter()
 
   useEffect(() => {
     const fetchData = async () => {
@@ -160,7 +161,7 @@ export default function Dashboard() {
             Show Performance
           </CardTitle>
           <CardDescription>
-            Revenue and ticket sales by show
+            Revenue and ticket sales by show (click to view customers)
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -172,6 +173,7 @@ export default function Dashboard() {
                 grossTicketRevenue?: number;
                 totalTickets: number;
                 showDate: string;
+                showId: string;
               }>, payment: ShowPayment) => {
                 const key = payment.show_title;
                 if (!acc[key]) {
@@ -180,7 +182,8 @@ export default function Dashboard() {
                     totalRevenue: 0,
                     grossTicketRevenue: 0,
                     totalTickets: 0,
-                    showDate: payment.show_date
+                    showDate: payment.show_date,
+                    showId: payment.show_id
                   };
                 }
                 acc[key].totalRevenue += Number(payment.total_amount_paid);
@@ -198,9 +201,13 @@ export default function Dashboard() {
               })
               .sort(([, a], [, b]) => parseLocalDate(a.showDate).getTime() - parseLocalDate(b.showDate).getTime())
 
-              // Map to render cards
+              // Map to render clickable cards
               .map(([showTitle, data]) => (
-                <Card key={showTitle} className="border-gray-600 border-l-4 border-l-orange-600 border-r-4 border-r-orange-600">
+                <Card
+                  key={showTitle}
+                  className="border-gray-600 border-l-4 border-l-orange-600 border-r-4 border-r-orange-600 cursor-pointer hover:shadow-lg hover:shadow-orange-500/20 hover:scale-[1.02] hover:border-orange-500 transition-all duration-300 ease-in-out"
+                  onClick={() => router.push(`/dashboard/${data.showId}`)}
+                >
                   <CardHeader className="pb-4 space-y-0.5">
                     <CardTitle className="text-lg">{showTitle}</CardTitle>
                     <CardDescription className="flex items-center gap-1">
