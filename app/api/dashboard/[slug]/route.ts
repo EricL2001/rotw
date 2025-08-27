@@ -5,6 +5,7 @@ interface CustomerTicket {
     id: number;
     customer_name: string;
     ticket_quantity: number;
+    customer_email: string;
     total_amount_paid: number;
     created_at: string;
 }
@@ -44,6 +45,7 @@ export async function GET(
         id,
         customer_name,
         ticket_quantity,
+        customer_email,
         total_amount_paid,
         created_at
       FROM show_payments_final 

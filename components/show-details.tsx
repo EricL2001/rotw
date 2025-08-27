@@ -11,6 +11,7 @@ interface CustomerTicket {
   id: number;
   customer_name: string;
   ticket_quantity: number;
+  customer_email: string;
   total_amount_paid: number;
   created_at: string;
 }
@@ -127,7 +128,7 @@ export default function ShowDetailsComponent({ slug }: ShowDetailsProps) {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Users className="h-5 w-5" />
-            Customer Details ({data.customers.length} customers)
+            Customer Details
           </CardTitle>
           <CardDescription>
             All customers who purchased tickets for this show
@@ -140,7 +141,7 @@ export default function ShowDetailsComponent({ slug }: ShowDetailsProps) {
                 <TableRow>
                   <TableHead>Customer Name</TableHead>
                   <TableHead className="text-center">Tickets</TableHead>
-                  <TableHead className="text-right">Amount Paid</TableHead>
+                  <TableHead className="text-center">Email</TableHead>
                   <TableHead className="text-right">Purchase Date</TableHead>
                 </TableRow>
               </TableHeader>
@@ -153,11 +154,8 @@ export default function ShowDetailsComponent({ slug }: ShowDetailsProps) {
                     <TableCell className="text-center">
                       {customer.ticket_quantity}
                     </TableCell>
-                    <TableCell className="text-right font-semibold text-green-600">
-                      ${customer.total_amount_paid.toLocaleString('en-US', { 
-                        minimumFractionDigits: 2, 
-                        maximumFractionDigits: 2 
-                      })}
+                    <TableCell className="text-center">
+                        {customer.customer_email}
                     </TableCell>
                     <TableCell className="text-right">
                       {new Date(customer.created_at).toLocaleDateString('en-US')}
