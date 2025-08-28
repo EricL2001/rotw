@@ -38,6 +38,21 @@ export default function ShowDetailsComponent({ slug }: ShowDetailsProps) {
   const [error, setError] = useState<string | null>(null)
   const router = useRouter()
 
+
+  // helper function to format names
+  const formatCustomerName = (name: string): string => {
+    if (!name || name === 'N/A') return 'N/A'
+    
+    const nameParts = name.trim().split(' ')
+    if (nameParts.length < 2) return name // Return as-is if only one name part
+    
+    const firstName = nameParts[0]
+    const lastName = nameParts.slice(1).join(' ') // Handle multiple last names
+    
+    return `${lastName}, ${firstName}`
+  }
+
+
   useEffect(() => {
     const fetchShowDetails = async () => {
       try {
@@ -77,8 +92,8 @@ export default function ShowDetailsComponent({ slug }: ShowDetailsProps) {
           <CardContent className="pt-6">
             <div className="text-center text-red-500">
               <p>Error loading show details: {error}</p>
-              <Button 
-                onClick={() => router.push('/dashboard')} 
+              <Button
+                onClick={() => router.push('/dashboard')}
                 className="mt-4"
                 variant="outline"
               >
@@ -95,14 +110,14 @@ export default function ShowDetailsComponent({ slug }: ShowDetailsProps) {
   return (
     <div className="container mx-auto p-6 space-y-6 mt-4">
       {/* Header with Back Button */}
-      <Button 
-          onClick={() => router.push('/dashboard')} 
-          variant="outline"
-          size="sm"
-        >
-          <ArrowLeft className="mr-2 h-4 w-4" />
-          Back to Dashboard
-        </Button>
+      <Button
+        onClick={() => router.push('/dashboard')}
+        variant="outline"
+        size="sm"
+      >
+        <ArrowLeft className="mr-2 h-4 w-4" />
+        Back to Dashboard
+      </Button>
       <div className="flex items-center gap-6">
         <div className="mt-2">
           <h1 className="text-3xl font-semibold">{data.show_title}</h1>
@@ -113,10 +128,10 @@ export default function ShowDetailsComponent({ slug }: ShowDetailsProps) {
             </div>
             <div className="flex items-center gap-1">
               <Calendar className="h-4 w-4" />
-              {new Date(data.show_date).toLocaleDateString('en-US', { 
-                year: 'numeric', 
-                month: 'long', 
-                day: 'numeric' 
+              {new Date(data.show_date).toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
               })}
             </div>
           </div>
@@ -127,7 +142,7 @@ export default function ShowDetailsComponent({ slug }: ShowDetailsProps) {
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
-            <Users className="h-5 w-5" />
+            <Users className="h-5 w-5 text-orange-600" />
             Customer Details
           </CardTitle>
           <CardDescription>
@@ -149,13 +164,13 @@ export default function ShowDetailsComponent({ slug }: ShowDetailsProps) {
                 {data.customers.map((customer) => (
                   <TableRow key={customer.id}>
                     <TableCell className="font-medium">
-                      {customer.customer_name || 'N/A'}
+                      {formatCustomerName(customer.customer_name || 'N/A')}
                     </TableCell>
                     <TableCell className="text-center">
                       {customer.ticket_quantity}
                     </TableCell>
                     <TableCell className="text-center">
-                        {customer.customer_email}
+                      {customer.customer_email}
                     </TableCell>
                     <TableCell className="text-right">
                       {new Date(customer.created_at).toLocaleDateString('en-US')}

@@ -192,12 +192,12 @@ export default function Dashboard() {
                 return acc;
               }, {})
             )
-              // Convert to array and filter for today or future dates, then sort by show date
+              // SHOULD ONLY RETURNS UPCOMING SHOWS -- Convert to array and filter for today or future dates, then sort by show date
               .filter(([, data]) => {
                 const showDate = parseLocalDate(data.showDate);
                 const today = new Date();
                 today.setHours(0, 0, 0, 0); // Set to start of today
-                return showDate >= today;
+                return showDate >= today; 
               })
               .sort(([, a], [, b]) => parseLocalDate(a.showDate).getTime() - parseLocalDate(b.showDate).getTime())
 

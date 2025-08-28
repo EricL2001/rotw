@@ -50,7 +50,7 @@ export async function GET(
         created_at
       FROM show_payments_final 
       WHERE show_id = $1
-      ORDER BY created_at DESC
+      ORDER BY customer_name ASC, created_at DESC
     `, [showId])
 
         const result: ShowDetails = {
