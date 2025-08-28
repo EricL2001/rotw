@@ -11,16 +11,14 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
 // Determine the base URL dynamically based on the Vercel environment
 let BASE_URL: string;
 
-if (process.env.VERCEL_URL) {
-  // On Vercel Production or Aliased Deployments
+if (process.env.VERCEL_ENV === 'production') {
+  // Use your custom domain for production
+  BASE_URL = 'https://recordsonthewall.co'; // Replace with your actual domain
+} else if (process.env.VERCEL_URL) {
+  // Use Vercel URL for preview deployments
   BASE_URL = `https://${process.env.VERCEL_URL}`;
-} else if (process.env.VERCEL_BRANCH_URL) {
-  // On Vercel Preview Deployments
-  BASE_URL = `https://${process.env.VERCEL_BRANCH_URL}`;
 } else {
   // Local development fallback
-  // Use non-null assertion (!) if you *guarantee* NEXT_PUBLIC_BASE_URL is set locally
-  // Or use a fallback string
   BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
 }
 
