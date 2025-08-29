@@ -1,31 +1,24 @@
 export const apiVersion: string = process.env.NEXT_PUBLIC_SANITY_API_VERSION || '2025-03-14';
 
+// For Next.js client-side usage
 export const nextPubDataset: string = process.env.NEXT_PUBLIC_SANITY_DATASET || "";
-
 export const nextPubProjectId: string = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || "";
 
+// For Sanity Studio usage
+export const dataset: string = process.env.SANITY_STUDIO_DATASET || process.env.NEXT_PUBLIC_SANITY_DATASET || "";
+export const projectId: string = process.env.SANITY_STUDIO_PROJECT_ID || process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || "";
 
-export const dataset: string = process.env.SANITY_STUDIO_DATASET || 'ticket-prod';
-export const projectId: string = process.env.SANITY_STUDIO_PROJECT_ID || '47h2dt9x';
-
-//console.log("Dataset from env:", dataset); 
-//console.log("ProjectID from env:", projectId); 
-
-// dev error check for sanity env variables
-if (!nextPubDataset) {
-    throw new Error(`Missing the environment variable: NEXT_PUBLIC_SANITY_DATASET. Dataset from env: ${nextPubDataset}`);
+// Optional: Log for debugging (only in development)
+if (process.env.NODE_ENV === 'development') {
+    console.log("Dataset from env:", dataset); 
+    console.log("ProjectID from env:", projectId);
 }
 
-if (!nextPubProjectId) {
-    throw new Error(`Missing environment variable: NEXT_PUBLIC_SANITY_PROJECT_ID.  ProjectID from env: ${nextPubProjectId}`);
-}
-
-
-// prod error check for sanity env variables
+// Validation
 if (!dataset) {
-    throw new Error(`Missing the environment variable: SANITY_STUDIO_DATASET. Dataset from env: ${dataset}`);
+    throw new Error(`Missing Sanity dataset. Please set SANITY_STUDIO_DATASET or NEXT_PUBLIC_SANITY_DATASET environment variable.`);
 }
 
 if (!projectId) {
-    throw new Error(`Missing environment variable: SANITY_STUDIO_PROJECT_ID. ProjectID from env: ${projectId}`);
+    throw new Error(`Missing Sanity project ID. Please set SANITY_STUDIO_PROJECT_ID or NEXT_PUBLIC_SANITY_PROJECT_ID environment variable.`);
 }

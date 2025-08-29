@@ -120,7 +120,7 @@ export default function ShowDetailsComponent({ slug }: ShowDetailsProps) {
       </Button>
       <div className="flex items-center gap-6">
         <div className="mt-2">
-          <h1 className="text-3xl font-semibold">{data.show_title}</h1>
+          <h1 className="text-2xl md:text-3xl font-semibold">{data.show_title}</h1>
           <div className="flex items-center gap-4 text-muted-foreground mt-1">
             <div className="flex items-center gap-1">
               <MapPin className="h-4 w-4" />
