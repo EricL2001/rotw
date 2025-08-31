@@ -26,13 +26,14 @@ const features = [
 export default function Features() {
   return (
     <section className="container space-y-16 py-20">
-      <div className="mx-auto max-w-[58rem] text-center">
-        <h2 className="font-semibold text-3xl leading-tight md:text-4xl">Welcome To Our New Website</h2>
-        <p className="mt-4 leading-normal text-muted-foreground sm:text-xl sm:leading-8">
-          Records On The Wall is focused on booking the best local, regional and national talent at venues in Charlotte, NC and Denver, CO.
+      <div className="mx-auto max-w-[58rem]">
+        <h2 className="text-left font-black text-5xl leading-tight md:text-6xl tracking-tighter text-gray-400">G0. SEE.</h2>
+        <h2 className="text-left font-black text-5xl leading-tight md:text-6xl tracking-tighter text-gray-400">MORE. MUSIC.</h2>
+        <p className="mt-4 leading-normal text-muted-foreground sm:text-xl sm:leading-8 text-left">
+          Records On The Wall books the top local, regional and national talent across venues in Charlotte, NC and Denver, CO.
         </p>
-        <p className="mt-4 leading-normal text-muted-foreground sm:text-xl sm:leading-8">
-          We book a diverse range of acts, from up-and-coming artists to established bands in the areas of bluegrass, jam, funk, rock and beyond.
+        <p className="mt-4 leading-normal text-muted-foreground sm:text-xl sm:leading-8 text-left">
+          The music is diverse and ranges from up-and-coming artists to established bands in the areas of bluegrass, jam, funk, rock and beyond.
         </p>
       </div>
       <div className="mx-auto grid max-w-5xl grid-cols-1 gap-8 md:grid-cols-2">
