@@ -28,7 +28,7 @@ export default function Features() {
     <section className="container space-y-16 py-20">
       <div className="mx-auto max-w-[58rem]">
         <h2 className="text-left font-black text-5xl leading-tight md:text-6xl tracking-tighter text-gray-400">G0. SEE.</h2>
-        <h2 className="text-left font-black text-5xl leading-tight md:text-6xl tracking-tighter ">MORE. MUSIC.</h2>
+        <h2 className="text-left font-black text-5xl leading-tight md:text-6xl tracking-tighter -mt-3">MORE. MUSIC.</h2>
         <p className="mt-4 leading-normal text-muted-foreground sm:text-xl sm:leading-8 text-left">
           Records On The Wall books the top local, regional and national talent across venues in Charlotte, NC and Denver, CO.
         </p>

@@ -1,7 +1,6 @@
 import Marquee from "react-fast-marquee";
 import { cn } from "@/lib/utils"
 import { artists } from "@/marquee-data"
-import { GeistMono } from 'geist/font/mono'
 
 
 export default function GetMarquee() {
@@ -22,7 +21,7 @@ export default function GetMarquee() {
           speed={80}>
           {artists.map((band, index) => (
             <div key={index} className="mx-12">
-              <h3 className={`text-medium md:text-lg font-semibold text-white mt-2 mb-2 ${GeistMono.className}`} >
+              <h3 className="text-medium md:text-lg font-bold text-white mt-2 mb-2">
                 {band.artist}
               </h3>
             </div>
