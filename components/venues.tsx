@@ -22,6 +22,12 @@ const partners = [
     url: "https://heistbrewery.com/home/barrel-arts/", 
   },
   {
+    name: "Divine Barrel Brewing",
+    city: "Charlotte, NC",
+    src: "/divine-barrel.jpg",
+    url: "https://divinebarrel.com/", 
+  },
+  {
     name: "Cactus Jack's Saloon",
     city: "Evergreen, CO",
     src: "/cactus-jacks.jpg",

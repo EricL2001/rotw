@@ -53,7 +53,8 @@ export const addShow = defineType({
               {title: 'Heist Brewery', value: 'Heist Brewery - NoDa'},
               {title: 'The Rabbit Hole', value: 'The Rabbit Hole'},
               {title: 'Heist Barrel Arts', value: 'Heist Barrel Arts'},
-              {title: 'Cactus Jacks', value: 'Cactus Jacks'}
+              {title: 'Cactus Jacks', value: 'Cactus Jacks'},
+              {title: 'Divine Barrel Brewing', value: 'Divine Barrel Brewing'}
             ],
         }
       }),

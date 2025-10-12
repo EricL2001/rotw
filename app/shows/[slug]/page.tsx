@@ -27,6 +27,11 @@ const venueMaps = [
     mapsUrl: "https://maps.app.goo.gl/Sbser9fELVP5nW9V9"
   },
   {
+    name: "Divine Barrel Brewing",
+    city: "Charlotte, NC",
+    mapsUrl: "https://maps.app.goo.gl/EwBGbpByBakCKeYz6"
+  },
+  {
     name: "Cactus Jacks",
     city: "Evergreen, CO",
     mapsUrl: "https://maps.app.goo.gl/ZxxtG3iLnmkhFKz57"
