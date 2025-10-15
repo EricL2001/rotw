@@ -1,0 +1,17 @@
+User-agent: *
+Allow: /
+
+# Block admin/dashboard areas
+Disallow: /dashboard/
+Disallow: /studio/
+Disallow: /api/
+
+# Block any private or temporary files
+Disallow: /_next/
+Disallow: /admin/
+
+# Sitemap location
+Sitemap: https://recordsonthewall.co/sitemap.xml
+
+# Crawl delay (optional - adjust based on server capacity)
+Crawl-delay: 1
