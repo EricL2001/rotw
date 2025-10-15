@@ -15,7 +15,7 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: "Boogie On",
-  description: "Records On The Wall partners with independent venues and breweries to provide the booking, promotion and ticketing for live music events in Charlotte, NC and Denver, CO.",
+  description: "Records On The Wall partners with independent venues and breweries to provide booking, promotion and ticketing services for live music events in Charlotte, NC and Denver, CO.",
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://recordsonthewall.co'),
   openGraph: {
     title: 'Records On The Wall',
-    description: 'Records On The Wall partners with independent venues and breweries to provide the booking, promotion and ticketing for live music events.',
+    description: 'Records On The Wall partners with independent venues and breweries to provide booking, promotion and ticketing services for live music events.',
     url: 'https://recordsonthewall.co',
     siteName: 'Records On The Wall',
     images: [

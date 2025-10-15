@@ -1,7 +1,7 @@
 {
   "name": "Records On The Wall",
   "short_name": "Records On The Wall",
-  "description": "Records On The Wall partners with independent venues and breweries to provide the booking, promotion and ticketing for live music events in Charlotte, NC and Denver, CO.",
+  "description": "Records On The Wall partners with independent venues and breweries to provide booking, promotion and ticketing services for live music events in Charlotte, NC and Denver, CO.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
