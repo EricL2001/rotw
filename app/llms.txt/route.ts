@@ -17,7 +17,7 @@ Records On The Wall partners with independent venues and breweries to provide bo
 The music is diverse and ranges from up-and-coming artists to established bands in the areas of bluegrass, jam, funk, rock, soul and beyond.
 
 ## Contact
-- [Email](mailto:info@recssonthewall.com)
+- [Email](mailto:info@recsonthewall.com)
 - [Facebook](https://www.facebook.com/reconthewall)
 - [Instagram](https://www.instagram.com/recsonthewall)
 
