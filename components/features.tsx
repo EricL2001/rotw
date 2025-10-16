@@ -30,10 +30,10 @@ export default function Features() {
         <h2 className="text-left font-black text-5xl leading-tight md:text-6xl tracking-tighter text-gray-400">G0. SEE.</h2>
         <h2 className="text-left font-black text-5xl leading-tight md:text-6xl tracking-tighter -mt-3">MORE. MUSIC.</h2>
         <p className="mt-4 leading-normal text-muted-foreground sm:text-xl sm:leading-8 text-left">
-          Records On The Wall partners with independent venues and breweries to provide the booking, promotion and ticketing for live music events in Charlotte, NC and Denver, CO
+          Records On The Wall partners with independent venues and breweries to provide booking, promotion and ticketing services for live music events in Charlotte, NC and Denver, CO.
         </p>
         <p className="mt-4 leading-normal text-muted-foreground sm:text-xl sm:leading-8 text-left">
-          The music is diverse and ranges from up-and-coming artists to established bands in the areas of bluegrass, jam, funk, rock, soul and beyond
+          The music is diverse and ranges from up-and-coming artists to established bands in the areas of bluegrass, jam, funk, rock, soul and beyond.
         </p>
       </div>
       <div className="mx-auto grid max-w-5xl grid-cols-1 gap-8 md:grid-cols-2">

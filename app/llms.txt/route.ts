@@ -3,18 +3,15 @@ import { NextResponse } from 'next/server';
 export async function GET() {
   const llmsContent = `# Records On The Wall
 
-> Records On The Wall partners with independent venues and breweries to provide booking, promotion, and ticketing services for live music events in Charlotte, NC and Denver, CO.
+## About
+Records On The Wall partners with independent venues and breweries to provide booking, promotion, and ticketing services for live music events in Charlotte, NC and Denver, CO.
 
 The music is diverse and ranges from up-and-coming artists to established bands in the areas of bluegrass, jam, funk, rock, soul and beyond.
 
 ## Key Areas
 - [Upcoming Shows](https://www.recordsonthewall.co/shows): Browse upcoming live shows in Charlotte, NC and Denver, CO. 
 - [About](https://www.recordsonthewall.co/about): Learn more about Records On The Wall and our beginnings.
-- [Home](https://www.recordsonthewall.co/): Learn more about our platform and mission.  
-
-## About
-Records On The Wall partners with independent venues and breweries to provide booking, promotion, and ticketing services for live music events in Charlotte, NC and Denver, CO.
-The music is diverse and ranges from up-and-coming artists to established bands in the areas of bluegrass, jam, funk, rock, soul and beyond.
+- [Home](https://www.recordsonthewall.co/): Learn more about our platform.  
 
 ## Contact
 - [Email](mailto:info@recsonthewall.com)
