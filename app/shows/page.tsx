@@ -1,4 +1,5 @@
 import Image from "next/image"
+import Link from "next/link"
 import { GeistMono } from 'geist/font/mono'
 import { Badge } from "@/components/ui/badge"
 import { getAllShows } from "@/lib/actions/getAllShows"
@@ -10,10 +11,10 @@ export default async function ShowsPage() {
 
   return (
     <div className="container mx-auto px-8 mb-6">
-      <h1 className="font-semibold text-xl sm:text-2xl md:text-3xl mt-8 mb-2 text-center">Upcoming Shows</h1>
-      <p className="mb-8 text-muted-foreground sm:text-lg text-center">
-        All of our free and ticketed shows
-      </p>
+      <Link href="/" className="text-sm text-muted-foreground hover:text-primary mt-8 inline-block text-center w-full">
+          ← Back to Home
+        </Link>
+      <h1 className="font-semibold text-xl sm:text-2xl md:text-3xl mt-4 mb-8 text-center">Upcoming Shows</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {posts.map((show, index) => (
           <div

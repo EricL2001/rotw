@@ -50,6 +50,13 @@ export default function Navbar() {
           <div className="absolute top-16 right-4 w-56 bg-black/95 border border-orange-500/70 rounded-md shadow-lg">
             <nav className="flex flex-col py-2">
               <Link
+                href="/"
+                className="px-4 py-2 text-sm font-medium text-white hover:bg-yellow-400/10"
+                onClick={() => setIsOpen(false)}
+              >
+                Home
+              </Link>
+              <Link
                 href="/about"
                 className="px-4 py-2 text-sm font-medium text-white hover:bg-yellow-400/10"
                 onClick={() => setIsOpen(false)}
@@ -69,6 +76,20 @@ export default function Navbar() {
                 onClick={() => setIsOpen(false)}
               >
                 Store
+              </Link>
+              <Link
+                href="/about#faq"
+                className="px-4 py-2 text-sm font-medium text-white hover:bg-yellow-400/10"
+                onClick={() => setIsOpen(false)}
+              >
+                FAQs
+              </Link>
+              <Link
+                href="/subscribe"
+                className="px-4 py-2 text-sm font-medium text-white hover:bg-yellow-400/10"
+                onClick={() => setIsOpen(false)}
+              >
+                Join Email List
               </Link>
               <hr className="mt-4 mb-4 border-orange-500/70" />
               <div className="flex justify-evenly items-center mb-4">
