@@ -69,12 +69,12 @@ export async function generateMetadata({
   return {
     title: show.showType === 'Free'
       ? `${show.title} at ${show.venue}`
-      : `Tickets On Sale For ${show.title} • Records On The Wall`,
+      : `Tickets On Sale For ${show.title} at ${show.venue}`,
     description: `${show.showType === 'Free' ? 'Free show!' : `Grab tickets to see ${show.title} at ${show.venue}.`}`,
     openGraph: {
       title: show.showType === 'Free'
         ? `${show.title} at ${show.venue}`
-        : `Tickets On Sale For ${show.title} • Records On The Wall`,
+        : `Tickets On Sale For ${show.title} at ${show.venue}`,
       description: `${show.showType === 'Free' ? 'Free show!' : `Grab tickets to see ${show.title} at ${show.venue}.`}`,
       url: `https://recordsonthewall.co/shows/${resolvedParams.slug}`,
       siteName: 'Records On The Wall',
