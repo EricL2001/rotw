@@ -9,36 +9,10 @@ import { TicketSelector } from "@/components/ticket-selector"
 import { toZonedTime, format } from 'date-fns-tz';
 import { MapPin } from "lucide-react";
 import type { Metadata } from "next";
+import { findVenueByName } from "@/lib/venue-maps";
+import { ShareButtons } from "@/components/ui/share-buttons";
 
-const venueMaps = [
-  {
-    name: "Heist Brewery - NoDa",
-    city: "Charlotte, NC",
-    mapsUrl: "https://maps.app.goo.gl/NhCDkcmRAihom6mt5"
-  },
-  {
-    name: "The Rabbit Hole",
-    city: "Charlotte, NC",
-    mapsUrl: "https://maps.app.goo.gl/tfe67yXm6ZoiDgbJ6"
-  },
-  {
-    name: "Heist Barrel Arts",
-    city: "Charlotte, NC",
-    mapsUrl: "https://maps.app.goo.gl/Sbser9fELVP5nW9V9"
-  },
-  {
-    name: "Divine Barrel Brewing",
-    city: "Charlotte, NC",
-    mapsUrl: "https://maps.app.goo.gl/EwBGbpByBakCKeYz6"
-  },
-  {
-    name: "Cactus Jacks",
-    city: "Evergreen, CO",
-    mapsUrl: "https://maps.app.goo.gl/ZxxtG3iLnmkhFKz57"
-  },
-]
-
-
+// Define custom Portable Text components for rendering rich text content from Sanity
 const portableTextComponents: PortableTextComponents = {
   block: {
     // Customize paragraph rendering
@@ -97,6 +71,7 @@ export async function generateMetadata({
   };
 }
 
+
 // This is the page that shows the details of a single show
 export default async function PostPage({
   params,
@@ -106,9 +81,13 @@ export default async function PostPage({
   const resolvedParams = await params;
   const { show, postImageUrl } = await getShow(resolvedParams.slug);
 
-  const venueInfo = venueMaps.find((v) => v.name === show.venue);
+  const venueInfo = findVenueByName(show.venue);
   const mapUrl = venueInfo?.mapsUrl;
 
+  const showUrl = `https://recordsonthewall.co/shows/${resolvedParams.slug}`;
+  const shareText = show.showType === 'Free' 
+    ? `${show.title} at ${show.venue} - Free show!`
+    : `Get tickets for ${show.title} at ${show.venue}`;
 
   return (
     <main className="container mx-auto min-h-screen max-w-3xl p-8 flex flex-col gap-[2px]">
@@ -173,9 +152,10 @@ export default async function PostPage({
         />
       )}
 
+      <ShareButtons url={showUrl} text={shareText} />
+
       <div>
         <hr className="my-8 border-gray-600" />
-        {/* add some sharing buttons, indicators, calendar add */}
       </div>
       <div className="text-white">
         {Array.isArray(show.description) && (
@@ -185,4 +165,3 @@ export default async function PostPage({
     </main>
   );
 }
-

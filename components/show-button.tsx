@@ -23,7 +23,7 @@ export function ShowButton({ slug, showType }: ShowButtonProps) {
   return (
     <Button 
       variant="outline" 
-      className="border-orange-500 hover:bg-gray-800 hover:text-white"
+      className="border-orange-500 hover:bg-orange-500 text-white"
       onClick={handleNavigation}
       disabled={isLoading}
     >
