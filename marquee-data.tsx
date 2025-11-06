@@ -28,6 +28,9 @@ export interface Band {
       artist: "Clay Street Unit",
     },
     {
+      artist: "65 North Pickers",
+    },
+    {
       artist: "Yam Yam",
     },
     {
