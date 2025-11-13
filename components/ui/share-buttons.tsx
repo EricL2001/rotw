@@ -1,7 +1,6 @@
 'use client';
 
-import { useState } from 'react';
-import { Share2, Copy, Check } from 'lucide-react';
+import { Share2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 interface ShareButtonsProps {
@@ -9,18 +8,7 @@ interface ShareButtonsProps {
   text: string;
 }
 
-export function ShareButtons({ url, text }: ShareButtonsProps) {
-  const [copied, setCopied] = useState(false);
-
-  const handleCopyUrl = async () => {
-    try {
-      await navigator.clipboard.writeText(url);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    } catch (err) {
-      console.error('Failed to copy URL:', err);
-    }
-  };
+export function ShareButton({ url, text }: ShareButtonsProps) {
 
   const handleNativeShare = async () => {
     if (navigator.share) {
@@ -36,7 +24,7 @@ export function ShareButtons({ url, text }: ShareButtonsProps) {
   };
 
   return (
-    <div className="flex flex-wrap gap-4 mt-6 mb-2 justify-end">
+    <div className="flex flex-wrap gap-4 mt-6 mb-5 justify-right">
       
       {/* Native Share (mobile) */}
       {typeof navigator !== 'undefined' && 'share' in navigator && (
@@ -44,32 +32,11 @@ export function ShareButtons({ url, text }: ShareButtonsProps) {
           onClick={handleNativeShare}
           variant="outline"
           size="sm"
-          className="border-orange-500 hover:bg-orange-500 text-white"
+          className="border-orange-500/70 bg-orange-500/70 hover:bg-orange-500/90 text-white rounded-full w-10 h-10 p-0"
         >
-          <Share2 className="w-4 h-4 mr-2 text-white" />
-          Share
+          <Share2 className="w-4 h-4 text-white" />
         </Button>
       )}
-
-      {/* Copy URL */}
-      <Button
-        onClick={handleCopyUrl}
-        variant="outline"
-        size="sm"
-        className="border-orange-500 hover:bg-orange-500 text-white"
-      >
-        {copied ? (
-          <>
-            <Check className="w-4 h-4 mr-2" />
-            Copied!
-          </>
-        ) : (
-          <>
-            <Copy className="w-4 h-4 mr-2" />
-            Copy Link
-          </>
-        )}
-      </Button>
     </div>
   );
 }

@@ -10,7 +10,7 @@ import { toZonedTime, format } from 'date-fns-tz';
 import { MapPin } from "lucide-react";
 import type { Metadata } from "next";
 import { findVenueByName } from "@/lib/venue-maps";
-import { ShareButtons } from "@/components/ui/share-buttons";
+import { ShareButton } from "@/components/ui/share-buttons";
 
 // Define custom Portable Text components for rendering rich text content from Sanity
 const portableTextComponents: PortableTextComponents = {
@@ -91,9 +91,12 @@ export default async function PostPage({
 
   return (
     <main className="container mx-auto min-h-screen max-w-3xl p-8 flex flex-col gap-[2px]">
-      <Link href="/shows" className="hover:underline mb-3">
-        ← Back to all shows
-      </Link>
+      <div className="flex justify-between items-center">
+        <Link href="/shows" className="hover:underline">
+          ← Back to all shows
+        </Link>
+        <ShareButton url={showUrl} text={shareText} />
+      </div>
       {postImageUrl && (
         <Image
           src={postImageUrl}
@@ -126,15 +129,29 @@ export default async function PostPage({
         {show.venue}
       </h2>
       <p className={`text-sm text-white/80 mb-1 ${GeistMono.className}`}>{venueInfo?.city}</p>
-      <p className="text-xl sm:text-2xl font-semibold">
-        {format(
-          toZonedTime(show.showDate, 'America/New_York'),
-          'EEE, MMM d',
-          { timeZone: 'America/New_York' }
-        )}
-      </p>
+      {show.showType === 'Free' ? (
+        <div className="flex justify-between items-center">
+          <p className="text-xl sm:text-2xl font-semibold">
+            {format(
+              toZonedTime(show.showDate, 'America/New_York'),
+              'EEE, MMM d',
+              { timeZone: 'America/New_York' }
+            )}
+          </p>
+        </div>
+      ) : (
+        <p className="text-xl sm:text-2xl font-semibold">
+          {format(
+            toZonedTime(show.showDate, 'America/New_York'),
+            'EEE, MMM d',
+            { timeZone: 'America/New_York' }
+          )}
+        </p>
+      )}
       {show.showType !== 'Free' && (
-        <p className="mb-4 text-xl sm:text-2xl font-semibold">Tix: ${show.price} / ${show.dosPrice} DOS</p>
+        <div className="flex justify-between items-center mb-4">
+          <p className="text-xl sm:text-2xl font-semibold">Tix: ${show.price} / ${show.dosPrice} DOS</p>
+        </div>
       )}
 
       {show.showType !== 'Free' && (
@@ -151,8 +168,6 @@ export default async function PostPage({
           }}
         />
       )}
-
-      <ShareButtons url={showUrl} text={shareText} />
 
       <div>
         <hr className="my-8 border-gray-600" />

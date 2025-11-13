@@ -75,7 +75,7 @@ export default function AboutPage() {
             <AccordionItem value="item-1">
               <AccordionTrigger className="text-base md:text-lg">How does ticketing work?</AccordionTrigger>
               <AccordionContent className="text-base md:text-base font-thin">
-                When you purchase a ticket through our app, you&#39;ll receive a few emails.  One with the purchase receipt and another with the event and ticket details.  Just provide your ID at the door and we&#39;ll have your name on the show list.  Max 8 tickets per order and all tickets are GA (general admission) unless otherwise noted.
+                When you purchase a ticket through our app, you&#39;ll receive two emails.  One with the purchase receipt and another with the event and ticket details.  Just provide your ID at the door and we&#39;ll have your name on the show list.  Max 8 tickets per order and all tickets are GA (general admission) unless otherwise noted.
               </AccordionContent>
             </AccordionItem>
 
@@ -103,7 +103,7 @@ export default function AboutPage() {
             <AccordionItem value="item-5">
               <AccordionTrigger className="text-base md:text-lg">What are the ticket fees?</AccordionTrigger>
               <AccordionContent className="text-base md:text-base font-thin">
-                Fair and simple. Any ticket of $10 or more is $3.50/ticket. For tickets under $10, the fee is $1.00/ticket.  We also itemize all sales tax and fees before you get to checkout, so you know exactly what you&#39;re paying for. 
+                Any ticket of $10 or more is $3.50/ticket. For tickets under $10, the fee is $1.00/ticket.  We itemize all sales tax and fees before you get to checkout, so you know exactly what you&#39;re paying for. 
               </AccordionContent>
             </AccordionItem>
 
