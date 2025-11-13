@@ -60,7 +60,7 @@ export default function AboutPage() {
         >
           Best,<br />
           Eric R. Levasseur<br />
-          Founder • Product Engineer • Talent Buyer
+          Founder • Product Dev • Talent Buyer
         </p>
       </div>
 

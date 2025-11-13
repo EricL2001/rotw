@@ -7,6 +7,7 @@ import { type SanityDocument } from "next-sanity";
 import { client } from "../sanity/lib/client";
 import { toZonedTime, format } from 'date-fns-tz';
 import { GoArrowBoth } from "react-icons/go";
+import { findVenueByName } from "@/lib/venue-maps";
 
 const POSTS_QUERY = `*[_type == "post" && defined(slug.current) && showDate >= $today] | order(showDate asc)[0...12]{_id, title, slug, showDate, showType, supportName, venue, "imageUrl": image.asset->url, bandName}`;
 
@@ -25,45 +26,50 @@ export default async function Upcoming() {
       </div>
       <ScrollArea className="w-full whitespace-nowrap rounded-md">
         <div className="flex space-x-4 pb-4">
-          {posts.map((show, index) => (
-            <div
-              key={index}
-              className="w-[325px] sm:w-[375px] shrink-0 bg-background p-6 rounded-lg border-[0.5px] border-white"
-            >
-              {show.imageUrl ? (
-                <Image
-                  src={show.imageUrl}
-                  alt={show.bandName || 'Show image'}
-                  width={300}
-                  height={200}
-                  className="rounded object-cover w-full h-[200px]"
-                />
-              ) : (
-                <div className="w-full h-[200px] bg-gray-800 rounded flex items-center justify-center">
-                  <span className="text-gray-400">No image available</span>
+          {posts.map((show, index) => {
+            const venueCity = findVenueByName(show.venue);
+            
+            return (
+              <div
+                key={index}
+                className="w-[325px] sm:w-[375px] shrink-0 bg-background p-6 rounded-lg border-[0.5px] border-white"
+              >
+                {show.imageUrl ? (
+                  <Image
+                    src={show.imageUrl}
+                    alt={show.bandName || 'Show image'}
+                    width={300}
+                    height={200}
+                    className="rounded object-cover w-full h-[200px]"
+                  />
+                ) : (
+                  <div className="w-full h-[200px] bg-gray-800 rounded flex items-center justify-center">
+                    <span className="text-gray-400">No image available</span>
+                  </div>
+                )}
+                <div className="flex items-center justify-between mt-2">
+                  <h3 className="text-l font-semibold text-white mt-2">{show.title}</h3>
+                  {show.showType == 'Free' && (
+                    <Badge variant="green" className={GeistMono.className}>Free Show</Badge>
+                  )}
                 </div>
-              )}
-              <div className="flex items-center justify-between mt-2">
-                <h3 className="text-l font-semibold text-white mt-2">{show.title}</h3>
-                {show.showType == 'Free' && (
-                  <Badge variant="green" className={GeistMono.className}>Free Show</Badge>
-                )}
+                <p className="text-sm sm:text-base text-gray-400 mb-2">{show.supportName}</p>
+                <p className={`text-white text-sm ${GeistMono.className}`}>{show.venue}</p>
+                <p className={`text-white text-sm ${GeistMono.className}`}>{venueCity?.city}</p>
+                <p className={`text-white mb-3 text-sm ${GeistMono.className}`}>
+                  {format(
+                    toZonedTime(show.showDate, 'America/New_York'),
+                    'EEE, MMMM d',
+                    { timeZone: 'America/New_York' }
+                  )}
+                </p>
+                <ShowButton
+                  slug={show.slug.current}
+                  showType={show.showType}
+                />
               </div>
-              <p className="text-sm sm:text-base text-gray-400 mb-2">{show.supportName}</p>
-              <p className={`text-white text-sm ${GeistMono.className}`}>{show.venue}</p>
-              <p className={`text-white mb-3 text-sm ${GeistMono.className}`}>
-                {format(
-                  toZonedTime(show.showDate, 'America/New_York'),
-                  'EEE, MMMM d',
-                  { timeZone: 'America/New_York' }
-                )}
-              </p>
-              <ShowButton
-                slug={show.slug.current}
-                showType={show.showType}
-              />
-            </div>
-          ))}
+            );
+          })}
         </div>
         <ScrollBar orientation="horizontal" />
       </ScrollArea>
