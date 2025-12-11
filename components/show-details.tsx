@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table"
 import { ArrowLeft, Users, Calendar, MapPin } from "lucide-react"
+import { toZonedTime } from "date-fns-tz"
 import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 
@@ -38,6 +39,27 @@ export default function ShowDetailsComponent({ slug }: ShowDetailsProps) {
   const [error, setError] = useState<string | null>(null)
   const router = useRouter()
 
+
+  // helper function to parse date strings as UTC
+  const parseLocalDate = (dateString: string) => {
+    if (!dateString || typeof dateString !== 'string') {
+      console.error('Invalid date string:', dateString)
+      return new Date() // fallback to current date
+    }
+  
+    // Create a date object from the string. This will be in the runtime's timezone
+    // or UTC if the string is in ISO format.
+    const date = new Date(dateString)
+  
+    if (isNaN(date.getTime())) {
+      console.error('Invalid date created from string:', dateString)
+      return new Date() // fallback to current date
+    }
+  
+    // Convert the parsed date to a UTC date object. This effectively "removes" the timezone
+    // offset, treating the local date parts (year, month, day) as if they were UTC.
+    return toZonedTime(date, 'UTC')
+  }
 
   // helper function to format names
   const formatCustomerName = (name: string): string => {
@@ -128,7 +150,7 @@ export default function ShowDetailsComponent({ slug }: ShowDetailsProps) {
             </div>
             <div className="flex items-center gap-1">
               <Calendar className="h-4 w-4" />
-              {new Date(data.show_date).toLocaleDateString('en-US', {
+              {parseLocalDate(data.show_date).toLocaleDateString('en-US', {
                 year: 'numeric',
                 month: 'long',
                 day: 'numeric'

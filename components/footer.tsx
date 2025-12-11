@@ -51,6 +51,16 @@ export default function Footer() {
                   Store
                 </Link>
               </li>
+              <li>
+                <Link href="/" className="text-muted-foreground transition-colors hover:text-primary">
+                  Terms of Service
+                </Link>
+              </li>
+              <li>
+                <Link href="/" className="text-muted-foreground transition-colors hover:text-primary">
+                  Privacy Policy
+                </Link>
+              </li>
             </ul>
           </div>
           <div className="space-y-4">

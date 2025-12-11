@@ -28,17 +28,15 @@ export default function Hero() {
               "animate-in fade-in-5 slide-in-from-top-20 duration-1000",
             )}
           />
-          <p
+          <h1
             className={cn(
               "mx-auto max-w-[42rem] leading-relaxed text-white",
               "text-[18px] md:text-lg lg:text-2xl font-medium", // Adjusted font sizes for different breakpoints
               "animate-in fade-in-5 slide-in-from-bottom-20 duration-1000",
             )}
           >
-            Helping Charlotte Boogie Since 2018
-            <br />
             Booking • Promo • Ticketing
-          </p>
+          </h1>
           <div
             className={cn(
               "flex justify-center gap-4",
@@ -50,7 +48,7 @@ export default function Hero() {
                 className="text-[0.9rem] md:text-lg lg:text-xl px-4 py-2 md:px-6 md:py-3 lg:px-8 lg:py-4 text-white/80"
                 variant="orange"
               >
-                Come see a show
+                Come See A Show
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </Link>

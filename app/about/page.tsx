@@ -13,18 +13,18 @@ export default function AboutPage() {
         <h2 className="font-semibold text-xl sm:text-2xl md:text-3xl text-white text-center">About Us</h2>
         <p
           className={cn(
-            "mx-auto max-w-[42rem] leading-relaxed text-white",
-            "text-[18px] md:text-lg lg:text-2xl font-thin",
+            "mx-auto max-w-[42rem] leading-relaxed text-muted-foreground",
+            "text-[18px] md:text-lg lg:text-2xl font-light",
             "animate-in fade-in-5 slide-in-from-bottom-20 duration-1000",
           )}
         >
-          A full refresh of our main website has been planned for a few years now. We started out in 2018 as a music blog covering the local scene, with a spotlight on what was happening at the Rabbit Hole in Plaza Midwood (now Jack&#39;s Live). Artists like Jeff Austin, Billy Strings, Marcus King, Jon Stickley, and countless others were gracing the stage—yet no one in Charlotte was really shining a light on it (and they still aren&#39;t).
+          Records On The Wall started in 2018 as a music blog covering the local scene, with a spotlight on what was happening at the Rabbit Hole in the Plaza Midwood neighborhood. Artists like Jeff Austin, Billy Strings, Marcus King, Jon Stickley, and countless others were gracing the stage—yet no one in Charlotte was really shining a light on it (and they still aren&#39;t).
         </p>
 
         <p
           className={cn(
-            "mx-auto max-w-[42rem] leading-relaxed text-white",
-            "text-[18px] md:text-lg lg:text-2xl font-thin",
+            "mx-auto max-w-[42rem] leading-relaxed text-muted-foreground",
+            "text-[18px] md:text-lg lg:text-2xl font-light",
             "animate-in fade-in-5 slide-in-from-bottom-20 duration-1000",
           )}
         >
@@ -33,8 +33,8 @@ export default function AboutPage() {
 
         <p
           className={cn(
-            "mx-auto max-w-[42rem] leading-relaxed text-white",
-            "text-[18px] md:text-lg lg:text-2xl font-thin",
+            "mx-auto max-w-[42rem] leading-relaxed text-muted-foreground",
+            "text-[18px] md:text-lg lg:text-2xl font-light",
             "animate-in fade-in-5 slide-in-from-bottom-20 duration-1000",
           )}
         >
@@ -43,18 +43,18 @@ export default function AboutPage() {
 
         <p
           className={cn(
-            "mx-auto max-w-[42rem] leading-relaxed text-white",
-            "text-[18px] md:text-lg lg:text-2xl font-thin",
+            "mx-auto max-w-[42rem] leading-relaxed text-muted-foreground",
+            "text-[18px] md:text-lg lg:text-2xl font-light",
             "animate-in fade-in-5 slide-in-from-bottom-20 duration-1000",
           )}
         >
-          We hope you enjoy the new website and look forward to seeing you at an upcoming show!
+          We look forward to seeing you at an upcoming show!
         </p>
 
         <p
           className={cn(
-            "mx-auto max-w-[42rem] leading-relaxed text-white",
-            "text-[18px] md:text-lg lg:text-2xl font-thin",
+            "mx-auto max-w-[42rem] leading-relaxed text-muted-foreground",
+            "text-[18px] md:text-lg lg:text-2xl font-light",
             "animate-in fade-in-5 slide-in-from-bottom-20 duration-1000",
           )}
         >
