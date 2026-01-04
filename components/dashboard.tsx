@@ -193,11 +193,25 @@ export default function Dashboard() {
               }, {})
             )
               // SHOULD ONLY RETURNS UPCOMING SHOWS -- Convert to array and filter for today or future dates, then sort by show date
+              // .filter(([, data]) => {
+              //   const showDate = parseLocalDate(data.showDate);
+              //   const today = new Date();
+              //   today.setHours(0, 0, 0, 0); // Set to start of today
+              //   return showDate <= today; 
+              // })
+
+              // THIS SHOULD RETURN FUTURE SHOWS AND PAST 30 DAYS
               .filter(([, data]) => {
                 const showDate = parseLocalDate(data.showDate);
                 const today = new Date();
                 today.setHours(0, 0, 0, 0); // Set to start of today
-                return showDate >= today; 
+
+                // Calculate the date 30 days ago
+                const thirtyDaysAgo = new Date(today);
+                thirtyDaysAgo.setDate(today.getDate() - 30);
+
+                // Return future shows and the past 30 days
+                return showDate >= thirtyDaysAgo;
               })
               .sort(([, a], [, b]) => parseLocalDate(a.showDate).getTime() - parseLocalDate(b.showDate).getTime())
 
