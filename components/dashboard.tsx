@@ -5,8 +5,10 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { PaymentsResponse, ShowPayment } from "@/lib/types/payments"
 import { format } from "date-fns"
 import { toZonedTime } from "date-fns-tz"
-import { DollarSign, Ticket, Calendar, MapPin, Users } from "lucide-react"
+import { DollarSign, Ticket, Calendar, MapPin, Users, Archive } from "lucide-react"
 import { useRouter } from "next/navigation"
+import { Button } from "@/components/ui/button"
+import Link from "next/link"
 
 // helper function to parse date strings as UTC
 const parseLocalDate = (dateString: string) => {
@@ -92,7 +94,7 @@ export default function Dashboard() {
     <div className="container mx-auto p-6 space-y-6">
       {/* Header */}
       <div>
-        <h1 className="text-3xl font-semibold">Sales Dashboard</h1>
+        <h1 className="text-2xl font-semibold">Sales Dashboard</h1>
         <p className="text-muted-foreground">Records On The Wall ticket sales overview</p>
       </div>
 
@@ -155,14 +157,22 @@ export default function Dashboard() {
 
       {/* Individual Show Performance */}
       <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Calendar className="h-5 w-5" />
-            Show Performance
-          </CardTitle>
-          <CardDescription>
-            Revenue and ticket sales by show (click to view customers)
-          </CardDescription>
+        <CardHeader className="flex flex-col items-start gap-4 md:flex-row md:items-center md:justify-between">
+          <div>
+            <CardTitle className="flex items-center gap-2">
+              <Calendar className="h-5 w-5" />
+              Show Performance
+            </CardTitle>
+            <CardDescription>
+              Revenue and ticket sales by show (click to view customers)
+            </CardDescription>
+          </div>
+          <Button variant="outline" size="sm" asChild>
+            <Link href="/dashboard/archive" className="flex items-center gap-2">
+              <Archive className="h-4 w-4" />
+              View Archive
+            </Link>
+          </Button>
         </CardHeader>
         <CardContent>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -192,13 +202,6 @@ export default function Dashboard() {
                 return acc;
               }, {})
             )
-              // SHOULD ONLY RETURNS UPCOMING SHOWS -- Convert to array and filter for today or future dates, then sort by show date
-              // .filter(([, data]) => {
-              //   const showDate = parseLocalDate(data.showDate);
-              //   const today = new Date();
-              //   today.setHours(0, 0, 0, 0); // Set to start of today
-              //   return showDate <= today; 
-              // })
 
               // THIS SHOULD RETURN FUTURE SHOWS AND PAST 30 DAYS
               .filter(([, data]) => {
@@ -214,6 +217,7 @@ export default function Dashboard() {
                 return showDate >= thirtyDaysAgo;
               })
               .sort(([, a], [, b]) => parseLocalDate(a.showDate).getTime() - parseLocalDate(b.showDate).getTime())
+
 
               // Map to render clickable cards
               .map(([showTitle, data]) => (
