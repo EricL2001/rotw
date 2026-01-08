@@ -5,8 +5,10 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { PaymentsResponse, ShowPayment } from "@/lib/types/payments"
 import { format } from "date-fns"
 import { toZonedTime } from "date-fns-tz"
-import { Calendar, MapPin } from "lucide-react"
+import { Calendar, MapPin, ArrowLeft } from "lucide-react"
 import { useRouter } from "next/navigation"
+import { Button } from "@/components/ui/button"
+import Link from "next/link"
 
 // helper function to parse date strings as UTC
 const parseLocalDate = (dateString: string) => {
@@ -91,9 +93,17 @@ export default function Archive() {
     return (
         <div className="container mx-auto p-6 space-y-6">
             {/* Header */}
-            <div>
-                <h1 className="text-2xl font-semibold">Show Archive</h1>
-                <p className="text-muted-foreground">Record of all past shows</p>
+            <div className="flex flex-col items-start gap-4 md:flex-row md:items-center md:justify-between">
+                <div>
+                    <h1 className="text-2xl font-semibold">Show Archive</h1>
+                    <p className="text-muted-foreground">Record of all past shows</p>
+                </div>
+                <Button variant="outline" size="sm" asChild>
+                    <Link href="/dashboard" className="flex items-center gap-2">
+                        <ArrowLeft className="h-4 w-4" />
+                        Back to Dashboard
+                    </Link>
+                </Button>
             </div>
 
             {/* Individual Show Performance */}
