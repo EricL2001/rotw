@@ -46,17 +46,18 @@ export const addShow = defineType({
     defineField({
         name: 'venue',
         type: 'string',
-        validation: (rule) => rule
-          .required(),
-          options: {
+        options: {
             list: [
               {title: 'Heist Brewery', value: 'Heist Brewery - NoDa'},
               {title: 'The Rabbit Hole', value: 'The Rabbit Hole'},
               {title: 'Heist Barrel Arts', value: 'Heist Barrel Arts'},
               {title: 'Cactus Jacks', value: 'Cactus Jacks'},
-              {title: 'Divine Barrel Brewing', value: 'Divine Barrel Brewing'}
+              {title: 'Divine Barrel Brewing', value: 'Divine Barrel Brewing'},
+              {title: 'French Broad River Brewery', value: 'French Broad River Brewery'}
             ],
-        }
+        },
+        validation: (rule) => rule
+          .required(),
       }),
       defineField({
         name: 'showDate',

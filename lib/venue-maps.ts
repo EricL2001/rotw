@@ -24,6 +24,11 @@ export const venueMaps = [
     city: "Evergreen, CO",
     mapsUrl: "https://maps.app.goo.gl/ZxxtG3iLnmkhFKz57"
   },
+  {
+    name: "French Broad River Brewery",
+    city: "Asheville, NC",
+    mapsUrl: "https://maps.app.goo.gl/LyAi9axCX37UUbqc9"
+  },
 ];
 
 // helper function to find venue by name
