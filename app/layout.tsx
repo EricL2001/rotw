@@ -33,11 +33,11 @@ export const metadata: Metadata = {
   },
   manifest: '/manifest.json',
   applicationName: "Records On The Wall",
-  metadataBase: new URL('https://recordsonthewall.co'),
+  metadataBase: new URL('https://www.recordsonthewall.co'),
   openGraph: {
     title: 'Records On The Wall',
     description: 'Records On The Wall partners with independent venues and breweries to provide booking, promotion and ticketing services for live music events.',
-    url: 'https://recordsonthewall.co',
+    url: 'https://www.recordsonthewall.co',
     siteName: 'Records On The Wall',
     images: [
       {

@@ -50,7 +50,7 @@ export async function generateMetadata({
         ? `${show.title} at ${show.venue}`
         : `Tickets On Sale For ${show.title} • Records On The Wall`,
       description: `${show.venue}`,
-      url: `https://recordsonthewall.co/shows/${resolvedParams.slug}`,
+      url: `https://www.recordsonthewall.co/shows/${resolvedParams.slug}`,
       siteName: 'Records On The Wall',
       images: [
         {
@@ -84,7 +84,7 @@ export default async function PostPage({
   const venueInfo = findVenueByName(show.venue);
   const mapUrl = venueInfo?.mapsUrl;
 
-  const showUrl = `https://recordsonthewall.co/shows/${resolvedParams.slug}`;
+  const showUrl = `https://www.recordsonthewall.co/shows/${resolvedParams.slug}`;
   const shareText = show.showType === 'Free' 
     ? `${show.title} at ${show.venue} - Free show!`
     : `Get tickets for ${show.title} at ${show.venue}`;
