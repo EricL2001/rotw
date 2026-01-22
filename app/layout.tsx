@@ -4,6 +4,7 @@ import type React from "react"
 import type { Metadata, Viewport } from "next"
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
+import { Analytics } from '@vercel/analytics/next';
 
 
 export const viewport: Viewport = {
@@ -72,6 +73,7 @@ export default function RootLayout({
           </main>
           <Footer />
         </div>
+        <Analytics />
       </body>
     </html>
   )
