@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     siteName: 'Records On The Wall',
     images: [
       {
-        url: '/open-graph.png', // Path to your open graph image
+        url: '/og-shows.png', // Path to your open graph image
         width: 1200,
         height: 630,
       },
