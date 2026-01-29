@@ -10,7 +10,7 @@ export default function AboutPage() {
   return (
     <div className="container mx-auto px-6 py-12 max-w-4xl">
       <div className="space-y-8"> {/* Add vertical spacing between paragraphs */}
-        <h2 className="font-semibold text-xl sm:text-2xl md:text-3xl text-white text-center">About Us</h2>
+        <h2 className="font-semibold text-xl sm:text-2xl md:text-3xl text-white text-center">About</h2>
         <p
           className={cn(
             "mx-auto max-w-[42rem] leading-relaxed text-muted-foreground",
@@ -18,7 +18,16 @@ export default function AboutPage() {
             "animate-in fade-in-5 slide-in-from-bottom-20 duration-1000",
           )}
         >
-          Records On The Wall started in 2018 as a music blog covering the local scene, with a spotlight on what was happening at the Rabbit Hole in the Plaza Midwood neighborhood. Artists like Jeff Austin, Billy Strings, Marcus King, Jon Stickley, and countless others were gracing the stage—yet no one in Charlotte was really shining a light on it (and they still aren&#39;t).
+          Records On The Wall partners with independent venues and breweries to provide booking, promotion and ticketing services for live music events in Charlotte, NC and Denver, CO.
+        </p>
+        <p
+          className={cn(
+            "mx-auto max-w-[42rem] leading-relaxed text-muted-foreground",
+            "text-[18px] md:text-lg lg:text-2xl font-light",
+            "animate-in fade-in-5 slide-in-from-bottom-20 duration-1000",
+          )}
+        >
+          We started in 2018 as a music blog covering the local scene, with a spotlight on what was happening at the Rabbit Hole in the Plaza Midwood neighborhood. Artists like Jeff Austin, Billy Strings, Marcus King, Jon Stickley, and countless others were gracing the stage—yet no one in Charlotte was really shining a light on it (and they still aren&#39;t).
         </p>
 
         <p
@@ -38,7 +47,7 @@ export default function AboutPage() {
             "animate-in fade-in-5 slide-in-from-bottom-20 duration-1000",
           )}
         >
-          Today, we&#39;re set up to keep booking the best local, regional, and national talent we can get our hands on.  If you&#39;re putting the grunt work in, we&#39;d love to work with you.
+          Today, we&#39;re set up to keep booking the best local, regional, and national talent we can find.
         </p>
 
         <p
@@ -60,7 +69,7 @@ export default function AboutPage() {
         >
           Best,<br />
           Eric R. Levasseur<br />
-          Founder • Product Dev • Talent Buyer
+          Founder & Developer
         </p>
       </div>
 

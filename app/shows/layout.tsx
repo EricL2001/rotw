@@ -6,11 +6,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Upcoming Shows • Records On The Wall', // this is what shows up
     description: 'View all upcoming shows', // description for the shows page when shared on social media
-    url: 'https://recordsonthewall.co/shows',
+    url: 'https://www.recordsonthewall.co/shows',
     siteName: 'Records On The Wall',
     images: [
       {
-        url: '/open-graph.png', // You can create a specific image for shows
+        url: '/og-shows.png', // You can create a specific image for shows
         width: 1200,
         height: 630,
       },
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Upcoming Shows • Records On The Wall',
     description: 'View all upcoming shows.',
-    images: ['/open-graph.png'],
+    images: ['/og-shows.png'],
   },
 };
 

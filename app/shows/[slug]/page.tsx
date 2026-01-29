@@ -43,18 +43,18 @@ export async function generateMetadata({
   return {
     title: show.showType === 'Free'
       ? `${show.title} at ${show.venue}`
-      : `Tickets On Sale For ${show.title} • Records On The Wall`,
-    description: `${show.venue}`,
+      : `Tickets On Sale For ${show.title}`,
+    description: `at ${show.venue}`,
     openGraph: {
       title: show.showType === 'Free'
         ? `${show.title} at ${show.venue}`
-        : `Tickets On Sale For ${show.title} • Records On The Wall`,
-      description: `${show.venue}`,
+        : `Tickets On Sale For ${show.title}`,
+      description: `at ${show.venue}`,
       url: `https://www.recordsonthewall.co/shows/${resolvedParams.slug}`,
       siteName: 'Records On The Wall',
       images: [
         {
-          url: '/open-graph.png',
+          url: '/og-shows.png',
           width: 1200,
           height: 630,
         },
@@ -64,9 +64,9 @@ export async function generateMetadata({
     },
     twitter: {
       card: 'summary_large_image',
-      title: `Tickets On Sale For ${show.title} • Records On The Wall`,
+      title: `Tickets On Sale For ${show.title}`,
       description: `Grab tickets to see ${show.title} at ${show.venue} ${show.showType === 'Free' ? 'Free show!' : `Tickets from $${show.price}`}`,
-      images: ['/open-graph.png'],
+      images: ['/og-shows.png'],
     },
   };
 }
