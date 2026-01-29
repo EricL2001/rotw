@@ -54,7 +54,7 @@ export async function generateMetadata({
       siteName: 'Records On The Wall',
       images: [
         {
-          url: '/og-shows.png',
+          url: 'https://www.recordsonthewall.co/og-shows.png',
           width: 1200,
           height: 630,
         },
@@ -66,7 +66,7 @@ export async function generateMetadata({
       card: 'summary_large_image',
       title: `Tickets On Sale For ${show.title}`,
       description: `Grab tickets to see ${show.title} at ${show.venue} ${show.showType === 'Free' ? 'Free show!' : `Tickets from $${show.price}`}`,
-      images: ['/og-shows.png'],
+      images: ['https://www.recordsonthewall.co/og-shows.png'],
     },
   };
 }
