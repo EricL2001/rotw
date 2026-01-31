@@ -1,3 +1,5 @@
+'use cache'
+
 import Image from "next/image"
 import { ShowButton } from "@/components/show-button"
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
@@ -8,15 +10,21 @@ import { client } from "../sanity/lib/client";
 import { toZonedTime, format } from 'date-fns-tz';
 import { GoArrowBoth } from "react-icons/go";
 import { findVenueByName } from "@/lib/venue-maps";
+import { cacheLife } from "next/cache";
 
 const POSTS_QUERY = `*[_type == "post" && defined(slug.current) && showDate >= $today] | order(showDate asc)[0...12]{_id, title, slug, showDate, showType, supportName, venue, "imageUrl": image.asset->url, bandName}`;
 
-const options = { next: { revalidate: 30 } };
+
+async function getUpcomingShows(today: string) {
+  cacheLife('minutes');
+  
+  return client.fetch<SanityDocument[]>(POSTS_QUERY, { today });
+}
 
 export default async function Upcoming() {
   const today = new Date().toISOString().split("T")[0]; // Get today's date in YYYY-MM-DD format
+  const posts = await getUpcomingShows(today);
 
-  const posts = await client.fetch<SanityDocument[]>(POSTS_QUERY, { today }, options);
 
   return (
     <section className="container space-y-10 py-16">

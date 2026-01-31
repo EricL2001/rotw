@@ -1,3 +1,5 @@
+'use client';
+
 import Link from "next/link"
 import { FaInstagram } from "react-icons/fa";
 import { FaFacebookF } from "react-icons/fa6";
@@ -77,7 +79,7 @@ export default function Footer() {
       </div>
       <div className="border-t border-gray-600 py-6">
         <p className="text-center text-sm text-muted-foreground">
-          © {new Date().getFullYear()} Records On The Wall
+          © 2026 Records On The Wall
         </p>
       </div>
     </footer>
