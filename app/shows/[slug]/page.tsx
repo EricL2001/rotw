@@ -11,6 +11,7 @@ import { MapPin } from "lucide-react";
 import type { Metadata } from "next";
 import { findVenueByName } from "@/lib/venue-maps";
 import { ShareButton } from "@/components/ui/share-buttons";
+import { Suspense } from "react";
 
 // Define custom Portable Text components for rendering rich text content from Sanity
 const portableTextComponents: PortableTextComponents = {
@@ -71,13 +72,22 @@ export async function generateMetadata({
   };
 }
 
+function ShowLoading() {
+  return (
+    <main className="container mx-auto min-h-screen max-w-3xl p-8 flex flex-col gap-[2px]">
+      <div className="animate-pulse space-y-4">
+        <div className="h-6 w-32 bg-gray-700 rounded" />
+        <div className="aspect-video bg-gray-700 rounded-xl" />
+        <div className="h-8 w-3/4 bg-gray-700 rounded" />
+        <div className="h-6 w-1/2 bg-gray-700 rounded" />
+        <div className="h-6 w-1/3 bg-gray-700 rounded" />
+        <div className="h-12 w-full bg-gray-700 rounded" />
+      </div>
+    </main>
+  )
+}
 
-// This is the page that shows the details of a single show
-export default async function PostPage({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
+async function ShowContent({ params }: { params: Promise<{ slug: string }> }) {
   const resolvedParams = await params;
   const { show, postImageUrl } = await getShow(resolvedParams.slug);
 
@@ -178,5 +188,18 @@ export default async function PostPage({
         )}
       </div>
     </main>
+  );
+}
+
+// This is the page that shows the details of a single show
+export default function PostPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  return (
+    <Suspense fallback={<ShowLoading />}>
+      <ShowContent params={params} />
+    </Suspense>
   );
 }

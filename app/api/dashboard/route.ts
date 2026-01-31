@@ -1,9 +1,13 @@
 import { neon } from '@neondatabase/serverless';
+import { connection } from 'next/server';
 
 // Initialize Neon client
 const sql = neon(process.env.DATABASE_URL!);
 
 export async function GET() {
+  // Signal that this route uses dynamic data
+  await connection();
+  
   try {
     // Fetch all payment records
     const payments = await sql`
