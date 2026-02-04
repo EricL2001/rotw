@@ -29,6 +29,11 @@ export const venueMaps = [
     city: "Asheville, NC",
     mapsUrl: "https://maps.app.goo.gl/LyAi9axCX37UUbqc9"
   },
+  {
+    name: "Two Moons Music Hall",
+    city: "Denver, CO",
+    mapsUrl: "https://maps.app.goo.gl/mMCg5YJY5jDLWvw27"
+  },
 ];
 
 // helper function to find venue by name

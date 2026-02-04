@@ -53,7 +53,8 @@ export const addShow = defineType({
               {title: 'Heist Barrel Arts', value: 'Heist Barrel Arts'},
               {title: 'Cactus Jacks', value: 'Cactus Jacks'},
               {title: 'Divine Barrel Brewing', value: 'Divine Barrel Brewing'},
-              {title: 'French Broad River Brewery', value: 'French Broad River Brewery'}
+              {title: 'French Broad River Brewery', value: 'French Broad River Brewery'},
+              {title: 'Two Moons Music Hall', value: 'Two Moons Music Hall'},
             ],
         },
         validation: (rule) => rule
