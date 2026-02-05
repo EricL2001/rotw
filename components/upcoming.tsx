@@ -40,7 +40,7 @@ export default async function Upcoming() {
             return (
               <div
                 key={index}
-                className="w-[325px] sm:w-[375px] shrink-0 bg-background p-6 rounded-lg border-[0.5px] border-white"
+                className="shrink-0 bg-background p-6 rounded-lg border-[0.5px] border-white"
               >
                 {show.imageUrl ? (
                   <Image
