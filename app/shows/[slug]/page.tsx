@@ -76,12 +76,12 @@ function ShowLoading() {
   return (
     <main className="container mx-auto min-h-screen max-w-3xl p-8 flex flex-col gap-[2px]">
       <div className="animate-pulse space-y-4">
-        <div className="h-6 w-32 bg-gray-700 rounded" />
-        <div className="aspect-video bg-gray-700 rounded-xl" />
-        <div className="h-8 w-3/4 bg-gray-700 rounded" />
-        <div className="h-6 w-1/2 bg-gray-700 rounded" />
-        <div className="h-6 w-1/3 bg-gray-700 rounded" />
-        <div className="h-12 w-full bg-gray-700 rounded" />
+        <div className="h-6 w-32 bg-gray-200 rounded" />
+        <div className="aspect-video bg-gray-200 rounded-xl" />
+        <div className="h-8 w-3/4 bg-gray-200 rounded" />
+        <div className="h-6 w-1/2 bg-gray-200 rounded" />
+        <div className="h-6 w-1/3 bg-gray-200 rounded" />
+        <div className="h-12 w-full bg-gray-200 rounded" />
       </div>
     </main>
   )
