@@ -38,10 +38,10 @@ export default async function ShowsPage() {
                   <span className="text-gray-400">No image available</span>
                 </div>
               )}
-              <div className="flex items-center justify-between mt-2">
-                <h3 className="text-l font-semibold text-white mt-2">{show.title}</h3>
+              <div className="flex items-start justify-between mt-2">
+                <h3 className="text-l font-semibold text-white mt-2 min-w-0">{show.title}</h3>
                 {show.showType == 'Free' && (
-                  <Badge variant="green" className={GeistMono.className}>Free Show</Badge>
+                  <Badge variant="green" className={`${GeistMono.className} whitespace-nowrap shrink-0 ml-2 mt-2`}>Free Show</Badge>
                 )}
               </div>
               <p className="text-sm sm:text-base text-gray-400 mb-2">{show.supportName}</p>
