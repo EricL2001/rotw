@@ -119,7 +119,7 @@ export const addShow = defineType({
       defineField({
         name: 'image',
         type: 'image',
-        description: 'Image for show header.  Please keep to xxx size',
+        description: 'Image for show header.  Please keep the size around 1200x900 pixels',
       }),
       defineField({
         name: 'description',
