@@ -40,7 +40,7 @@ export default async function Upcoming() {
             return (
               <div
                 key={index}
-                className="shrink-0 bg-background p-6 rounded-lg border-[0.5px] border-white"
+                className="w-[400px] shrink-0 bg-background p-6 rounded-lg border-[0.5px] border-white whitespace-normal"
               >
                 {show.imageUrl ? (
                   <Image
@@ -55,7 +55,7 @@ export default async function Upcoming() {
                     <span className="text-gray-400">No image available</span>
                   </div>
                 )}
-                <div className="flex items-center justify-between mt-2">
+                <div className="flex items-start justify-between mt-2">
                   <h3 className="text-l font-semibold text-white mt-2 min-w-0">{show.title}</h3>
                   {show.showType == 'Free' && (
                     <Badge variant="green" className={`${GeistMono.className} whitespace-nowrap shrink-0 ml-3 mt-2`}>Free Show</Badge>
