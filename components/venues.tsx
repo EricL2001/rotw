@@ -33,6 +33,18 @@ const partners = [
     src: "/cactus-jacks.jpg",
     url: "https://www.evergreenlivemusic.com",
   },
+  {
+    name: "Two Moons Music Hall",
+    city: "Denver, CO",
+    src: "/two-moons.jpg",
+    url: "https://www.twomoonsmusic.com",
+  },
+  {
+    name: "The Hunt House",
+    city: "Marietta, GA",
+    src: "/hunt-house.jpg",
+    url: "https://hunthousemarietta.com/",
+  },
 ]
 
 export default function Venues() {

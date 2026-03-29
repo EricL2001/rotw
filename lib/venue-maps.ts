@@ -34,6 +34,11 @@ export const venueMaps = [
     city: "Denver, CO",
     mapsUrl: "https://maps.app.goo.gl/mMCg5YJY5jDLWvw27"
   },
+  {
+    name: "The Hunt House",
+    city: "Marietta, GA",
+    mapsUrl: "https://maps.app.goo.gl/ECEiZWkQ3RaWsjdB8"
+  },
 ];
 
 // helper function to find venue by name
