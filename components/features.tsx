@@ -3,7 +3,7 @@ import { Music, Shirt, Zap, Ticket } from "lucide-react"
 const features = [
   {
     name: "Booking",
-    description: "We handle talent buying for free and ticketed live music events in NC and CO.",
+    description: "We handle talent buying for free and ticketed live music events in NC, GA, and CO.",
     icon: Music,
   },
   {
@@ -31,7 +31,7 @@ export default function Features() {
         <h2 className="text-left font-black text-5xl leading-tight md:text-6xl tracking-tighter -mt-3">MORE. MUSIC.</h2>
       
         <p className="mt-4 leading-normal text-muted-foreground sm:text-xl sm:leading-8 text-left">
-          Records On The Wall partners with independent venues and breweries to provide booking, promotion and ticketing services for live music events in Charlotte, NC and Denver, CO.
+          Records On The Wall partners with independent venues and breweries to provide booking, promotion and ticketing services for live music events in Charlotte NC, Marietta GA and Denver CO.
         </p>
         <p className="mt-4 leading-normal text-muted-foreground sm:text-xl sm:leading-8 text-left">
           The music is diverse and ranges from up-and-coming artists to established bands in the areas of bluegrass, jam, funk, rock, soul and beyond.
