@@ -178,6 +178,7 @@ export default function Dashboard() {
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {Object.entries(
               payments.reduce((acc: Record<string, {
+                showTitle: string;
                 venue: string;
                 totalRevenue: number;
                 grossTicketRevenue?: number;
@@ -185,9 +186,10 @@ export default function Dashboard() {
                 showDate: string;
                 showId: string;
               }>, payment: ShowPayment) => {
-                const key = payment.show_title;
+                const key = payment.show_id;
                 if (!acc[key]) {
                   acc[key] = {
+                    showTitle: payment.show_title,  
                     venue: payment.venue,
                     totalRevenue: 0,
                     grossTicketRevenue: 0,
@@ -199,6 +201,7 @@ export default function Dashboard() {
                 acc[key].totalRevenue += Number(payment.total_amount_paid);
                 acc[key].grossTicketRevenue = (acc[key].grossTicketRevenue || 0) + Number(payment.total_ticket_price || 0);
                 acc[key].totalTickets += Number(payment.ticket_quantity);
+                acc[key].showTitle = payment.show_title;
                 return acc;
               }, {})
             )
@@ -220,14 +223,14 @@ export default function Dashboard() {
 
 
               // Map to render clickable cards
-              .map(([showTitle, data]) => (
+              .map(([, data]) => (
                 <Card
-                  key={showTitle}
+                  key={data.showId}
                   className="border-gray-600 border-l-4 border-l-orange-600 border-r-4 border-r-orange-600 cursor-pointer hover:shadow-lg hover:shadow-orange-500/20 hover:scale-[1.02] hover:border-orange-500 transition-all duration-300 ease-in-out"
                   onClick={() => router.push(`/dashboard/${data.showId}`)}
                 >
                   <CardHeader className="pb-4 space-y-0.5">
-                    <CardTitle className="text-lg">{showTitle}</CardTitle>
+                    <CardTitle className="text-lg">{data.showTitle}</CardTitle>
                     <CardDescription className="flex items-center gap-1">
                       <MapPin className="h-3 w-3" />
                       {data.venue}
