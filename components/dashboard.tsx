@@ -177,33 +177,35 @@ export default function Dashboard() {
         <CardContent>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {Object.entries(
-              payments.reduce((acc: Record<string, {
-                showTitle: string;
-                venue: string;
-                totalRevenue: number;
-                grossTicketRevenue?: number;
-                totalTickets: number;
-                showDate: string;
-                showId: string;
-              }>, payment: ShowPayment) => {
-                const key = payment.show_id;
-                if (!acc[key]) {
-                  acc[key] = {
-                    showTitle: payment.show_title,  
-                    venue: payment.venue,
-                    totalRevenue: 0,
-                    grossTicketRevenue: 0,
-                    totalTickets: 0,
-                    showDate: payment.show_date,
-                    showId: payment.show_id
-                  };
-                }
-                acc[key].totalRevenue += Number(payment.total_amount_paid);
-                acc[key].grossTicketRevenue = (acc[key].grossTicketRevenue || 0) + Number(payment.total_ticket_price || 0);
-                acc[key].totalTickets += Number(payment.ticket_quantity);
-                acc[key].showTitle = payment.show_title;
-                return acc;
-              }, {})
+              [...payments]
+                .sort((a, b) => new Date(a.created_at).getTime() - new Date(b.created_at).getTime())
+                .reduce((acc: Record<string, {
+                  showTitle: string;
+                  venue: string;
+                  totalRevenue: number;
+                  grossTicketRevenue?: number;
+                  totalTickets: number;
+                  showDate: string;
+                  showId: string;
+                }>, payment: ShowPayment) => {
+                  const key = payment.show_id;
+                  if (!acc[key]) {
+                    acc[key] = {
+                      showTitle: payment.show_title,
+                      venue: payment.venue,
+                      totalRevenue: 0,
+                      grossTicketRevenue: 0,
+                      totalTickets: 0,
+                      showDate: payment.show_date,
+                      showId: payment.show_id
+                    };
+                  }
+                  acc[key].totalRevenue += Number(payment.total_amount_paid);
+                  acc[key].grossTicketRevenue = (acc[key].grossTicketRevenue || 0) + Number(payment.total_ticket_price || 0);
+                  acc[key].totalTickets += Number(payment.ticket_quantity);
+                  acc[key].showTitle = payment.show_title;
+                  return acc;
+                }, {})
             )
 
               // THIS SHOULD RETURN FUTURE SHOWS AND PAST 30 DAYS
