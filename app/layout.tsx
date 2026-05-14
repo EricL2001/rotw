@@ -15,12 +15,12 @@ export const viewport: Viewport = {
 }
 
 export const metadata: Metadata = {
-  title: "Boogie On",
+  title: "Records On The Wall | Booking, Promotion & Ticketing for Live Music Events",
   description: "Records On The Wall partners with independent venues and breweries to provide booking, promotion and ticketing services for live music events in Charlotte, NC and Denver, CO.",
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
-    title: "Boogie On",
+    title: "Records On The Wall | Booking, Promotion & Ticketing for Live Music Events",
   },
   icons: {
     icon: [
