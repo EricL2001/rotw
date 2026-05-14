@@ -39,7 +39,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const resolvedParams = await params;
-  const { show } = await getShow(resolvedParams.slug);
+  const { show, ogImageUrl } = await getShow(resolvedParams.slug);
 
   return {
     title: show.showType === 'Free'
@@ -55,7 +55,7 @@ export async function generateMetadata({
       siteName: 'Records On The Wall',
       images: [
         {
-          url: 'https://www.recordsonthewall.co/og-shows.png',
+          url: ogImageUrl ?? 'https://www.recordsonthewall.co/og-shows.png',
           width: 1200,
           height: 630,
         },
@@ -67,7 +67,7 @@ export async function generateMetadata({
       card: 'summary_large_image',
       title: `Tickets On Sale For ${show.title}`,
       description: `Grab tickets to see ${show.title} at ${show.venue} ${show.showType === 'Free' ? 'Free show!' : `Tickets from $${show.price}`}`,
-      images: ['https://www.recordsonthewall.co/og-shows.png'],
+      images: [ogImageUrl ?? 'https://www.recordsonthewall.co/og-shows.png'],
     },
   };
 }
@@ -95,7 +95,7 @@ async function ShowContent({ params }: { params: Promise<{ slug: string }> }) {
   const mapUrl = venueInfo?.mapsUrl;
 
   const showUrl = `https://www.recordsonthewall.co/shows/${resolvedParams.slug}`;
-  const shareText = show.showType === 'Free' 
+  const shareText = show.showType === 'Free'
     ? `${show.title} at ${show.venue} - Free show!`
     : `Get tickets for ${show.title} at ${show.venue}`;
 

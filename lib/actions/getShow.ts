@@ -24,8 +24,13 @@ export async function getShow(slug: string) {
     ? urlFor(show.image)?.width(550).height(310).url()
     : null;
 
+  const ogImageUrl = show.image
+    ? urlFor(show.image)?.width(1200).height(630).url()
+    : null;
+
   return {
     show,
-    postImageUrl
+    postImageUrl,
+    ogImageUrl,
   };
 }
