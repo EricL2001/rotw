@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     siteName: 'Records On The Wall',
     images: [
       {
-        url: 'https://www.recordsonthewall.co/og-shows.png', // You can create a specific image for shows
+        url: 'https://www.recordsonthewall.co/og-main.png', // You can create a specific image for shows
         width: 1200,
         height: 630,
       },
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Upcoming Shows • Records On The Wall',
     description: 'View all upcoming shows.',
-    images: ['https://www.recordsonthewall.co/og-shows.png'],
+    images: ['https://www.recordsonthewall.co/og-main.png'],
   },
 };
 
