@@ -37,12 +37,12 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://www.recordsonthewall.co'),
   openGraph: {
     title: 'Records On The Wall',
-    description: 'Records On The Wall partners with independent venues and breweries to provide booking, promotion and ticketing services for live music events.',
+    description: 'Booking, Promotion & Ticketing for Live Music Events',
     url: 'https://www.recordsonthewall.co',
     siteName: 'Records On The Wall',
     images: [
       {
-        url: 'https://www.recordsonthewall.co/og-shows.png', // Path to your open graph image
+        url: 'https://www.recordsonthewall.co/og-main.png', // Path to your open graph image
         width: 1200,
         height: 630,
       },
