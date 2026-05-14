@@ -178,7 +178,9 @@ export default function Dashboard() {
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {Object.entries(
               [...payments]
+                // Sort payments by created_at (ascending) before reducing so the last write of showTitle always reflects the most recent record for that show.
                 .sort((a, b) => new Date(a.created_at).getTime() - new Date(b.created_at).getTime())
+                // reduce() groups payments by show_id, accumulating totalRevenue,grossTicketRevenue, and totalTickets per show into a keyed object.
                 .reduce((acc: Record<string, {
                   showTitle: string;
                   venue: string;
@@ -188,7 +190,7 @@ export default function Dashboard() {
                   showDate: string;
                   showId: string;
                 }>, payment: ShowPayment) => {
-                  const key = payment.show_id;
+                  const key = payment.show_id;  // Group by show_id
                   if (!acc[key]) {
                     acc[key] = {
                       showTitle: payment.show_title,
@@ -208,19 +210,15 @@ export default function Dashboard() {
                 }, {})
             )
 
-              // THIS SHOULD RETURN FUTURE SHOWS AND PAST 30 DAYS
+              // THIS SHOULD RETURN TODAY AND FUTURE SHOWS
               .filter(([, data]) => {
                 const showDate = parseLocalDate(data.showDate);
                 const today = new Date();
-                today.setHours(0, 0, 0, 0); // Set to start of today
+                today.setHours(0, 0, 0, 0);
 
-                // Calculate the date 30 days ago
-                const thirtyDaysAgo = new Date(today);
-                thirtyDaysAgo.setDate(today.getDate() - 30);
-
-                // Return future shows and the past 30 days
-                return showDate >= thirtyDaysAgo;
+                return showDate >= today;
               })
+              // Sort shows by showDate ascending
               .sort(([, a], [, b]) => parseLocalDate(a.showDate).getTime() - parseLocalDate(b.showDate).getTime())
 
 

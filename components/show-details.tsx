@@ -183,7 +183,13 @@ export default function ShowDetailsComponent({ slug }: ShowDetailsProps) {
                 </TableRow>
               </TableHeader>
               <TableBody>
-                {data.customers.map((customer) => (
+                {[...data.customers]
+                .sort((a, b) => {
+                  const nameA = formatCustomerName(a.customer_name || 'N/A')
+                  const nameB = formatCustomerName(b.customer_name || 'N/A')
+                  return nameA.localeCompare(nameB)
+                })
+                .map((customer) => (
                   <TableRow key={customer.id}>
                     <TableCell className="font-medium">
                       {formatCustomerName(customer.customer_name || 'N/A')}

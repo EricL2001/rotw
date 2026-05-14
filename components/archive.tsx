@@ -121,48 +121,45 @@ export default function Archive() {
                     <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                         {Object.entries(
                             [...payments]
+                                // Sort payments by created_at (ascending) before reducing so the last write of showTitle always reflects the most recent record for that show.
                                 .sort((a, b) => new Date(a.created_at).getTime() - new Date(b.created_at).getTime())
+                                // reduce() groups payments by show_id, accumulating totalRevenue,grossTicketRevenue, and totalTickets per show into a keyed object.
                                 .reduce((acc: Record<string, {
-                                showTitle: string;
-                                venue: string;
-                                totalRevenue: number;
-                                grossTicketRevenue?: number;
-                                totalTickets: number;
-                                showDate: string;
-                                showId: string;
-                            }>, payment: ShowPayment) => {
-                                const key = payment.show_id;
-                                if (!acc[key]) {
-                                    acc[key] = {
-                                        showTitle: payment.show_title,
-                                        venue: payment.venue,
-                                        totalRevenue: 0,
-                                        grossTicketRevenue: 0,
-                                        totalTickets: 0,
-                                        showDate: payment.show_date,
-                                        showId: payment.show_id
-                                    };
-                                }
-                                acc[key].totalRevenue += Number(payment.total_amount_paid);
-                                acc[key].grossTicketRevenue = (acc[key].grossTicketRevenue || 0) + Number(payment.total_ticket_price || 0);
-                                acc[key].totalTickets += Number(payment.ticket_quantity);
-                                acc[key].showTitle = payment.show_title;
-                                return acc;
-                            }, {})
+                                    showTitle: string;
+                                    venue: string;
+                                    totalRevenue: number;
+                                    grossTicketRevenue?: number;
+                                    totalTickets: number;
+                                    showDate: string;
+                                    showId: string;
+                                }>, payment: ShowPayment) => {
+                                    const key = payment.show_id; // Group by show_id
+                                    if (!acc[key]) {
+                                        acc[key] = {
+                                            showTitle: payment.show_title,
+                                            venue: payment.venue,
+                                            totalRevenue: 0,
+                                            grossTicketRevenue: 0,
+                                            totalTickets: 0,
+                                            showDate: payment.show_date,
+                                            showId: payment.show_id
+                                        };
+                                    }
+                                    acc[key].totalRevenue += Number(payment.total_amount_paid);
+                                    acc[key].grossTicketRevenue = (acc[key].grossTicketRevenue || 0) + Number(payment.total_ticket_price || 0);
+                                    acc[key].totalTickets += Number(payment.ticket_quantity);
+                                    acc[key].showTitle = payment.show_title;
+                                    return acc;
+                                }, {})
                         )
 
-                            // THIS SHOULD RETURN ALL SHOWS OLDER THAN 30 DAYS
+                            // THIS SHOULD RETURN ALL SHOWS OLDER THAN TODAY
                             .filter(([, data]) => {
                                 const showDate = parseLocalDate(data.showDate);
                                 const today = new Date();
-                                today.setHours(0, 0, 0, 0); // Set to start of today
+                                today.setHours(0, 0, 0, 0);
 
-                                // Calculate the date 30 days ago
-                                const thirtyDaysAgo = new Date(today);
-                                thirtyDaysAgo.setDate(today.getDate() - 30);
-
-                                // Return only shows older than 30 days
-                                return showDate < thirtyDaysAgo;
+                                return showDate < today;
                             })
                             .sort(([, a], [, b]) => parseLocalDate(b.showDate).getTime() - parseLocalDate(a.showDate).getTime()) // Sort descending (most recent past shows first)
 
