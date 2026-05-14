@@ -184,6 +184,7 @@ export default function ShowDetailsComponent({ slug }: ShowDetailsProps) {
               </TableHeader>
               <TableBody>
                 {[...data.customers]
+                // List customers by Last name in ascending order, handling "N/A" as a special case
                 .sort((a, b) => {
                   const nameA = formatCustomerName(a.customer_name || 'N/A')
                   const nameB = formatCustomerName(b.customer_name || 'N/A')
