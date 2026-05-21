@@ -18,7 +18,7 @@ export default function AboutPage() {
             "animate-in fade-in-5 slide-in-from-bottom-20 duration-1000",
           )}
         >
-          Records On The Wall partners with independent venues and breweries to provide booking, promotion and ticketing services for live music events in Charlotte NC, Marietta GA and Denver CO.
+          Records On The Wall partners with independent venues and breweries to provide booking, promotion and ticketing services for live music events in North Carolina, Georgia and Colorado.
         </p>
         <p
           className={cn(

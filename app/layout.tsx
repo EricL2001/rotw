@@ -16,7 +16,7 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: "Records On The Wall | Booking, Promotion & Ticketing for Live Music Events",
-  description: "Records On The Wall partners with independent venues and breweries to provide booking, promotion and ticketing services for live music events in Charlotte, NC and Denver, CO.",
+  description: "Records On The Wall partners with independent venues and breweries to provide booking, promotion and ticketing services for live music events in North Carolina, Georgia and Colorado",
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
@@ -49,6 +49,12 @@ export const metadata: Metadata = {
     ],
     locale: 'en_US',
     type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Records On The Wall',
+    description: 'Booking, Promotion & Ticketing for Live Music Events',
+    images: ['https://www.recordsonthewall.co/og-main.png'],
   },
 };
 
