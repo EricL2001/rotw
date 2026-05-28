@@ -59,18 +59,6 @@ export default function AboutPage() {
         >
           We look forward to seeing you at an upcoming show!
         </p>
-
-        <p
-          className={cn(
-            "mx-auto max-w-[42rem] leading-relaxed text-muted-foreground",
-            "text-[18px] md:text-lg lg:text-2xl font-light",
-            "animate-in fade-in-5 slide-in-from-bottom-20 duration-1000",
-          )}
-        >
-          Best,<br />
-          Eric R. Levasseur<br />
-          Founder & Developer
-        </p>
       </div>
 
       {/* FAQ Section */}
@@ -90,9 +78,9 @@ export default function AboutPage() {
 
             <AccordionItem value="item-2">
               <AccordionTrigger className="text-base md:text-lg">How do I transfer or sell a ticket to someone?</AccordionTrigger>
-                <AccordionContent className="text-base md:text-base font-thin">
+              <AccordionContent className="text-base md:text-base font-thin">
                 You&#39;ll need to make arrangements with that person.  Records On The Wall is not responsble for any secondary market transactions.  If you&#39;re transferring a ticket, you can simply email us <a href="mailto:info@recsonthewall.com" className="text-orange-500 font-light" target="_blank" rel="noopener noreferrer">here</a>.
-                </AccordionContent>
+              </AccordionContent>
             </AccordionItem>
 
             <AccordionItem value="item-3">
@@ -112,15 +100,15 @@ export default function AboutPage() {
             <AccordionItem value="item-5">
               <AccordionTrigger className="text-base md:text-lg">What are the ticket fees?</AccordionTrigger>
               <AccordionContent className="text-base md:text-base font-thin">
-                Any ticket of $10 or more is $3.50/ticket. For tickets under $10, the fee is $1.00/ticket.  We itemize all sales tax and fees before you get to checkout, so you know exactly what you&#39;re paying for. 
+                Any ticket of $10 or more is $3.50/ticket. For tickets under $10, the fee is $1.00/ticket.  We itemize all sales tax and fees before you get to checkout, so you know exactly what you&#39;re paying for.
               </AccordionContent>
             </AccordionItem>
 
             <AccordionItem value="item-6">
               <AccordionTrigger className="text-base md:text-lg">I have some questions about my purchase. What should I do?</AccordionTrigger>
-                <AccordionContent className="text-base md:text-base font-thin">
+              <AccordionContent className="text-base md:text-base font-thin">
                 Send us a line. We&#39;re here to help you out anytime. You can email us <a href="mailto:info@recsonthewall.com" className="text-orange-500 font-light" target="_blank" rel="noopener noreferrer">here</a>.
-                </AccordionContent>
+              </AccordionContent>
             </AccordionItem>
           </Accordion>
         </div>
