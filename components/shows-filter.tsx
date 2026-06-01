@@ -63,7 +63,7 @@ export function ShowsFilter({ shows }: ShowsFilterProps) {
       {/* Mobile: horizontal scroll */}
       <div className="md:hidden mb-8">
         <ScrollArea className="w-full">
-          <div className="flex gap-2 pb-3">
+          <div className="flex gap-4 pb-3">
             {filterButtons}
           </div>
           <ScrollBar orientation="horizontal" className="opacity-0" />
@@ -71,7 +71,7 @@ export function ShowsFilter({ shows }: ShowsFilterProps) {
       </div>
 
       {/* Desktop: wrapping layout */}
-      <div className="hidden md:flex flex-wrap gap-2 justify-center mb-8">
+      <div className="hidden md:flex flex-wrap gap-4 justify-center mb-8">
         {filterButtons}
       </div>
 
