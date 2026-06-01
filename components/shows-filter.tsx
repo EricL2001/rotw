@@ -66,7 +66,7 @@ export function ShowsFilter({ shows }: ShowsFilterProps) {
           <div className="flex gap-2 pb-3">
             {filterButtons}
           </div>
-          <ScrollBar orientation="horizontal" />
+          <ScrollBar orientation="horizontal" className="opacity-0" />
         </ScrollArea>
       </div>
 

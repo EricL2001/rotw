@@ -79,7 +79,7 @@ export default async function Upcoming() {
             );
           })}
         </div>
-        <ScrollBar orientation="horizontal" />
+        <ScrollBar orientation="horizontal" className="opacity-0" />
       </ScrollArea>
     </section>
   )
