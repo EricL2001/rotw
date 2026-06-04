@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { PaymentsResponse, ShowPayment } from "@/lib/types/payments"
+import { PaymentsResponse, ShowPerformance } from "@/lib/types/payments"
 import { format } from "date-fns"
 import { toZonedTime } from "date-fns-tz"
 import { DollarSign, Ticket, Calendar, MapPin, Users, Archive } from "lucide-react"
@@ -88,7 +88,7 @@ export default function Dashboard() {
     )
   }
 
-  const { summary, recentActivity, payments } = data!.data
+  const { summary, recentActivity, showPerformance } = data!.data
 
   return (
     <div className="container mx-auto p-6 space-y-6">
@@ -176,54 +176,17 @@ export default function Dashboard() {
         </CardHeader>
         <CardContent>
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {Object.entries(
-              [...payments]
-                // Sort payments by created_at (ascending) before reducing so the last write of showTitle always reflects the most recent record for that show.
-                .sort((a, b) => new Date(a.created_at).getTime() - new Date(b.created_at).getTime())
-                // reduce() groups payments by show_id, accumulating totalRevenue,grossTicketRevenue, and totalTickets per show into a keyed object.
-                .reduce((acc: Record<string, {
-                  showTitle: string;
-                  venue: string;
-                  totalRevenue: number;
-                  grossTicketRevenue?: number;
-                  totalTickets: number;
-                  showDate: string;
-                  showId: string;
-                }>, payment: ShowPayment) => {
-                  const key = payment.show_id;  // Group by show_id
-                  if (!acc[key]) {
-                    acc[key] = {
-                      showTitle: payment.show_title,
-                      venue: payment.venue,
-                      totalRevenue: 0,
-                      grossTicketRevenue: 0,
-                      totalTickets: 0,
-                      showDate: payment.show_date,
-                      showId: payment.show_id
-                    };
-                  }
-                  acc[key].totalRevenue += Number(payment.total_amount_paid);
-                  acc[key].grossTicketRevenue = (acc[key].grossTicketRevenue || 0) + Number(payment.total_ticket_price || 0);
-                  acc[key].totalTickets += Number(payment.ticket_quantity);
-                  acc[key].showTitle = payment.show_title;
-                  return acc;
-                }, {})
-            )
-
-              // THIS SHOULD RETURN TODAY AND FUTURE SHOWS
-              .filter(([, data]) => {
-                const showDate = parseLocalDate(data.showDate);
+            {showPerformance
+              .filter((show: ShowPerformance) => {
+                const showDate = parseLocalDate(show.showDate);
                 const today = new Date();
                 today.setHours(0, 0, 0, 0);
-
                 return showDate >= today;
               })
-              // Sort shows by showDate ascending
-              .sort(([, a], [, b]) => parseLocalDate(a.showDate).getTime() - parseLocalDate(b.showDate).getTime())
-
-
-              // Map to render clickable cards
-              .map(([, data]) => (
+              .sort((a: ShowPerformance, b: ShowPerformance) =>
+                parseLocalDate(a.showDate).getTime() - parseLocalDate(b.showDate).getTime()
+              )
+              .map((data: ShowPerformance) => (
                 <Card
                   key={data.showId}
                   className="border-gray-600 border-l-4 border-l-orange-600 border-r-4 border-r-orange-600 cursor-pointer hover:shadow-lg hover:shadow-orange-500/20 hover:scale-[1.02] hover:border-orange-500 transition-all duration-300 ease-in-out"
@@ -244,7 +207,7 @@ export default function Dashboard() {
                       </div>
                       <div className="flex justify-between items-center">
                         <span className="text-sm text-muted-foreground">Gross Ticket Revenue</span>
-                        <span className="font-semibold text-green-400">${(data.grossTicketRevenue ?? 0).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
+                        <span className="font-semibold text-green-400">${data.grossTicketRevenue.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</span>
                       </div>
                       <div className="flex justify-between items-center">
                         <span className="text-sm text-muted-foreground">Tickets Sold</span>

@@ -34,6 +34,16 @@ export interface RecentActivity {
   revenueLast7Days: number;
 }
 
+export interface ShowPerformance {
+  showId: string;
+  showTitle: string;
+  venue: string;
+  showDate: string;
+  totalRevenue: number;
+  grossTicketRevenue: number;
+  totalTickets: number;
+}
+
 // complete API response structure from app/api/dashboard/route.ts
 export interface PaymentsResponse {
   success: boolean;
@@ -41,5 +51,6 @@ export interface PaymentsResponse {
     payments: ShowPayment[];
     summary: PaymentsSummary;
     recentActivity: RecentActivity;
+    showPerformance: ShowPerformance[];
   };
 }

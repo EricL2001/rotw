@@ -57,6 +57,31 @@ export async function GET() {
       WHERE created_at >= NOW() - INTERVAL '7 days'
     `;
 
+    // Aggregated per-show performance (no LIMIT — always accurate)
+    const showPerformanceRows = await sql`
+      SELECT
+        show_id,
+        show_title,
+        venue,
+        show_date,
+        SUM(total_amount_paid) as total_revenue,
+        SUM(total_ticket_price) as gross_ticket_revenue,
+        SUM(ticket_quantity) as total_tickets
+      FROM show_payments_final
+      GROUP BY show_id, show_title, venue, show_date
+      ORDER BY show_date ASC
+    `;
+
+    const showPerformance = showPerformanceRows.map((row) => ({
+      showId: row.show_id,
+      showTitle: row.show_title,
+      venue: row.venue,
+      showDate: row.show_date,
+      totalRevenue: parseFloat(row.total_revenue || 0),
+      grossTicketRevenue: parseFloat(row.gross_ticket_revenue || 0),
+      totalTickets: parseInt(row.total_tickets || 0),
+    }));
+
     return Response.json({
       success: true,
       data: {
@@ -74,7 +99,8 @@ export async function GET() {
           paymentsLast7Days: parseInt(recentActivity.recent_payments || 0),
           ticketsLast7Days: parseInt(recentActivity.recent_tickets || 0),
           revenueLast7Days: parseFloat(recentActivity.recent_revenue || 0),
-        }
+        },
+        showPerformance,
       }
     });
 
