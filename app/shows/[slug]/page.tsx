@@ -43,14 +43,14 @@ export async function generateMetadata({
 
   return {
     title: show.showType === 'Free'
-      ? `${show.title} at ${show.venue}`
+      ? `${show.title}`
       : `Tickets On Sale For ${show.title}`,
-    description: `at ${show.venue}`,
+    description: `${show.venue}`,
     openGraph: {
       title: show.showType === 'Free'
-        ? `${show.title} at ${show.venue}`
+        ? `${show.title}`
         : `Tickets On Sale For ${show.title}`,
-      description: `at ${show.venue}`,
+      description: `${show.venue}`,
       url: `https://www.recordsonthewall.co/shows/${resolvedParams.slug}`,
       siteName: 'Records On The Wall',
       images: [
@@ -65,8 +65,10 @@ export async function generateMetadata({
     },
     twitter: {
       card: 'summary_large_image',
-      title: `Tickets On Sale For ${show.title}`,
-      description: `Grab tickets to see ${show.title} at ${show.venue} ${show.showType === 'Free' ? 'Free show!' : `Tickets from $${show.price}`}`,
+      title: show.showType === 'Free'
+        ? `${show.title}`
+        : `Tickets On Sale For ${show.title}`,
+      description: `${show.venue}`,
       images: [ogImageUrl ?? 'https://www.recordsonthewall.co/og-shows.png'],
     },
   };
@@ -96,8 +98,8 @@ async function ShowContent({ params }: { params: Promise<{ slug: string }> }) {
 
   const showUrl = `https://www.recordsonthewall.co/shows/${resolvedParams.slug}`;
   const shareText = show.showType === 'Free'
-    ? `${show.title} at ${show.venue} - Free show!`
-    : `Get tickets for ${show.title} at ${show.venue}`;
+    ? `${show.title} - Free show!`
+    : `Get tickets for ${show.title}`;
 
   return (
     <main className="container mx-auto min-h-screen max-w-3xl p-8 flex flex-col gap-[2px]">
