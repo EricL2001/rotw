@@ -19,7 +19,13 @@ export function ShowsFilter({ shows }: ShowsFilterProps) {
 
   const uniqueVenues = Array.from(
     new Set(shows.map((show) => show.venue).filter(Boolean))
-  ) as string[]
+  ).sort((a, b) => {
+    const cityA = findVenueByName(a)?.city ?? a
+    const cityB = findVenueByName(b)?.city ?? b
+    if (cityA.startsWith("Charlotte")) return -1
+    if (cityB.startsWith("Charlotte")) return 1
+    return cityA.localeCompare(cityB)
+  }) as string[]
 
   const filteredShows = selectedVenue
     ? shows.filter((show) => show.venue === selectedVenue)
