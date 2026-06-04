@@ -61,15 +61,15 @@ export async function GET() {
     const showPerformanceRows = await sql`
       SELECT
         show_id,
-        show_title,
-        venue,
-        show_date,
+        MAX(show_title) as show_title,
+        MAX(venue) as venue,
+        MAX(show_date) as show_date,
         SUM(total_amount_paid) as total_revenue,
         SUM(total_ticket_price) as gross_ticket_revenue,
         SUM(ticket_quantity) as total_tickets
       FROM show_payments_final
-      GROUP BY show_id, show_title, venue, show_date
-      ORDER BY show_date ASC
+      GROUP BY show_id
+      ORDER BY MAX(show_date) ASC
     `;
 
     const showPerformance = showPerformanceRows.map((row) => ({
