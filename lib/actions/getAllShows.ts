@@ -4,7 +4,7 @@ import { type SanityDocument } from "next-sanity";
 import { client } from "../../sanity/lib/client";
 import { cacheLife } from 'next/cache';
 
-const POSTS_QUERY = `*[_type == "post" && defined(slug.current) && showDate >= $today] | order(showDate asc)[0...12]
+const POSTS_QUERY = `*[_type == "post" && defined(slug.current) && showDate >= $today] | order(showDate asc)[0...25]
 {
   show_id, 
   title, 
