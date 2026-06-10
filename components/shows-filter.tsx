@@ -91,13 +91,15 @@ export function ShowsFilter({ shows }: ShowsFilterProps) {
               className="shrink-0 bg-background p-6 rounded-lg border-[0.5px] border-white"
             >
               {show.imageUrl ? (
-                <Image
-                  src={show.imageUrl}
-                  alt={show.bandName || "Show image"}
-                  width={300}
-                  height={200}
-                  className="rounded object-cover w-full h-[200px]"
-                />
+                <div className="relative w-full h-[200px] rounded overflow-hidden">
+                  <Image
+                    src={show.imageUrl}
+                    alt={show.bandName || "Show image"}
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="object-cover"
+                  />
+                </div>
               ) : (
                 <div className="w-full h-[200px] bg-gray-800 rounded flex items-center justify-center">
                   <span className="text-gray-400">No image available</span>
