@@ -25,14 +25,9 @@ export const venueMaps = [
     mapsUrl: "https://maps.app.goo.gl/ZxxtG3iLnmkhFKz57"
   },
   {
-    name: "French Broad River Brewery",
-    city: "Asheville, NC",
-    mapsUrl: "https://maps.app.goo.gl/LyAi9axCX37UUbqc9"
-  },
-  {
-    name: "Two Moons Music Hall",
+    name: "Bar 404",
     city: "Denver, CO",
-    mapsUrl: "https://maps.app.goo.gl/mMCg5YJY5jDLWvw27"
+    mapsUrl: "https://maps.app.goo.gl/V47CNJBs3ney1syc7"
   },
   {
     name: "The Hunt House",

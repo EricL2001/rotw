@@ -34,10 +34,10 @@ const partners = [
     url: "https://www.evergreenlivemusic.com",
   },
   {
-    name: "Two Moons Music Hall",
+    name: "Bar 404",
     city: "Denver, CO",
-    src: "/two-moons.jpg",
-    url: "https://www.twomoonsmusic.com",
+    src: "/bar-404.jpg",
+    url: "https://www.bar404broadway.com",
   },
   {
     name: "The Hunt House",
