@@ -65,11 +65,12 @@ export default function ShowDetailsComponent({ slug }: ShowDetailsProps) {
   const formatCustomerName = (name: string): string => {
     if (!name || name === 'N/A') return 'N/A'
     
-    const nameParts = name.trim().split(' ')
+    const nameParts = name.trim().split(/\s+/)
     if (nameParts.length < 2) return name // Return as-is if only one name part
     
-    const firstName = nameParts[0]
-    const lastName = nameParts.slice(1).join(' ') // Handle multiple last names
+    // Only the final word is treated as the surname so middle names sort correctly
+    const lastName = nameParts[nameParts.length - 1]
+    const firstName = nameParts.slice(0, -1).join(' ')
     
     return `${lastName}, ${firstName}`
   }
@@ -188,7 +189,7 @@ export default function ShowDetailsComponent({ slug }: ShowDetailsProps) {
                 .sort((a, b) => {
                   const nameA = formatCustomerName(a.customer_name || 'N/A')
                   const nameB = formatCustomerName(b.customer_name || 'N/A')
-                  return nameA.localeCompare(nameB)
+                  return nameA.localeCompare(nameB, undefined, { sensitivity: 'base' })
                 })
                 .map((customer) => (
                   <TableRow key={customer.id}>
