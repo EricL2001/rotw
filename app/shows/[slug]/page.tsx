@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge"
 import { getShow } from "@/lib/actions/getShow"
 import { TicketSelector } from "@/components/ticket-selector"
 import { toZonedTime, format } from 'date-fns-tz';
-import { MapPin } from "lucide-react";
+import { MapPin, Calendar, Ticket } from "lucide-react";
 import type { Metadata } from "next";
 import { findVenueByName } from "@/lib/venue-maps";
 import { ShareButton } from "@/components/ui/share-buttons";
@@ -132,18 +132,21 @@ async function ShowContent({ params }: { params: Promise<{ slug: string }> }) {
         )}
       </div>
       <p className="text-sm sm:text-base text-gray-400 mb-4">{show.supportName}</p>
-      <h2 className="text-xl sm:text-2xl font-semibold flex items-center gap-2">
-        {mapUrl && (
-          <a href={mapUrl} target="_blank" rel="noopener noreferrer">
-            <MapPin className="w-5 h-5 text-orange-500 hover:text-orange-400" />
-          </a>
-        )}
-        {show.venue}
-      </h2>
-      <p className={`text-sm text-white/80 mb-1 ${GeistMono.className}`}>{venueInfo?.city}</p>
+      <div>
+        <div className="flex items-center gap-2">
+          {mapUrl && (
+            <a href={mapUrl} target="_blank" rel="noopener noreferrer">
+              <MapPin className="w-5 h-5 text-orange-500 hover:text-orange-400" />
+            </a>
+          )}
+          <h2 className="text-xl sm:text-2xl font-semibold">{show.venue}</h2>
+        </div>
+        <p className={`text-sm text-white/80 mb-1 ${GeistMono.className} ${mapUrl ? 'pl-7' : ''}`}>{venueInfo?.city}</p>
+      </div>
       {show.showType === 'Free' ? (
         <div className="flex justify-between items-center">
-          <p className="text-xl sm:text-2xl font-semibold">
+          <p className="text-xl sm:text-2xl font-semibold flex items-center gap-2">
+            <Calendar className="w-5 h-5 text-orange-500" />
             {format(
               toZonedTime(show.showDate, 'America/New_York'),
               'EEE, MMM d',
@@ -152,7 +155,8 @@ async function ShowContent({ params }: { params: Promise<{ slug: string }> }) {
           </p>
         </div>
       ) : (
-        <p className="text-xl sm:text-2xl font-semibold">
+        <p className="text-xl sm:text-2xl font-semibold flex items-center gap-2">
+          <Calendar className="w-5 h-5 text-orange-500" />
           {format(
             toZonedTime(show.showDate, 'America/New_York'),
             'EEE, MMM d',
@@ -162,7 +166,10 @@ async function ShowContent({ params }: { params: Promise<{ slug: string }> }) {
       )}
       {show.showType !== 'Free' && (
         <div className="flex justify-between items-center mb-4">
-          <p className="text-xl sm:text-2xl font-semibold">Tix: ${show.price} / ${show.dosPrice} DOS</p>
+          <p className="text-xl sm:text-2xl font-semibold flex items-center gap-2">
+            <Ticket className="w-5 h-5 text-orange-500" />
+              ${show.price} / ${show.dosPrice} DOS
+          </p>
         </div>
       )}
 
