@@ -34,6 +34,7 @@ export async function createCheckoutSession(
   showTitle: string,
   price: number,
   dosPrice: number,
+  waiveFee: string,
   quantity: number,
   showDate?: string,
   venue?: string,
@@ -63,7 +64,7 @@ export async function createCheckoutSession(
     const ticketPrice = useDos ? dosPrice : price;
     const subtotalCents = Math.round(ticketPrice * 100) * quantity;
     const salesTaxCents = Math.round(subtotalCents * 0.0725);
-    const ticketFeePerTicket = ticketPrice < 10 ? 100 : 350;
+    const ticketFeePerTicket = waiveFee === 'Yes' ? 0 : (ticketPrice < 10 ? 100 : 350);
     const ticketFeeTotal = ticketFeePerTicket * quantity;
     const checkoutTotal = subtotalCents + ticketFeeTotal + salesTaxCents;
 
@@ -85,7 +86,7 @@ export async function createCheckoutSession(
           price_data: {
             currency: 'usd',
             product_data: { name: 'Ticket Fee' },
-            unit_amount: ticketPrice < 10 ? 100 : 350,
+            unit_amount: ticketFeePerTicket,
           },
           quantity,
         },

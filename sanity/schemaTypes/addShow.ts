@@ -117,6 +117,23 @@ export const addShow = defineType({
         }),
       }),
       defineField({
+        name: 'waiveFee',
+        title: 'Waive Ticket Fee',
+        type: 'string',
+        description: 'Used to waive ticket fee for artist pre-sale only',
+        options: {
+            list: [
+              {title: 'Yes', value: 'Yes'},
+              {title: 'No', value: 'No'}
+            ], // <-- predefined values
+            layout: 'radio' // <-- defaults to 'dropdown'
+        },
+        initialValue: 'No',
+        hidden: ({document}) => document?.showType !== 'Ticketed',
+        validation: (rule) => rule
+          .required(),
+    }),
+      defineField({
         name: 'image',
         type: 'image',
         description: 'Image for show header.  Please keep the size around 1200x900 pixels',

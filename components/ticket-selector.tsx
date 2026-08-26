@@ -23,6 +23,7 @@ interface TicketSelectorProps {
     price: number
     promoPrice: number
     dosPrice: number
+    waiveFee: string
     venue: string
     showDate: Date | string
     showType: string
@@ -60,6 +61,7 @@ export function TicketSelector({ show }: TicketSelectorProps) {
         show.title,
         show.price,
         show.dosPrice,
+        show.waiveFee,
         quantity,
         dateOfShow,
         show.venue,
@@ -158,7 +160,8 @@ export function TicketSelector({ show }: TicketSelectorProps) {
                 })()}
               </p>
               <p className="text-sm text-muted-foreground">
-                TIcket Fee: ${(() => {
+                Ticket Fee: ${(() => {
+                  if (show.waiveFee === "Yes") return (0).toFixed(2);
                   const feePerTicket = show.price < 10 ? 1.00 : 3.50;
                   const totalFee = feePerTicket * quantity;
                   return totalFee.toFixed(2);

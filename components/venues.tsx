@@ -2,6 +2,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { GeistMono } from 'geist/font/mono';
 
+// this list is used to display venue and brewery partners in Venues section
 const partners = [
   {
     name: "Heist Brewery",

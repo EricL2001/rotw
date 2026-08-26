@@ -1,3 +1,5 @@
+// this list is used to provide venue name, city and map URL link on the shows/[slug]/page.tsx
+
 export const venueMaps = [
   {
     name: "Heist Brewery - NoDa",
