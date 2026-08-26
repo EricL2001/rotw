@@ -174,6 +174,7 @@ async function ShowContent({ params }: { params: Promise<{ slug: string }> }) {
             price: show.price,
             promoPrice: show.promoPrice,
             dosPrice: show.dosPrice,
+            waiveFee: show.waiveFee,
             venue: show.venue,
             showDate: show.showDate,
             showType: show.showType,
