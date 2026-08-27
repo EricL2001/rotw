@@ -49,7 +49,7 @@ export const EmailTemplate: React.FC<EmailTemplateProps> = ({
           <Section style={content}>
             <Text style={greeting}>Hi, {firstName}</Text>
 
-            <Heading style={heading}>Thanks for your purchase from Records On The Wall!</Heading>
+            <Text style={heading}>Thanks for your purchase from Records On The Wall!</Text>
 
             <Text style={paragraph}>Here are the ticket details to your upcoming show:</Text>
 
@@ -163,7 +163,8 @@ const greeting = {
 const heading = {
   fontSize: "16px",
   lineHeight: "1.4",
-  color: "#444444",
+  color: "#000000",
+  fontWeight: "500",
   marginTop: "0",
   marginBottom: "14px",
 }
@@ -172,7 +173,7 @@ const paragraph = {
   fontSize: "16px",
   lineHeight: "1.4",
   color: "#444444",
-  marginBottom: "14px",
+  marginBottom: "6px",
 }
 
 const ticketInfo = {
