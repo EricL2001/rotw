@@ -8,6 +8,8 @@ interface EmailTemplateProps {
   showDate: string
   quantity: string
   venue: string
+  address?: string
+  city?: string
   isPreview?: boolean
 }
 
@@ -17,6 +19,8 @@ export const EmailTemplate: React.FC<EmailTemplateProps> = ({
   showDate,
   quantity,
   venue,
+  address,
+  city,
   isPreview = false,
 }) => {
 
@@ -58,6 +62,8 @@ export const EmailTemplate: React.FC<EmailTemplateProps> = ({
                 <Section style={detailItem}>
                   <Text style={detailLabel}>Venue</Text>
                   <Text style={detailValue}>{venue}</Text>
+                  {address && <Text style={detailAddressValue}>{address}</Text>}
+                  {city && <Text style={detailCityValue}>{city}</Text>}
                 </Section>
 
                 <Section style={detailItem}>
@@ -201,6 +207,22 @@ const detailLabel = {
 }
 
 const detailValue = {
+  fontSize: "16px",
+  lineHeight: "1.4",
+  color: "#000000",
+  fontWeight: "500",
+  margin: "0",
+}
+
+const detailAddressValue = {
+  fontSize: "16px",
+  lineHeight: "1.4",
+  color: "#000000",
+  fontWeight: "500",
+  margin: "0",
+}
+
+const detailCityValue = {
   fontSize: "16px",
   lineHeight: "1.4",
   color: "#000000",

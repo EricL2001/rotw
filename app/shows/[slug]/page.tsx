@@ -141,7 +141,12 @@ async function ShowContent({ params }: { params: Promise<{ slug: string }> }) {
           )}
           <h2 className="text-xl sm:text-2xl font-semibold">{show.venue}</h2>
         </div>
-        <p className={`text-sm text-white/80 mb-1 ${GeistMono.className} ${mapUrl ? 'pl-7' : ''}`}>{venueInfo?.city}</p>
+        <p className={`text-sm text-white/80 ${GeistMono.className} ${mapUrl ? 'pl-7' : ''}`}>
+          {venueInfo?.address}
+        </p>
+        <p className={`text-sm text-white/80 mb-1 ${GeistMono.className} ${mapUrl ? 'pl-7' : ''}`}>
+          {venueInfo?.city}
+        </p>
       </div>
       {show.showType === 'Free' ? (
         <div className="flex justify-between items-center">
@@ -168,7 +173,7 @@ async function ShowContent({ params }: { params: Promise<{ slug: string }> }) {
         <div className="flex justify-between items-center mb-4">
           <p className="text-xl sm:text-2xl font-semibold flex items-center gap-2">
             <Ticket className="w-5 h-5 text-orange-500" />
-              ${show.price} / ${show.dosPrice} DOS
+            ${show.price} / ${show.dosPrice} DOS
           </p>
         </div>
       )}

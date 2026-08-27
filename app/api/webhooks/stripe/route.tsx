@@ -3,6 +3,7 @@ import { Resend } from 'resend';
 import { render } from '@react-email/render';
 import { EmailTemplate } from '@/components/emails/email-template';
 import { neon } from '@neondatabase/serverless';
+import { findVenueByName } from '@/lib/venue-maps';
 
 // =============================================================================
 // INITIALIZE SERVICES
@@ -131,6 +132,10 @@ export async function POST(req: Request) {
       // Get metadata from the session
       const { showTitle, showDate, quantity, venue } = session.metadata || {};
 
+      // Resolve venue address for the confirmation email
+      const venueInfo = findVenueByName(venue || '');
+      console.log('🔍 venue metadata:', venue, '→ venueInfo:', venueInfo); // TEMP DEBUG - remove after testing
+
       // Get purchaser's email and name from Stripe checkout session
       const purchaserEmail = session.customer_details?.email;
       const purchaserName = session.customer_details?.name;
@@ -158,6 +163,8 @@ export async function POST(req: Request) {
           showDate={showDate || 'N/A'}
           quantity={quantity || 'N/A'}
           venue={venue || 'N/A'}
+          address={venueInfo?.address}
+          city={venueInfo?.city}
           isPreview={isPreview}
         />);
 
