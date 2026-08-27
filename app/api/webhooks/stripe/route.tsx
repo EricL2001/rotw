@@ -134,7 +134,6 @@ export async function POST(req: Request) {
 
       // Resolve venue address for the confirmation email
       const venueInfo = findVenueByName(venue || '');
-      console.log('🔍 venue metadata:', venue, '→ venueInfo:', venueInfo); // TEMP DEBUG - remove after testing
 
       // Get purchaser's email and name from Stripe checkout session
       const purchaserEmail = session.customer_details?.email;

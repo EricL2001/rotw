@@ -1,4 +1,4 @@
-// this list is used to provide venue name, address, city, State and map URL link on the shows/[slug]/page.tsx and passed to resend emails
+// this list is used to provide venue name, address, city, State and map URL link on the shows/[slug]/page.tsx and passed to resend emails via the EmailTemplate component
 
 export const venueMaps = [
   {

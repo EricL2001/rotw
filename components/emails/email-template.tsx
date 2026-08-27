@@ -163,7 +163,7 @@ const greeting = {
 const heading = {
   fontSize: "20px",
   lineHeight: "1.3",
-  fontWeight: "700",
+  fontWeight: "600",
   color: "#000000",
   marginTop: "0",
   marginBottom: "24px",
@@ -173,7 +173,7 @@ const paragraph = {
   fontSize: "16px",
   lineHeight: "1.5",
   color: "#444444",
-  margin: "0 0 24px",
+  marginBottom: "14px",
 }
 
 const ticketInfo = {
@@ -183,7 +183,7 @@ const ticketInfo = {
 const showTitleStyle = {
   fontSize: "20px",
   lineHeight: "1.4",
-  fontWeight: "600",
+  fontWeight: "700",
   color: "#000000",
   margin: "0 0 16px",
 }
@@ -215,7 +215,7 @@ const detailValue = {
 }
 
 const detailAddressValue = {
-  fontSize: "16px",
+  fontSize: "14px",
   lineHeight: "1.4",
   color: "#000000",
   fontWeight: "500",
@@ -223,7 +223,7 @@ const detailAddressValue = {
 }
 
 const detailCityValue = {
-  fontSize: "16px",
+  fontSize: "14px",
   lineHeight: "1.4",
   color: "#000000",
   fontWeight: "500",
