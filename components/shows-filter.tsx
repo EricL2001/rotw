@@ -7,7 +7,7 @@ import { Badge } from "@/components/ui/badge"
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 import { toZonedTime, format } from 'date-fns-tz'
 import { ShowButton } from "@/components/show-button"
-import { findVenueByName } from "@/lib/venue-maps"
+import { findVenueByName } from "@/lib/venue-details"
 import { type SanityDocument } from "next-sanity"
 
 interface ShowsFilterProps {

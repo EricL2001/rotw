@@ -3,7 +3,7 @@ import { Resend } from 'resend';
 import { render } from '@react-email/render';
 import { EmailTemplate } from '@/components/emails/email-template';
 import { neon } from '@neondatabase/serverless';
-import { findVenueByName } from '@/lib/venue-maps';
+import { findVenueByName } from '@/lib/venue-details';
 
 // =============================================================================
 // INITIALIZE SERVICES

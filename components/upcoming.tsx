@@ -9,7 +9,7 @@ import { type SanityDocument } from "next-sanity";
 import { client } from "../sanity/lib/client";
 import { toZonedTime, format } from 'date-fns-tz';
 import { GoArrowBoth } from "react-icons/go";
-import { findVenueByName } from "@/lib/venue-maps";
+import { findVenueByName } from "@/lib/venue-details";
 import { cacheLife } from "next/cache";
 
 const POSTS_QUERY = `*[_type == "post" && defined(slug.current) && showDate >= $today] | order(showDate asc)[0...12]{_id, title, slug, showDate, showType, supportName, venue, "imageUrl": image.asset->url, bandName}`;

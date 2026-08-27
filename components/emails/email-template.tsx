@@ -219,6 +219,7 @@ const signature = {
   lineHeight: "1.5",
   color: "#444444",
   fontStyle: "italic",
+  paddingTop: "10px",
   margin: "0 0 32px",
 }
 

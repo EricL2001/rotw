@@ -9,7 +9,7 @@ import { TicketSelector } from "@/components/ticket-selector"
 import { toZonedTime, format } from 'date-fns-tz';
 import { MapPin, Calendar, Ticket } from "lucide-react";
 import type { Metadata } from "next";
-import { findVenueByName } from "@/lib/venue-maps";
+import { findVenueByName } from "@/lib/venue-details";
 import { ShareButton } from "@/components/ui/share-buttons";
 import { Suspense } from "react";
 
