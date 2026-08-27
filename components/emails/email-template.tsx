@@ -62,8 +62,8 @@ export const EmailTemplate: React.FC<EmailTemplateProps> = ({
                 <Section style={detailItem}>
                   <Text style={detailLabel}>Venue</Text>
                   <Text style={detailValue}>{venue}</Text>
-                  {address && <Text style={detailAddressValue}>{address}</Text>}
-                  {city && <Text style={detailCityValue}>{city}</Text>}
+                  {address && <Text style={detailValue}>{address}</Text>}
+                  {city && <Text style={detailValue}>{city}</Text>}
                 </Section>
 
                 <Section style={detailItem}>
@@ -157,21 +157,20 @@ const greeting = {
   fontSize: "16px",
   lineHeight: "1.4",
   color: "#444444",
-  marginBottom: "8px",
+  marginBottom: "6px",
 }
 
 const heading = {
-  fontSize: "20px",
-  lineHeight: "1.3",
-  fontWeight: "600",
-  color: "#000000",
+  fontSize: "16px",
+  lineHeight: "1.4",
+  color: "#444444",
   marginTop: "0",
-  marginBottom: "24px",
+  marginBottom: "14px",
 }
 
 const paragraph = {
   fontSize: "16px",
-  lineHeight: "1.5",
+  lineHeight: "1.4",
   color: "#444444",
   marginBottom: "14px",
 }
@@ -185,7 +184,7 @@ const showTitleStyle = {
   lineHeight: "1.4",
   fontWeight: "700",
   color: "#000000",
-  margin: "0 0 16px",
+  marginBottom: "16px",
 }
 
 const detailsContainer = {
@@ -208,22 +207,6 @@ const detailLabel = {
 
 const detailValue = {
   fontSize: "16px",
-  lineHeight: "1.4",
-  color: "#000000",
-  fontWeight: "500",
-  margin: "0",
-}
-
-const detailAddressValue = {
-  fontSize: "14px",
-  lineHeight: "1.4",
-  color: "#000000",
-  fontWeight: "500",
-  margin: "0",
-}
-
-const detailCityValue = {
-  fontSize: "14px",
   lineHeight: "1.4",
   color: "#000000",
   fontWeight: "500",
