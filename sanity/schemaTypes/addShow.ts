@@ -130,8 +130,13 @@ export const addShow = defineType({
         },
         initialValue: 'No',
         hidden: ({document}) => document?.showType !== 'Ticketed',
-        validation: (rule) => rule
-          .required(),
+        validation: (rule) => rule.custom((waiveFee, context) => {
+          const document = context?.document;
+          if (document?.showType === 'Ticketed' && !waiveFee) {
+            return 'Waive Ticket Fee is required for ticketed shows';
+          }
+          return true;
+        }),
     }),
       defineField({
         name: 'image',
