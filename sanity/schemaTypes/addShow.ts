@@ -54,6 +54,7 @@ export const addShow = defineType({
               {title: 'Cactus Jacks', value: 'Cactus Jacks'},
               {title: 'Divine Barrel Brewing', value: 'Divine Barrel Brewing'},
               {title: 'Bar 404', value: 'Bar 404'},
+              {title: 'Velvet Banjo', value: 'Velvet Banjo'},
               {title: 'The Hunt House', value: 'The Hunt House'},
             ],
         },

@@ -43,6 +43,12 @@ export const venueMaps = [
     city: "Marietta, GA",
     mapsUrl: "https://maps.app.goo.gl/ECEiZWkQ3RaWsjdB8"
   },
+  {
+    name: "Velvet Banjo",
+    address: "741 E Colfax Ave",
+    city: "Denver, CO",
+    mapsUrl: "https://maps.app.goo.gl/zjcYinQrfioK2fTi7"
+  },
 ];
 
 // helper function to find venue by name

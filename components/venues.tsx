@@ -41,6 +41,12 @@ const partners = [
     url: "https://www.bar404broadway.com",
   },
   {
+    name: "Velvet Banjo",
+    city: "Denver, CO",
+    src: "/velvet-banjo.jpg",
+    url: "https://www.velvetbanjo.com/",
+  },
+  {
     name: "The Hunt House",
     city: "Marietta, GA",
     src: "/hunt-house.jpg",
